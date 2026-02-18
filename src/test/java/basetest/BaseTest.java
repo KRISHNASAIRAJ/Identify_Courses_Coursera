@@ -2,6 +2,7 @@ package basetest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import utilities.ConfigReader;
 
@@ -10,7 +11,8 @@ import java.util.Properties;
 
 public class BaseTest {
     private WebDriver driver;
-    public BaseTest() throws IOException {
+    @BeforeClass
+    void getDriver() throws IOException {
         ConfigReader configReader = new ConfigReader();
         String browser = configReader.getProp("browser");
         if (browser != null) {
@@ -21,6 +23,13 @@ public class BaseTest {
             }
             driver.manage().window().maximize();
             driver.get(configReader.getProp("URL"));
+        }
+    }
+    @AfterClass
+    void tearDown(){
+        if(driver!=null){
+            driver.quit();
+            driver=null;
         }
     }
 }
