@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class Tc_c17 extends BaseTest {
+public class TC_017 extends BaseTest {
     @Test
     public void tests() throws InterruptedException {
         WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));

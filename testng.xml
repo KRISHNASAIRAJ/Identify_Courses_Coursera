@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-            <class name="Tc_c17"/>
+            <class name="TC_017"/>
         </classes>
     </test>
 </suite>
