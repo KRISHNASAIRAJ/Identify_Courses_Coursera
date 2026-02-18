@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-            <class name="pageObjects.Base"/>
+            <class name="testcases.TC_021"/>
         </classes>
     </test>
 </suite>
