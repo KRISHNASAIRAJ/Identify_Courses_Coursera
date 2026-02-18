@@ -8,7 +8,7 @@ import utilities.ConfigReader;
 
 import java.io.IOException;
 
-public class TC_c17 {
+public class BaseTest {
     protected static WebDriver driver;
     @BeforeSuite
     public void getDriver() throws IOException {

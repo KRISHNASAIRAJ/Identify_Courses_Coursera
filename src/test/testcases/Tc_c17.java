@@ -1,4 +1,4 @@
-import basetest.TC_c17;
+import basetest.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class majorcheck extends TC_c17 {
+public class Tc_c17 extends BaseTest {
     @Test
     public void tests() throws InterruptedException {
         WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));
