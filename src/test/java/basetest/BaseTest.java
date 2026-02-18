@@ -2,17 +2,17 @@ package basetest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.annotations.AfterClass;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import utilities.ConfigReader;
 
 import java.io.IOException;
-import java.util.Properties;
+import java.time.Duration;
 
 public class BaseTest {
     protected static WebDriver driver;
+    protected static WebDriverWait wait;
     @BeforeSuite
     public void getDriver() throws IOException {
         ConfigReader configReader = new ConfigReader();
@@ -25,6 +25,7 @@ public class BaseTest {
             }
             driver.manage().window().maximize();
             driver.get(configReader.getProp("URL"));
+            wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         }
     }
     @AfterSuite
