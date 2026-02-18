@@ -15,15 +15,15 @@ import java.time.Duration;
 import java.util.List;
 
 public class Base {
-    protected static WebDriver driver;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    public Base(WebDriver driver,WebDriverWait wait){
+        this.driver=driver;
+        this.wait=wait;
+    }
     @Test
-    public static void test() throws IOException {
-        ConfigReader configReader=new ConfigReader();
-        driver=new EdgeDriver();
-        driver.manage().window().maximize();
-        driver.get(configReader.getProp("URL"));
+    public void test() throws IOException {
         By search_bar= By.id("search-autocomplete-input");
-        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(search_bar));
         driver.findElement(search_bar).sendKeys("Web Development");
         driver.findElement(search_bar).sendKeys(Keys.ENTER);

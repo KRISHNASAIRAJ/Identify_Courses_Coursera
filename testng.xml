@@ -4,6 +4,7 @@
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
             <class name="testcases.TC_021"/>
+            <class name="testcases.TC_022"/>
         </classes>
     </test>
 </suite>
