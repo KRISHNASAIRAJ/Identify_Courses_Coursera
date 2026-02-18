@@ -1,36 +1,44 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import basetest.TC_c17;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
-public class majorcheck {
+public class majorcheck extends TC_c17 {
     @Test
-    public void tests(){
-        WebDriver driver= new ChromeDriver();
+    public void tests() throws InterruptedException {
         WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));
         JavascriptExecutor js=(JavascriptExecutor)driver;
-        driver.manage().window().maximize();
-        driver.get("https://www.coursera.org/");
 
-        //external link test==>failed
+        WebElement inp=driver.findElement(By.xpath("//input[@name='query']"));
+        inp.sendKeys("Python");
+        inp.sendKeys(Keys.ENTER);
+        WebElement gp=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='filter-dropdown-productTypeDescription']")));
+        gp.click();
+        WebElement guidedprojselect=driver.findElement(By.xpath("//span[text()='Guided Projects']"));
+        guidedprojselect.click();
 
-        //C11 – Syllabus Expand/Collapse
-        //Do: Expand each week/module in the course syllabus.
-        //Assert: Module descriptions load without login.
 
-        WebElement el= driver.findElement(By.xpath("//a[@class='cds-119 cds-113 cds-115 cds-CommonCard-titleLink css-fdx774 cds-142' and @id='cds-react-aria7889841089-:r7i:-product-card-title']"));
-        wait.until(ExpectedConditions.visibilityOf(el));
-        js.executeScript("arguments[0].scrollIntoView(true);",el);
+        WebElement viewbtn=driver.findElement(By.xpath("//span[contains(@class,'cds-button-label') and contains(.,'View')]"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'cds-button-label') and contains(.,'View')]")));
+        viewbtn.click();
 
-        el.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("cds-ProductCard-content")));
+        List<WebElement> l= driver.findElements(By.className("cds-ProductCard-content"));
+        for(WebElement search: l){
+            String str=search.findElement(By.xpath("//div[@class='cds-CommonCard-metadata']")).getText();
+            Assert.assertEquals(str.contains("Less Than 2 Hours"),true);
+        }
+
+
+
+        }
+
 
 
     }
-}
+

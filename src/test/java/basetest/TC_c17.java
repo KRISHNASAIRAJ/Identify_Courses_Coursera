@@ -2,16 +2,13 @@ package basetest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import utilities.ConfigReader;
 
 import java.io.IOException;
-import java.util.Properties;
 
-public class BaseTest {
+public class TC_c17 {
     protected static WebDriver driver;
     @BeforeSuite
     public void getDriver() throws IOException {
