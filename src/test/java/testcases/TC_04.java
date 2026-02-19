@@ -5,11 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
-public class TC_02 extends BaseTest {
+public class TC_04 extends BaseTest {
     @Test
-    public void testSearchPartnerAndBadge(){
+    void testCheckLevels(){
         HomePage homePage = new HomePage(driver,wait);
-       //homePage.test2();
-        Assert.assertTrue(homePage.companyCourseName());
+        Assert.assertTrue(homePage.courseLevel());
     }
 }

@@ -22,6 +22,10 @@ public class HomePage {
         List<WebElement> title;
         @FindBy(xpath = "//div[@class='cds-CommonCard-interactiveArea']")
         List<WebElement> companyName;
+        @FindBy(xpath = "//div[contains(text(),'reviews')]")
+        List<WebElement> review;
+        @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
+        List<WebElement> level;
         public HomePage(WebDriver driver,WebDriverWait wait){
             this.driver=driver;
             this.wait=wait;
@@ -45,17 +49,28 @@ public class HomePage {
                 dismissPopup();
             }
         }
-        public boolean test2(){
+        public boolean companyCourseName(){
             List<WebElement> courseCards = companyName;
             boolean bool = false;
             for(WebElement card : courseCards){
                 bool = !card.getText().isEmpty();
             }
             return bool;
-
-//            List<WebElement> badgeName = driver.findElements();
-
-
-
+        }
+        public boolean courseReviews(){
+            List<WebElement> courseCards = review;
+            boolean bool = false;
+            for (WebElement card : courseCards){
+                bool = !card.getText().isEmpty();
+            }
+            return bool;
+        }
+        public boolean courseLevel(){
+            List<WebElement> courseCards = level;
+            boolean bool = false;
+            for(WebElement card: courseCards){
+                bool = !card.getText().isEmpty();
+            }
+            return bool;
         }
 }

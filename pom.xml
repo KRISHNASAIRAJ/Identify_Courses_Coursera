@@ -59,7 +59,7 @@
 <!--          <version>5.2.5</version>-->
 <!--      </dependency>-->
 <!--      <dependency>-->
-<!--          <groupId>com.aventstack</groupId>-->
+<!--          <groupId>companyCourseName.aventstack</groupId>-->
 <!--          <artifactId>extentreports</artifactId>-->
 <!--          <version>5.1.1</version>-->
 <!--          <scope>compile</scope>-->
