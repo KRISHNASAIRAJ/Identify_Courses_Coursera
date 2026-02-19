@@ -13,7 +13,6 @@ public class TC_028_formSubmissionWithValidData extends BaseTest {
         businessFormSubmission.moveToFormArea();
         businessFormSubmission.formFilling("Krishna","Sai","kri@cognizant.com","1234567890",1,"SDE",1,2,"India","Telangana");
         Assert.assertFalse(businessFormSubmission.emailCheck());
-        System.out.println(businessFormSubmission.formSubmissionStatus());
         Assert.assertTrue(businessFormSubmission.formSubmissionStatus());
     }
 

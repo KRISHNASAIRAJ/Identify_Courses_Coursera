@@ -2,15 +2,21 @@ package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.CommonCode;
 
 import java.util.Set;
 
 public class DegreeCoursesPage {
     WebDriver driver;
     WebDriverWait wait;
-    By degreesBtn= By.xpath("//a[@data-testid='nav-link-grid-item-degrees']");
+    @FindBy(xpath = "//a[@data-testid='nav-link-grid-item-degrees']")
+    WebElement degreesOption;
+    CommonCode commonCode=new CommonCode(driver,wait);
     By filter1=By.xpath("//span[contains(@class,'cds-multiSelect-label') and text()='Program Level']");
     By mastersDegr=By.xpath("//li[@data-key='MastersDegree']");
     By appplyButton=By.xpath("//button[@aria-label='Apply selections']");
@@ -22,6 +28,7 @@ public class DegreeCoursesPage {
     public DegreeCoursesPage(WebDriver driver,WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
+        PageFactory.initElements(driver,this);
     }
     public boolean isUniversityNamePresent(){
         return !driver.findElement(university).getText().isEmpty();
@@ -31,7 +38,7 @@ public class DegreeCoursesPage {
         return !driver.findElement(course).getText().isEmpty();
     }
     public void find_courses(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(degreesBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(degreesOption)).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(filter1)).click();
         wait.until(ExpectedConditions.elementToBeClickable(mastersDegr)).click();
         wait.until(ExpectedConditions.elementToBeClickable(appplyButton)).click();
