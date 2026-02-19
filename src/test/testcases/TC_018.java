@@ -20,6 +20,7 @@ public class TC_018 extends BaseTest {
     public void tests() throws InterruptedException {
         Guidedproject guidedproject = new Guidedproject(driver,wait);
         guidedproject.nextpage();
+        Assert.assertTrue(guidedproject.stepByInstructionsCheck());
 
     }
 }

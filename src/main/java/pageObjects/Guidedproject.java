@@ -1,6 +1,5 @@
 package pageObjects;
 
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -37,13 +35,22 @@ public class Guidedproject {
     WebElement box;
     @FindBy(xpath = "//div[@class='css-15ko5n9']")
     WebElement stepbystep;
-
+    @FindBy(xpath = "//div[text()='No downloads or installation required']")
+    WebElement noinstall;
+    String str;
     public Guidedproject(WebDriver driver,WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
 
+    public String getURL(){
+        return driver.getCurrentUrl();
+    }
+
+    public  String getTitle(){
+        return driver.getTitle();
+    }
     public  void Gotogp(){
         JavascriptExecutor js=(JavascriptExecutor) driver;
         Actions actions=new Actions(driver);
@@ -74,7 +81,7 @@ public class Guidedproject {
         List<WebElement> l= productcardcontent;
         for(WebElement search: l){
             String str=search.findElement((By) metadata).getText();
-            Assert.assertEquals(str.contains("Less Than 2 Hours"),true);
+            Assert.assertTrue(str.contains("Less Than 2 Hours"));
         }
     }
 
@@ -94,7 +101,15 @@ public class Guidedproject {
         }
         driver.switchTo().window(child);
         js.executeScript("arguments[0].scrollIntoView(true);", stepbystep);
-        String str = stepbystep.getText();
-        Assert.assertEquals(str.contains("Learn step-by-step"), true);
+        str = stepbystep.getText();
     }
+    public boolean stepByInstructionsCheck(){
+        return str.contains("Learn step-by-step");
+    }
+
+    public boolean noinstallation(){
+       return noinstall.isDisplayed();
+
+    }
+
 }
