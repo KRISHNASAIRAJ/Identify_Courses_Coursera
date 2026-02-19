@@ -3,10 +3,11 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-<!--            <class name="testcases.TC_021"/>-->
-<!--            <class name="testcases.TC_022"/>-->
-            <class name="testcases.TC_023"/>
-            <class name="testcases.TC_024"/>
+<!--            <class name="testcases.TC_022_programOverview"/>-->
+<!--            <class name="testcases.TC_030"/>-->
+            <class name="testcases.TC_023_formSubmissionWithValidData"/>
+            <class name="testcases.TC_024_formSubmissionWithInvalidData"/>
+            <class name="testcases.TC_021_checkLoginButtonEnabledOrNot"/>
         </classes>
     </test>
 </suite>

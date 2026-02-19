@@ -6,7 +6,7 @@ import pageObjects.Base;
 
 import java.io.IOException;
 
-public class TC_022 extends BaseTest {
+public class TC_030 extends BaseTest {
     @Test
     void test() throws IOException {
         Base base=new Base(driver,wait);
