@@ -6,16 +6,22 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.ResultsPage;
+import utilities.CommonCode;
+
+import java.io.IOException;
 
 public class TC_024_SearchBarFunctionality extends BaseTest {
     HomePage homePage;
+    CommonCode commonCode;
     @BeforeTest
     void setUp(){
         homePage =new HomePage(driver,wait);
+        commonCode=new CommonCode(driver,wait);
     }
     @Test(priority = 21)
-    void searchBarFunctionality(){
+    void searchBarFunctionality() throws IOException {
         Assert.assertTrue(homePage.searchBarVisibility());
+        commonCode.takeScreenshot();
         homePage.sendInputToSearchBar("Web Development");
     }
 }
