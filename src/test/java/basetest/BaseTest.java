@@ -25,7 +25,7 @@ public class BaseTest {
             }
             driver.manage().window().maximize();
             driver.get(configReader.getProp("URL"));
-            wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait=new WebDriverWait(driver, Duration.ofSeconds(15));
         }
     }
     @AfterSuite

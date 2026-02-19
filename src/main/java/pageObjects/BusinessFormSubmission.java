@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Ignore;
 import utilities.CommonCode;
 
 public class BusinessFormSubmission {
@@ -32,6 +33,8 @@ public class BusinessFormSubmission {
     WebElement jobTitle;
     @FindBy(id="Self_reported_employees_to_buy_for__c")
     WebElement employeeRange;
+    @FindBy(id="Employee_Range__c")
+    WebElement employeeRangeForPersonalMail;
     @FindBy(id="Self_Reported_Needs__c")
     WebElement needs;
     @FindBy(id="Country")
@@ -42,15 +45,18 @@ public class BusinessFormSubmission {
     WebElement submit;
     @FindBy(className="mktoError")
     WebElement invalidEId;
+    @FindBy(xpath = "//h1[text()='Coursera for Teams is your best next step']")
+    WebElement formStatusDisplay;
+    CommonCode commonCode;
     public BusinessFormSubmission(WebDriver driver,WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
         PageFactory.initElements(driver,this);
+        commonCode=new CommonCode(driver,wait);
     }
 
 
     public void moveToFormArea(){
-        CommonCode commonCode=new CommonCode(driver,wait);
         business.click();
         commonCode.scrollIntoViewer(form);
     }
@@ -66,6 +72,13 @@ public class BusinessFormSubmission {
         Select organization= new Select(organizationType);
         organization.selectByIndex(organizationTypeIndex);
         jobTitle.sendKeys(jobTitleInp);
+        try{
+            company.sendKeys("CTS");
+            Select employeeRangeForPEmail=new Select(employeeRangeForPersonalMail);
+            employeeRangeForPEmail.selectByIndex(1);
+        } catch (Exception ignore) {
+        }
+
         Select needsDescription=new Select(needs);
         needsDescription.selectByIndex(needDescInp);
         Select rangeOfEmployee=new Select(employeeRange);
@@ -78,8 +91,18 @@ public class BusinessFormSubmission {
     }
     public boolean emailCheck(){
         try {
-            return (wait.until(ExpectedConditions.visibilityOf(invalidEId)).isDisplayed());
+            boolean check=wait.until(ExpectedConditions.visibilityOf(invalidEId)).isDisplayed();
+            commonCode.scrollIntoViewer(invalidEId);
+            return check;
         } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean formSubmissionStatus(){
+        try{
+            return (wait.until(ExpectedConditions.visibilityOf(formStatusDisplay)).isDisplayed());
+        }
+        catch (Exception e){
             return false;
         }
     }

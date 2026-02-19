@@ -11,7 +11,8 @@ public class TC_024 extends BaseTest {
     void formSubmissionWithInvalidData() throws InterruptedException{
         BusinessFormSubmission businessFormSubmission=new BusinessFormSubmission(driver,wait);
         businessFormSubmission.moveToFormArea();
-        businessFormSubmission.formFilling("Krishna","Sai","kri@gmail.com","1234567890",1,"SDE",1,2,"India","Telangana");
+        businessFormSubmission.formFilling("Krishna","Sai","kri@gmail","1234567890",1,"SDE",1,2,"India","Telangana");
         Assert.assertTrue(businessFormSubmission.emailCheck());
+        Assert.assertFalse(businessFormSubmission.formSubmissionStatus());
     }
 }

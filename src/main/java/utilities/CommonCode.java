@@ -15,6 +15,7 @@ public class CommonCode {
         this.js=(JavascriptExecutor) driver;
     }
     public void scrollIntoViewer(WebElement ele){
-        js.executeScript("arguments[0].scrollIntoView(true);",ele);
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});",ele);
     }
+
 }
