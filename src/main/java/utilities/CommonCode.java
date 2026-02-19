@@ -1,9 +1,14 @@
 package utilities;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class CommonCode {
     WebDriver driver;
@@ -16,5 +21,15 @@ public class CommonCode {
     }
     public void scrollIntoViewer(WebElement ele){
         js.executeScript("arguments[0].scrollIntoView(true);",ele);
+    }
+
+    public void takeScreenshot() throws IOException {
+        File source=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        Path outDir = Paths.get("screenshots");
+        Files.createDirectories(outDir);
+        String fileName = "snap-coursera-" + System.currentTimeMillis() + ".png";
+        Path destination = outDir.resolve(fileName);
+        Files.copy(source.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Screenshot saved: " + destination.toAbsolutePath());
     }
 }
