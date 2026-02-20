@@ -1,14 +1,23 @@
 package testcases;
 
 import basetest.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.CourseSearchPage;
+import pageObjects.ResultsPage;
+
+import java.io.IOException;
 
 public class TC_011_SkillsExtraction extends BaseTest {
-    @Test
+    //By Irfan
+    ResultsPage resultsPage;
+    @BeforeTest
+    void setUp() throws IOException {
+        resultsPage =new ResultsPage(driver,wait);
+    }
+    @Test(priority = 11)
     public void extractSkills(){
-        CourseSearchPage courserasearchresultspage =new CourseSearchPage(driver,wait);
-        courserasearchresultspage.Gotogp();
-        courserasearchresultspage.getSkills();
+        resultsPage.guidedProject();
+        Assert.assertTrue(resultsPage.getSkills());
     }
 }

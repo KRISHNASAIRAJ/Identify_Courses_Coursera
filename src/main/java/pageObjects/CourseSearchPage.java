@@ -27,8 +27,6 @@ public class CourseSearchPage {
     List<WebElement> productcard;
     @FindBy(xpath = "cds-ProductCard-body")
     WebElement productcardbody;
-    @FindBy(xpath = "cds-ProductCard-content")
-    List<WebElement> productcardcontent;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
     @FindBy(xpath = "//h3[contains(text(),'Introduction to Python')]")
@@ -42,35 +40,6 @@ public class CourseSearchPage {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
-    }
-
-    public  void Gotogp(){
-        JavascriptExecutor js=(JavascriptExecutor) driver;
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
-        guidedProjectElement.click();
-        wait.until(ExpectedConditions.visibilityOf(guidedprojectcheckbox));
-        guidedprojectcheckbox.click();
-
-        wait.until(ExpectedConditions.visibilityOf(viewbtn));
-        viewbtn.click();
-    }
-
-    public void getSkills(){
-        List<WebElement> l= productcard;
-        for(WebElement search: l){
-            String str= search.getText();
-            // Assert that skills are displayed
-            Assert.assertTrue(productcardbody.isDisplayed(), "Skills section is not displayed");
-            Assert.assertFalse(str.isEmpty(), "Skills section is empty");
-        }
-    }
-
-    public void getTimeline(){
-        List<WebElement> l= productcardcontent;
-        for(WebElement search: l){
-            String str=search.findElement((By) metadata).getText();
-            Assert.assertTrue(str.contains("Less Than 2 Hours"));
-        }
     }
 
     public void nextpage(){

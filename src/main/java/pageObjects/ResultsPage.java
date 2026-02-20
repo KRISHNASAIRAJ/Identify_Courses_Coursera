@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.CommonCode;
 
 import java.io.IOException;
@@ -38,6 +39,18 @@ public class ResultsPage {
     List<WebElement> review;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     List<WebElement> level;
+    @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
+    WebElement guidedProjectElement;
+    @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
+    WebElement guidedProjectCheckbox;
+    @FindBy(xpath = "cds-ProductCard-content")
+    List<WebElement> productCard;
+    @FindBy(xpath = "cds-ProductCard-body")
+    WebElement productCardBody;
+    @FindBy(xpath = "cds-ProductCard-content")
+    List<WebElement> productCardContent;
+    @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
+    WebElement metadata;
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
@@ -144,6 +157,38 @@ public class ResultsPage {
 
     public boolean isLoginButtonEnabled(){
         return (wait.until(ExpectedConditions.elementToBeClickable(loginButton)).isEnabled());
+    }
+
+    public  void guidedProject(){
+        wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
+        guidedProjectElement.click();
+        wait.until(ExpectedConditions.visibilityOf(guidedProjectCheckbox));
+        guidedProjectCheckbox.click();
+        clickViewButton();
+    }
+
+    public boolean getSkills(){
+        List<WebElement> l= productCard;
+        boolean check=true;
+        for(WebElement search: l){
+            String str= search.getText();
+            if(!productCardBody.isDisplayed() && str.isEmpty()){
+                    check=false;
+            }
+        }
+        return check;
+    }
+
+    public boolean getTimeline(){
+        List<WebElement> l= productCardContent;
+        boolean check=true;
+        for(WebElement search: l){
+            String str=search.findElement((By) metadata).getText();
+            if(!str.contains("Less Than 2 Hours")){
+                check=false;
+            }
+        }
+        return check;
     }
 
 }
