@@ -8,14 +8,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.CommonCode;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HomePage_Aditya {
         WebDriver driver;
         WebDriverWait wait;
         @FindBy(xpath = "//a[@data-click-key='front_page.front_page_story.click.navigation_meta_nav_Individuals']")
-        WebElement logo ;
+        WebElement logo;
+        @FindBy(xpath = "//span[contains(text(),'Log In')]")
+        WebElement logInButton;
+        @FindBy(xpath = "//label[contains(text(),'Email')]")
+        WebElement emailLabel;
         @FindBy(id="search-autocomplete-input")
         WebElement search;
         @FindBy(xpath = "//button[@id='ior2l']")
@@ -28,22 +34,33 @@ public class HomePage_Aditya {
         List<WebElement> review;
         @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
         List<WebElement> level;
-
+        CommonCode commonCode;
         public HomePage_Aditya(WebDriver driver, WebDriverWait wait){
             this.driver=driver;
             this.wait=wait;
+            commonCode=new CommonCode(driver,wait);
             PageFactory.initElements(driver,this);
         }
         public boolean checkLogo(){
-                return logo.isDisplayed();
+            return logo.isDisplayed();
         }
-
+        public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+            wait.until(ExpectedConditions.elementToBeClickable(logInButton));
+            return true;
+        }
+        public void clickLogInButton() {
+            logInButton.click();
+        }
+        public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
+            wait.until(ExpectedConditions.visibilityOf(emailLabel));
+            return emailLabel.isDisplayed();
+        }
         public void dismissPopup(){
             wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
         }
-
-        public void searchAndLoadCards(){
+        public void searchAndLoadCards() throws IOException {
             try {
+                commonCode.takeScreenshot();
                 wait.until(ExpectedConditions.visibilityOf(search)).sendKeys("Python");
                 search.submit();
                 List<WebElement> courseCards = title;
