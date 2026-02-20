@@ -1,3 +1,5 @@
+package testcases;
+
 import basetest.BaseTest;
 import org.testng.annotations.Test;
 import pageObjects.Coursera_search_results_page;

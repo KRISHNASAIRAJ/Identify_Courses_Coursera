@@ -1,13 +1,14 @@
+package testcases;
+
 import basetest.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.Coursera_search_results_page;
 
-public class TC_016_NoSetupGuarantee extends BaseTest {
+public class TC_014_DurationLabelExtraction extends BaseTest {
     @Test
-    public void noinstallationCheck(){
+    public void extracttimeline() throws InterruptedException {
         Coursera_search_results_page courserasearchresultspage = new Coursera_search_results_page(driver,wait);
-        Assert.assertTrue(courserasearchresultspage.noinstallation());
+        courserasearchresultspage.getTimeline();
     }
-
 }
+
