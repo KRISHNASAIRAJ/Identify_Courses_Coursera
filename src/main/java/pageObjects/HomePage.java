@@ -48,6 +48,7 @@ public class HomePage {
     }
 
     public void sendInputToSearchBar(String input) {
+        searchBar.clear();
         searchBar.sendKeys(input);
         searchBar.sendKeys(Keys.ENTER);
     }

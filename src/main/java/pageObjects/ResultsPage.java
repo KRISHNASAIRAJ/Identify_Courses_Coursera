@@ -152,6 +152,7 @@ public class ResultsPage {
     public void getListOfTitles(){
         wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
         for(WebElement card:courseDetails){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
             System.out.println(card.findElement(titleElement).getText()+
                     " | "+card.findElement(rating).getAttribute("aria-valuenow")+
                     " | "+card.findElement(duration).getText());

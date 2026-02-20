@@ -4,34 +4,35 @@ package pageObjects;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
-//pending
+
 public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
-    WebElement box;
+    String setupInstructionsExtractor;
+    @FindBy(xpath = "//a[@aria-label='Introduction to Python, offered by Coursera, GUIDED PROJECT']")
+    WebElement specificElement;
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
     WebElement stepByStep;
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
     WebElement installationCheck;
-    String str;
 
     public CourseDetailsPage(WebDriver driver, WebDriverWait wait) {
         this.driver=driver;
         this.wait=wait;
+        PageFactory.initElements(driver,this);
     }
 
-    public void courseDetails(){
+    public void courseDetails() throws InterruptedException {
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        Actions actions=new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOf(box));
+        wait.until(ExpectedConditions.visibilityOf(specificElement));
+        specificElement.click();
         String parentWindow = driver.getWindowHandle();
-        actions.moveToElement(box).click().build().perform();
         Set<String> windows = driver.getWindowHandles();
         String child = "";
         for (String s : windows) {
@@ -41,11 +42,11 @@ public class CourseDetailsPage {
         }
         driver.switchTo().window(child);
         js.executeScript("arguments[0].scrollIntoView(true);", stepByStep);
-        str = stepByStep.getText();
+        setupInstructionsExtractor = stepByStep.getText();
     }
 
     public boolean stepByInstructionsCheck(){
-        return str.contains("Learn step-by-step");
+        return setupInstructionsExtractor.contains("Learn step-by-step");
     }
     public boolean noInstallation(){
         return installationCheck.isDisplayed();

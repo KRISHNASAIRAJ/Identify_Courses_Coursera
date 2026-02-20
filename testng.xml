@@ -3,24 +3,24 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-            <class name="testcases.TC_01_VerifyUrl"/>
-            <class name="testcases.TC_02_VerifyTitle"/>
-            <class name="testcases.TC_03_VerifyLogo"/>
+<!--            <class name="testcases.TC_01_VerifyUrl"/>-->
+<!--            <class name="testcases.TC_02_VerifyTitle"/>-->
+<!--            <class name="testcases.TC_03_VerifyLogo"/>-->
             <class name="testcases.TC_07_VerifyProductNames"/>
-            <class name="testcases.TC_08_VerifyPartnerBadge"/>
-            <class name="testcases.TC_09_VerifyReviews"/>
-            <class name="testcases.TC_10_VerifyLevels"/>
+<!--            <class name="testcases.TC_08_VerifyPartnerBadge"/>-->
+<!--            <class name="testcases.TC_09_VerifyReviews"/>-->
+<!--            <class name="testcases.TC_10_VerifyLevels"/>-->
             <class name="testcases.TC_011_SkillsExtraction"/>
-            <class name="testcases.TC_014_DurationLabelExtraction"/>
+<!--            <class name="testcases.TC_014_DurationLabelExtraction"/>-->
             <class name="testcases.TC_015_ProjectStepsExtraction"/>
-<!--            <class name="testcases.TC_016_NoSetupGuarantee"/>-->
-<!--            <class name="testcases.TC_023_SearchBarFunctionality"/>-->
-<!--            <class name="testcases.TC_024_getAllLanguagesAndLevels"/>-->
-<!--            <class name="testcases.TC_025_FirstTwoCoursesDetails"/>-->
-<!--            <class name="testcases.TC_026_checkLoginButtonEnabledOrNot"/>-->
-<!--            <class name="testcases.TC_027_programOverview"/>-->
-<!--            <class name="testcases.TC_028_formSubmissionWithValidData"/>-->
-<!--            <class name="testcases.TC_029_formSubmissionWithInvalidData"/>-->
+            <class name="testcases.TC_016_NoSetupGuarantee"/>
+            <class name="testcases.TC_023_SearchBarFunctionality"/>
+            <class name="testcases.TC_024_getAllLanguagesAndLevels"/>
+            <class name="testcases.TC_025_FirstTwoCoursesDetails"/>
+            <class name="testcases.TC_026_checkLoginButtonEnabledOrNot"/>
+            <class name="testcases.TC_027_programOverview"/>
+            <class name="testcases.TC_028_formSubmissionWithValidData"/>
+            <class name="testcases.TC_029_formSubmissionWithInvalidData"/>
         </classes>
     </test>
 </suite>

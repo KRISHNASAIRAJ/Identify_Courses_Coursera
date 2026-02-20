@@ -16,8 +16,7 @@ public class TC_015_ProjectStepsExtraction extends BaseTest {
         courseDetailsPage =new CourseDetailsPage(driver,wait);
     }
     @Test
-    public void extractinstructions() throws InterruptedException {
-        Thread.sleep(40000);
+    public void extractInstructions() throws InterruptedException {
         courseDetailsPage.courseDetails();
         Assert.assertTrue(courseDetailsPage.stepByInstructionsCheck());
 
