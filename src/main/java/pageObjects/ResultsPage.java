@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
-import utilities.ExcelWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,14 +22,22 @@ public class ResultsPage {
     WebElement viewBtn;
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
     WebElement loginButton;
+    @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
+    List<WebElement> allTitles;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-language']")
     WebElement languageOptions;
     @FindBy(xpath = "(//div[@class='cds-ProductCard-content'])[position()<=2]")
     List<WebElement> courseDetails;
     @FindBy(xpath = "//div[contains(@data-testid,'language')]/label/div/span")
     List<WebElement> languages;
+    @FindBy(xpath = "//div[@class='cds-CommonCard-interactiveArea']")
+    List<WebElement> companyName;
     @FindBy(xpath = "//div[contains(@data-testid,'productDifficultyLevel')]/label/div/span")
     List<WebElement> difficultyLevels;
+    @FindBy(xpath = "//div[contains(text(),'reviews')]")
+    List<WebElement> review;
+    @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
+    List<WebElement> level;
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
@@ -84,6 +91,48 @@ public class ResultsPage {
 //        }
     }
 
+    public boolean searchAndLoadCards(){
+        wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
+        List<WebElement> courseCards = allTitles;
+        boolean check=false;
+        for (WebElement card : courseCards) {
+            check=!card.getText().isEmpty();
+//            System.out.println(card.getText());
+        }
+        return check;
+    }
+
+    public boolean courseReviews(){
+        List<WebElement> courseCards = review;
+        boolean bool = false;
+        for (WebElement card : courseCards){
+            bool = !card.getText().isEmpty();
+//            System.out.println(card.getText());
+        }
+        return bool;
+    }
+
+    public boolean courseLevel(){
+        List<WebElement> courseCards = level;
+        boolean bool = false;
+        for(WebElement card: courseCards){
+            bool = !card.getText().isEmpty();
+//            System.out.println(card.getText());
+        }
+        return bool;
+    }
+
+    public boolean companyCourseName(){
+        wait.until(ExpectedConditions.visibilityOfAllElements(companyName));
+        List<WebElement> courseCards = companyName;
+        boolean check = false;
+        for(WebElement card : courseCards){
+            check = !card.getText().isEmpty();
+//            System.out.println(card.getText());
+        }
+        return check;
+    }
+
     public void getListOfTitles(){
         wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
         for(WebElement card:courseDetails){
@@ -96,4 +145,5 @@ public class ResultsPage {
     public boolean isLoginButtonEnabled(){
         return (wait.until(ExpectedConditions.elementToBeClickable(loginButton)).isEnabled());
     }
+
 }
