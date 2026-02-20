@@ -7,7 +7,7 @@ import pageObjects.BusinessFormSubmission;
 
 public class TC_028_formSubmissionWithValidData extends BaseTest {
 
-    @Test(priority = 28)
+    @Test(priority = 30)
     void formSubmissionWithValidData() throws InterruptedException{
         BusinessFormSubmission businessFormSubmission=new BusinessFormSubmission(driver,wait);
         businessFormSubmission.moveToFormArea();

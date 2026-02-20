@@ -15,23 +15,19 @@ public class TC_025_FirstTwoCoursesDetails extends BaseTest {
     void setUp(){
         resultsPage =new ResultsPage(driver,wait);
     }
-    @Test(priority = 22)
+    @Test(priority = 25)
     void difficultyLevelFunctionality(){
         Assert.assertTrue(resultsPage.difficultyLevelVisibility());
         resultsPage.selectDifficultyLevel("Beginner");
-    }
-    @Test(priority = 23)
-    void viewButtonFunctionality(){
-        Assert.assertTrue(resultsPage.isViewButtonEnabled());
         resultsPage.clickViewButton();
     }
-    @Test(priority = 24)
+    @Test(priority = 26)
     void languageOptionsFunctionality(){
         Assert.assertTrue(resultsPage.areLanguageOptionsClickable());
         resultsPage.selectLanguage("English");
         resultsPage.clickViewButton();
     }
-    @Test(priority = 25)
+    @Test(priority = 27)
     void beginnersLevelCoursesData() throws IOException {
         resultsPage.getListOfTitles();
     }

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.DegreeCoursesPage;
 
 public class TC_027_programOverview extends BaseTest {
-    @Test(priority = 27)
+    @Test(priority = 29)
     void programOverview() throws InterruptedException {
         DegreeCoursesPage obj=new DegreeCoursesPage(driver,wait);
         obj.find_courses();
