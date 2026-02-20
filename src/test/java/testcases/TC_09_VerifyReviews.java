@@ -8,15 +8,15 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_08_VerifyLevels extends BaseTest {
+public class TC_09_VerifyReviews extends BaseTest {
     //By Aditya
     ResultsPage resultsPage;
     @BeforeTest
     void setUp() throws IOException {
         resultsPage=new ResultsPage(driver,wait);
     }
-    @Test(priority = 8)
-    void testCheckLevels(){
-        Assert.assertTrue(resultsPage.courseLevel());
-    }
+    @Test(priority = 7)
+        public void testCheckReviews(){
+            Assert.assertTrue(resultsPage.courseReviews());
+        }
 }

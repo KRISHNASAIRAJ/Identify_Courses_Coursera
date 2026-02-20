@@ -70,4 +70,45 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
+    //---------------------------------------------
+    @FindBy(xpath = "//span[contains(text(),'Log In')]")
+    WebElement logInButton;
+    @FindBy(xpath = "//label[contains(text(),'Email')]")
+    WebElement emailLabel;
+    @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
+    WebElement tenThousandText;
+    @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
+    WebElement freeTrial;
+    @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
+    WebElement afterFreeTrialClick;
+    public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
+        return true;
+    }
+    public void clickLogInButton() {
+        logInButton.click();
+    }
+    public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
+        wait.until(ExpectedConditions.visibilityOf(emailLabel));
+        return emailLabel.isDisplayed();
+    }
+    public void closeLoginForm(){
+        driver.findElement(By.xpath("//button[@data-e2e='close-modal-button']")).click();
+
+    }
+    public boolean isTenThousandTextVisible() throws Exception {
+        wait.until(ExpectedConditions.visibilityOf(tenThousandText));
+        //System.out.println(tenThousandText.getText());
+        return tenThousandText.isDisplayed();
+    }
+    public void clickFreeTrialButton() throws Exception {
+        wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
+        freeTrial.click();
+    }
+    public boolean isFreeTrialPageOpens() throws Exception {
+        WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
+        //System.out.println(courseraPlusHeading.getText());
+        return courseraPlusHeading.isDisplayed();
+    }
+
 }
