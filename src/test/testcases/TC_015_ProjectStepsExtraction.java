@@ -3,11 +3,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.Coursera_search_results_page;
 
-public class TC_019_NoSetupGuarantee extends BaseTest {
+public class TC_015_ProjectStepsExtraction extends BaseTest {
     @Test
-    public void noinstallationCheck(){
+    public void extractinstructions() throws InterruptedException {
         Coursera_search_results_page courserasearchresultspage = new Coursera_search_results_page(driver,wait);
-        Assert.assertTrue(courserasearchresultspage.noinstallation());
-    }
+        courserasearchresultspage.nextpage();
+        Assert.assertTrue(courserasearchresultspage.stepByInstructionsCheck());
 
+    }
 }
