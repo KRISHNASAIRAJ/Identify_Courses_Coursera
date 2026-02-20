@@ -31,7 +31,7 @@ public class CommonCode {
         String fileName = "snap-coursera-" + System.currentTimeMillis() + ".png";
         Path destination = outDir.resolve(fileName);
         Files.copy(source.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
-        System.out.println("Screenshot saved: " + destination.toAbsolutePath());
+//        System.out.println("Screenshot saved: " + destination.toAbsolutePath());
     }
 
     public void elementClickableFunc(WebElement element){

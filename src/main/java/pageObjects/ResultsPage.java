@@ -93,7 +93,7 @@ public class ResultsPage {
         int languageCount=languages.size();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
-            System.out.println(language.getText());
+//            System.out.println(language.getText());
         }
     }
 
@@ -153,9 +153,9 @@ public class ResultsPage {
         wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
         for(WebElement card:courseDetails){
             wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
-            System.out.println(card.findElement(titleElement).getText()+
-                    " | "+card.findElement(rating).getAttribute("aria-valuenow")+
-                    " | "+card.findElement(duration).getText());
+//            System.out.println(card.findElement(titleElement).getText()+
+//                    " | "+card.findElement(rating).getAttribute("aria-valuenow")+
+//                    " | "+card.findElement(duration).getText());
         }
     }
 
