@@ -4,7 +4,6 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.CourseSearchPage;
 import pageObjects.ResultsPage;
 
 import java.io.IOException;

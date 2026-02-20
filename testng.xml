@@ -12,7 +12,7 @@
             <class name="testcases.TC_08_VerifyLevels"/>
             <class name="testcases.TC_011_SkillsExtraction"/>
             <class name="testcases.TC_014_DurationLabelExtraction"/>
-<!--            <class name="testcases.TC_015_ProjectStepsExtraction"/>-->
+            <class name="testcases.TC_015_ProjectStepsExtraction"/>
 <!--            <class name="testcases.TC_016_NoSetupGuarantee"/>-->
 <!--            <class name="testcases.TC_023_SearchBarFunctionality"/>-->
 <!--            <class name="testcases.TC_024_getAllLanguagesAndLevels"/>-->
