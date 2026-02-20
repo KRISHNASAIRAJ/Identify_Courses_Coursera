@@ -3,12 +3,12 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-            <class name="TC_020"/>
-            <class name="TC_021"/>
-            <class name="TC_016"/>
-            <class name="TC_017"/>
-            <class name="TC_018"/>
-            <class name="TC_019"/>
+            <class name="TC_020_VerifyUrl"/>
+            <class name="TC_021_VerifyTitle"/>
+            <class name="TC_016_SkillsExtraction"/>
+            <class name="TC_017_DurationLabelExtraction"/>
+            <class name="TC_018_ProjectStepsExtraction"/>
+            <class name="TC_019_NoSetupGuarantee"/>
 
         </classes>
     </test>
