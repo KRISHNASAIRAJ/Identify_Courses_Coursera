@@ -11,7 +11,7 @@ import org.testng.Assert;
 import java.util.List;
 import java.util.Set;
 
-public class Coursera_search_results_page {
+public class CourseSearchPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
@@ -38,7 +38,7 @@ public class Coursera_search_results_page {
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
     WebElement noinstall;
     String str;
-    public Coursera_search_results_page(WebDriver driver, WebDriverWait wait) {
+    public CourseSearchPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
