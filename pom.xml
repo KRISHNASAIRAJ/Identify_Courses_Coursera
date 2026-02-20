@@ -45,13 +45,21 @@
           <artifactId>testng</artifactId>
           <version>7.12.0</version>
       </dependency>
-<!--      <dependency>-->
+
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-bom</artifactId>
+          <version>4.18.1</version>
+          <type>pom</type>
+          <scope>import</scope>
+      </dependency>
+      <!--      <dependency>-->
 <!--          <groupId>org.apache.poi</groupId>-->
 <!--          <artifactId>poi-ooxml</artifactId>-->
 <!--          <version>5.2.5</version>-->
 <!--      </dependency>-->
 <!--      <dependency>-->
-<!--          <groupId>com.aventstack</groupId>-->
+<!--          <groupId>companyCourseName.aventstack</groupId>-->
 <!--          <artifactId>extentreports</artifactId>-->
 <!--          <version>5.1.1</version>-->
 <!--          <scope>compile</scope>-->

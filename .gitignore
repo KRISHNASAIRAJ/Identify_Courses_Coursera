@@ -14,7 +14,7 @@ target/
 *.ipr
 
 ## Private info
-#*.src/test/resources/config.properties
+#*.src/dismissPopup/resources/config.properties
 
 ### Eclipse ###
 .apt_generated
