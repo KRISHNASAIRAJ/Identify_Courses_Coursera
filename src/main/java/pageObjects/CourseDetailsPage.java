@@ -30,7 +30,7 @@ public class CourseDetailsPage {
 
     public void courseDetails() throws InterruptedException {
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        wait.until(ExpectedConditions.visibilityOf(specificElement));
+        wait.until(ExpectedConditions.elementToBeClickable(specificElement));
         specificElement.click();
         String parentWindow = driver.getWindowHandle();
         Set<String> windows = driver.getWindowHandles();
