@@ -18,7 +18,7 @@ public class CourseSearchPage {
     @FindBy(xpath = "//input[@name='query']")
     WebElement inp;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
-    WebElement gpscroll;
+    WebElement guidedProjectElement;
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedprojectcheckbox;
     @FindBy(xpath = "//span[contains(@class,'cds-button-label') and contains(.,'View')]")
@@ -44,20 +44,10 @@ public class CourseSearchPage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getURL(){
-        return driver.getCurrentUrl();
-    }
-
-    public  String getTitle(){
-        return driver.getTitle();
-    }
     public  void Gotogp(){
         JavascriptExecutor js=(JavascriptExecutor) driver;
-//        inp.clear();
-//        inp.sendKeys("Python");
-//        inp.sendKeys(Keys.ENTER);
-        wait.until(ExpectedConditions.visibilityOf(gpscroll));
-        gpscroll.click();
+        wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
+        guidedProjectElement.click();
         wait.until(ExpectedConditions.visibilityOf(guidedprojectcheckbox));
         guidedprojectcheckbox.click();
 
