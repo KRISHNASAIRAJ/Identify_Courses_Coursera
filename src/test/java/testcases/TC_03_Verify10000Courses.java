@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage_Aditya;
 
-public class TC_03_verifyTrialSubscription extends BaseTest {
+public class TC_03_Verify10000Courses extends BaseTest {
         @Test
         public void tenThousandAndFreeTrial() throws Exception {
             HomePage_Aditya homepage = new HomePage_Aditya(driver, wait);

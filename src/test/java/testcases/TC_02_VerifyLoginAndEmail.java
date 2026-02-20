@@ -3,10 +3,9 @@ package testcases;
 import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageObjects.HomePage;
 import pageObjects.HomePage_Aditya;
 
-public class TC_02_verifyLoginAndEmail extends BaseTest {
+public class TC_02_VerifyLoginAndEmail extends BaseTest {
     @Test
     public void testLogInAndEmailLabel() throws Exception {
         HomePage_Aditya homePage = new HomePage_Aditya(driver,wait);

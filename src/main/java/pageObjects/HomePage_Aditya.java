@@ -47,9 +47,7 @@ public class HomePage_Aditya {
             commonCode=new CommonCode(driver,wait);
             PageFactory.initElements(driver,this);
         }
-        public boolean checkLogo(){
-            return logo.isDisplayed();
-        }
+
         public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
             wait.until(ExpectedConditions.elementToBeClickable(logInButton));
             return true;
@@ -98,30 +96,7 @@ public class HomePage_Aditya {
                 dismissPopup();
             }
         }
-        public boolean companyCourseName(){
-            List<WebElement> courseCards = companyName;
-            boolean bool = false;
-            for(WebElement card : courseCards){
-                bool = !card.getText().isEmpty();
-            }
-            return bool;
-        }
-        public boolean courseReviews(){
-            List<WebElement> courseCards = review;
-            boolean bool = false;
-            for (WebElement card : courseCards){
-                bool = !card.getText().isEmpty();
-            }
-            return bool;
-        }
-        public boolean courseLevel(){
-            List<WebElement> courseCards = level;
-            boolean bool = false;
-            for(WebElement card: courseCards){
-                bool = !card.getText().isEmpty();
-            }
-            return bool;
-        }
+
 }
 
 
