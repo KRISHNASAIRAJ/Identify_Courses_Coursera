@@ -7,10 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Ignore;
 import utilities.CommonCode;
 
-public class BusinessFormSubmission {
+public class BusinessFormPage {
     WebDriver driver;
     WebDriverWait wait;
     @FindBy(xpath = "//span[text()=' Businesses']")
@@ -48,7 +47,7 @@ public class BusinessFormSubmission {
     @FindBy(xpath = "//h1[text()='Coursera for Teams is your best next step']")
     WebElement formStatusDisplay;
     CommonCode commonCode;
-    public BusinessFormSubmission(WebDriver driver,WebDriverWait wait){
+    public BusinessFormPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
         PageFactory.initElements(driver,this);
