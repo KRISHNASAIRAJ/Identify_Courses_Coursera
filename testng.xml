@@ -6,10 +6,10 @@
             <class name="testcases.TC_01_VerifyUrl"/>
             <class name="testcases.TC_02_VerifyTitle"/>
             <class name="testcases.TC_03_VerifyLogo"/>
-            <class name="testcases.TC_05_VerifyProductNames"/>
-            <class name="testcases.TC_06_VerifyPartnerBadge"/>
-            <class name="testcases.TC_07_VerifyReviews"/>
-            <class name="testcases.TC_08_VerifyLevels"/>
+            <class name="testcases.TC_07_VerifyProductNames"/>
+            <class name="testcases.TC_08_VerifyPartnerBadge"/>
+            <class name="testcases.TC_09_VerifyReviews"/>
+            <class name="testcases.TC_10_VerifyLevels"/>
             <class name="testcases.TC_011_SkillsExtraction"/>
             <class name="testcases.TC_014_DurationLabelExtraction"/>
             <class name="testcases.TC_015_ProjectStepsExtraction"/>

@@ -8,7 +8,7 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_06_VerifyPartnerBadge extends BaseTest {
+public class TC_08_VerifyPartnerBadge extends BaseTest {
     //By Aditya
     ResultsPage resultsPage;
     @BeforeTest
