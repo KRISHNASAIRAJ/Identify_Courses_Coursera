@@ -3,10 +3,11 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Coursera">
         <classes>
-            <class name="testcases.TC_01"/>
-            <class name="testcases.TC_02"/>
-            <class name="testcases.TC_03"/>
-            <class name="testcases.TC_04"/>
+                <class name="testcases.TC_01_verifyLogo"/>
+                <class name="testcases.TC_05_verifyProductName"/>
+                <class name="testcases.TC_06_verifyPartnerBadge"/>
+                <class name="testcases.TC_07_verifyReviews"/>
+                <class name="testcases.TC_08_verifyLevels"/>
         </classes>
     </test>
 </suite>

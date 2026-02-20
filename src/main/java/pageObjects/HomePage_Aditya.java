@@ -11,9 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HomePage {
+public class HomePage_Aditya {
         WebDriver driver;
         WebDriverWait wait;
+        @FindBy(xpath = "//a[@data-click-key='front_page.front_page_story.click.navigation_meta_nav_Individuals']")
+        WebElement logo ;
         @FindBy(id="search-autocomplete-input")
         WebElement search;
         @FindBy(xpath = "//button[@id='ior2l']")
@@ -26,10 +28,14 @@ public class HomePage {
         List<WebElement> review;
         @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
         List<WebElement> level;
-        public HomePage(WebDriver driver,WebDriverWait wait){
+
+        public HomePage_Aditya(WebDriver driver, WebDriverWait wait){
             this.driver=driver;
             this.wait=wait;
             PageFactory.initElements(driver,this);
+        }
+        public boolean checkLogo(){
+                return logo.isDisplayed();
         }
 
         public void dismissPopup(){
@@ -74,3 +80,5 @@ public class HomePage {
             return bool;
         }
 }
+
+
