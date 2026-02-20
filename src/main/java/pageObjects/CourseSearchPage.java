@@ -53,13 +53,11 @@ public class CourseSearchPage {
     }
     public  void Gotogp(){
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        Actions actions=new Actions(driver);
-        inp.clear();
-        inp.sendKeys("Python");
-        inp.sendKeys(Keys.ENTER);
+//        inp.clear();
+//        inp.sendKeys("Python");
+//        inp.sendKeys(Keys.ENTER);
         wait.until(ExpectedConditions.visibilityOf(gpscroll));
         gpscroll.click();
-
         wait.until(ExpectedConditions.visibilityOf(guidedprojectcheckbox));
         guidedprojectcheckbox.click();
 
