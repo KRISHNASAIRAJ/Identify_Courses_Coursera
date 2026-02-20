@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
+import utilities.ExcelWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
+    CommonCode commonCode;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
     @FindBy(xpath = "//span[text()='View']")
@@ -32,7 +34,6 @@ public class ResultsPage {
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
-    CommonCode commonCode;
     public ResultsPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
@@ -68,9 +69,9 @@ public class ResultsPage {
         wait.until(ExpectedConditions.visibilityOfAllElements(languages));
         int languageCount=languages.size();
         commonCode.takeScreenshot();
-//        for(WebElement language:languages){
-//            System.out.println(language.getText());
-//        }
+        for(WebElement language:languages){
+            System.out.println(language.getText());
+        }
     }
 
     public void getLevels() throws IOException {
