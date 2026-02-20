@@ -22,6 +22,12 @@ public class HomePage_Aditya {
         WebElement logInButton;
         @FindBy(xpath = "//label[contains(text(),'Email')]")
         WebElement emailLabel;
+        @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
+        WebElement tenThousandText;
+        @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
+        WebElement freeTrial;
+        @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
+        WebElement afterFreeTrialClick;
         @FindBy(id="search-autocomplete-input")
         WebElement search;
         @FindBy(xpath = "//button[@id='ior2l']")
@@ -55,6 +61,24 @@ public class HomePage_Aditya {
             wait.until(ExpectedConditions.visibilityOf(emailLabel));
             return emailLabel.isDisplayed();
         }
+        public void closeLoginForm(){
+            driver.findElement(By.xpath("//button[@data-e2e='close-modal-button']")).click();
+
+        }
+        public boolean isTenThousandTextVisible() throws Exception {
+            wait.until(ExpectedConditions.visibilityOf(tenThousandText));
+            //System.out.println(tenThousandText.getText());
+            return tenThousandText.isDisplayed();
+        }
+        public void clickFreeTrialButton() throws Exception {
+            wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
+            freeTrial.click();
+        }
+        public boolean isFreeTrialPageOpens() throws Exception {
+            WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
+            //System.out.println(courseraPlusHeading.getText());
+            return courseraPlusHeading.isDisplayed();
+        }
         public void dismissPopup(){
             wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
         }
@@ -66,6 +90,8 @@ public class HomePage_Aditya {
                 List<WebElement> courseCards = title;
                 boolean bool = false;
                 for (WebElement card : courseCards) {
+//                    System.out.println(card.getText());
+//                    System.out.println("---------");
                     bool = !card.getText().isEmpty();
                 }
             } catch (ElementClickInterceptedException e) {

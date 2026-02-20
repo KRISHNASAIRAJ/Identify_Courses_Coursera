@@ -6,6 +6,8 @@
             <class name="testcases.TC_011_VerifyUrl"/>
             <class name="testcases.TC_012_VerifyTitle"/>
             <class name="testcases.TC_01_verifyLogo"/>
+            <class name="testcases.TC_02_verifyLoginAndEmail"/>
+            <class name="testcases.TC_03_verifyTrialSubscription"/>
             <class name="testcases.TC_05_verifyProductName"/>
             <class name="testcases.TC_06_verifyPartnerBadge"/>
             <class name="testcases.TC_07_verifyReviews"/>

@@ -1,6 +1,7 @@
 package testcases;
 
 import basetest.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage_Aditya;
 
@@ -12,7 +13,7 @@ public class TC_05_verifyProductName extends BaseTest {
         public void testSearchProductName() throws IOException {
             HomePage_Aditya homePageAditya =new HomePage_Aditya(driver,wait);
             homePageAditya.searchAndLoadCards();
-            //Assert.assertTrue(homePageAditya.test11());
+
         }
 
 }
