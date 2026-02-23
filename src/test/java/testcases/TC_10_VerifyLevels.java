@@ -16,7 +16,7 @@ public class TC_10_VerifyLevels extends BaseTest {
         resultsPage=new ResultsPage(driver,wait);
     }
     @Test(priority = 8)
-    void testCheckLevels(){
+    void testCheckLevels() throws IOException {
         Assert.assertTrue(resultsPage.courseLevel());
     }
 }

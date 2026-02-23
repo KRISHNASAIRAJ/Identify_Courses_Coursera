@@ -1,31 +1,50 @@
 package utilities;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-public class ExcelWriter {
-
-    public static void writeData(String fileName,String sheetName, String[][] data) throws IOException {
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet(sheetName);
-        for (int i = 0; i < data.length; i++) {
-            Row row = sheet.createRow(i);
-
-            for (int j = 0; j < data[i].length; j++) {
-                row.createCell(j).setCellValue(data[i][j]);
+public final class ExcelWriter {
+    private static final String FILE_NAME =
+            "Coursera_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".xlsx";
+    private static final XSSFWorkbook WORKBOOK = new XSSFWorkbook();
+    private ExcelWriter() {}
+    public static void writeList(String sheetName, List<String> data, String columnName) throws IOException {
+        Sheet sheet = WORKBOOK.getSheet(sheetName);
+        if (sheet == null) {
+            sheet = WORKBOOK.createSheet(sheetName);
+        }
+        Row header = sheet.getRow(0);
+        if (header == null) {
+            header = sheet.createRow(0);
+        }
+        int colIndex = findOrCreateColumn(header, columnName);
+        for (int i = 0; i < data.size(); i++) {
+            Row row = sheet.getRow(i + 1);
+            if (row == null) {
+                row = sheet.createRow(i + 1);
+            }
+            row.createCell(colIndex).setCellValue(data.get(i));
+        }
+        sheet.autoSizeColumn(colIndex);
+        try (FileOutputStream out = new FileOutputStream(FILE_NAME)) {
+            WORKBOOK.write(out);
+        }
+    }
+    private static int findOrCreateColumn(Row header, String name) {
+        short last = header.getLastCellNum();  // -1 if empty
+        int limit = Math.max(last, 0);
+        for (int i = 0; i < limit; i++) {
+            Cell c = header.getCell(i);
+            if (c != null && name.equalsIgnoreCase(c.getStringCellValue())) {
+                return i;
             }
         }
-//        sheet.autoSizeColumn(0);
-//        sheet.autoSizeColumn(1);
-        FileOutputStream out = new FileOutputStream(new File(fileName));
-        workbook.write(out);
-        out.close();
-        workbook.close();
+        header.createCell(limit).setCellValue(name);
+        return limit;
     }
 }
