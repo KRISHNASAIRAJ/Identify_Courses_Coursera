@@ -116,6 +116,8 @@ public class ResultsPage {
 
     public boolean searchAndLoadCards() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
+        commonCode.scrollIntoViewer(allTitles.get(0));
+        commonCode.takeScreenshot();
         List<WebElement> courseCards = allTitles;
         boolean check=false;
         List<String> titlesList=new ArrayList<>();

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
+import java.io.IOException;
+
 public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
@@ -61,7 +63,7 @@ public class HomePage {
         return gotoBusiness.isDisplayed();
     }
 
-    public boolean businessHome() {
+    public boolean businessHome() throws IOException {
             gotoBusiness.click();
             return verifybusinessdata.isDisplayed();
     }

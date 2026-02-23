@@ -28,7 +28,7 @@ public class CommonCode {
         File source=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         Path outDir = Paths.get("screenshots");
         Files.createDirectories(outDir);
-        String fileName = "snap-coursera-" + System.currentTimeMillis() + ".png";
+        String fileName = "snap-coursera-" + System.currentTimeMillis() +System.nanoTime()+ ".png";
         Path destination = outDir.resolve(fileName);
         Files.copy(source.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
 //        System.out.println("Screenshot saved: " + destination.toAbsolutePath());
