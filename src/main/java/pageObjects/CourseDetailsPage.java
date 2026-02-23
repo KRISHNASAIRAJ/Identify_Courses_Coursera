@@ -9,14 +9,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.Set;
 
 public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
     String setupInstructionsExtractor;
-    @FindBy(xpath = "//a[@aria-label='Introduction to Python, offered by Coursera, GUIDED PROJECT']")
-    WebElement specificElement;
+    @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
+    List<WebElement> specificElement;
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
     WebElement stepByStep;
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
@@ -30,9 +31,9 @@ public class CourseDetailsPage {
 
     public void courseDetails() throws InterruptedException {
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        Thread.sleep(2000);
-        wait.until(ExpectedConditions.elementToBeClickable(specificElement));
-        specificElement.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(specificElement));
+        String ans=specificElement.get(0).getAttribute("href");
+        driver.navigate().to(ans);
         String parentWindow = driver.getWindowHandle();
         Set<String> windows = driver.getWindowHandles();
         String child = "";
