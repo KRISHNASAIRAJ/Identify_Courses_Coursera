@@ -19,7 +19,7 @@ public class TC_07_VerifyProductNames extends BaseTest {
         resultsPage=new ResultsPage(driver,wait);
     }
         @Test(priority = 5)
-        public void testSearchProductName(){
+        public void testSearchProductName() throws IOException {
             homePage.sendInputToSearchBar("Python");
             Assert.assertTrue(resultsPage.searchAndLoadCards());
         }

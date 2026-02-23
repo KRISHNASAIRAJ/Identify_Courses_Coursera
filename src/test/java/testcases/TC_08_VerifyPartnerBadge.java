@@ -16,7 +16,7 @@ public class TC_08_VerifyPartnerBadge extends BaseTest {
         resultsPage=new ResultsPage(driver,wait);
     }
     @Test(priority = 6)
-    public void testSearchPartnerAndBadge(){
+    public void testSearchPartnerAndBadge() throws IOException {
         Assert.assertTrue(resultsPage.companyCourseName());
     }
 }

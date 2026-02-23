@@ -11,14 +11,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utilities.CommonCode;
+import utilities.ExcelWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
+    ExcelWriter excelWriter;
     CommonCode commonCode;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
@@ -90,11 +93,13 @@ public class ResultsPage {
     public void getLanguages() throws IOException {
         languageOptions.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(languages));
-        int languageCount=languages.size();
+//        int languageCount=languages.size();
+        List<String> languagesList=new ArrayList<>();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
-//            System.out.println(language.getText());
+            languagesList.add(language.getText());
         }
+        ExcelWriter.writeList("Languages",languagesList,"Languages");
     }
 
     public void getLevels() throws IOException {
@@ -102,61 +107,78 @@ public class ResultsPage {
         wait.until(ExpectedConditions.visibilityOfAllElements(difficultyLevels));
         int difficultyCount=difficultyLevels.size();
         commonCode.takeScreenshot();
-//        for(WebElement difficulty:difficultyLevels){
-//            System.out.println(difficulty.getText());
-//        }
+        List<String> levelsList=new ArrayList<>();
+        for(WebElement difficulty:difficultyLevels){
+            levelsList.add(difficulty.getText());
+        }
+        ExcelWriter.writeList("Levels",levelsList,"Level");
     }
 
-    public boolean searchAndLoadCards(){
+    public boolean searchAndLoadCards() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
         List<WebElement> courseCards = allTitles;
         boolean check=false;
+        List<String> titlesList=new ArrayList<>();
         for (WebElement card : courseCards) {
             check=!card.getText().isEmpty();
-//            System.out.println(card.getText());
+            titlesList.add(card.getText());
         }
+        ExcelWriter.writeList("Titles",titlesList,"Title");
         return check;
-    }
+        }
 
-    public boolean courseReviews(){
+    public boolean courseReviews() throws IOException {
         List<WebElement> courseCards = review;
         boolean bool = false;
+        List<String> reviewsList=new ArrayList<>();
         for (WebElement card : courseCards){
             bool = !card.getText().isEmpty();
-//            System.out.println(card.getText());
+           reviewsList.add(card.getText());
         }
+        ExcelWriter.writeList("Titles",reviewsList,"review");
         return bool;
     }
 
-    public boolean courseLevel(){
+    public boolean courseLevel() throws IOException {
         List<WebElement> courseCards = level;
         boolean bool = false;
+        List<String> courseList=new ArrayList<>();
         for(WebElement card: courseCards){
             bool = !card.getText().isEmpty();
-//            System.out.println(card.getText());
+            courseList.add(card.getText());
         }
+        ExcelWriter.writeList("Courses",courseList,"course");
         return bool;
     }
 
-    public boolean companyCourseName(){
+    public boolean companyCourseName() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(companyName));
         List<WebElement> courseCards = companyName;
         boolean check = false;
+        List<String> companyList=new ArrayList<>();
         for(WebElement card : courseCards){
             check = !card.getText().isEmpty();
-//            System.out.println(card.getText());
+            companyList.add(card.getText());
         }
+        ExcelWriter.writeList("Companies",companyList,"Company");
         return check;
     }
 
-    public void getListOfTitles(){
+    public void getListOfTitles() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
+        List<String> courseTitles=new ArrayList<>();
+        List<String> courseRatings=new ArrayList<>();
+        List<String> courseDurations=new ArrayList<>();
         for(WebElement card:courseDetails){
             wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
-//            System.out.println(card.findElement(titleElement).getText()+
-//                    " | "+card.findElement(rating).getAttribute("aria-valuenow")+
-//                    " | "+card.findElement(duration).getText());
+            courseTitles.add(card.findElement(titleElement).getText());
+            courseRatings.add(card.findElement(rating).getAttribute("aria-valuenow"));
+            courseDurations.add(card.findElement(duration).getText());
         }
+        ExcelWriter.writeList("CourseDetails",courseTitles,"Title");
+        ExcelWriter.writeList("CourseDetails",courseRatings,"Rating");
+        ExcelWriter.writeList("CourseDetails",courseDurations,"Duration");
+
     }
 
     public boolean isLoginButtonEnabled(){

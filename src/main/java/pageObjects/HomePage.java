@@ -99,7 +99,6 @@ public class HomePage {
     }
     public boolean isTenThousandTextVisible() throws Exception {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
-        //System.out.println(tenThousandText.getText());
         return tenThousandText.isDisplayed();
     }
     public void clickFreeTrialButton() throws Exception {
@@ -108,7 +107,6 @@ public class HomePage {
     }
     public boolean isFreeTrialPageOpens() throws Exception {
         WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
-        //System.out.println(courseraPlusHeading.getText());
         return courseraPlusHeading.isDisplayed();
     }
 

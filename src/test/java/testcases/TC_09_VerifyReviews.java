@@ -16,7 +16,7 @@ public class TC_09_VerifyReviews extends BaseTest {
         resultsPage=new ResultsPage(driver,wait);
     }
     @Test(priority = 7)
-        public void testCheckReviews(){
+        public void testCheckReviews() throws IOException {
             Assert.assertTrue(resultsPage.courseReviews());
         }
 }
