@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
+import java.io.IOException;
+
 public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
@@ -61,8 +63,9 @@ public class HomePage {
         return gotoBusiness.isDisplayed();
     }
 
-    public boolean businessHome() {
+    public boolean businessHome() throws IOException {
             gotoBusiness.click();
+            commonCode.takeScreenshot();
             return verifybusinessdata.isDisplayed();
     }
 
@@ -100,6 +103,7 @@ public class HomePage {
     public boolean isTenThousandTextVisible() throws Exception {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
         //System.out.println(tenThousandText.getText());
+        //commonCode.takeScreenshot();
         return tenThousandText.isDisplayed();
     }
     public void clickFreeTrialButton() throws Exception {

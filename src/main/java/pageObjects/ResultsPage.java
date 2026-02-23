@@ -107,8 +107,9 @@ public class ResultsPage {
 //        }
     }
 
-    public boolean searchAndLoadCards(){
+    public boolean searchAndLoadCards() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
+        commonCode.takeScreenshot();
         List<WebElement> courseCards = allTitles;
         boolean check=false;
         for (WebElement card : courseCards) {
