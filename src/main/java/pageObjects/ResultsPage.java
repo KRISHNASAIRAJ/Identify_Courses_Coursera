@@ -52,20 +52,15 @@ public class ResultsPage {
     WebElement productCardBody;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
-
-    @FindBy(xpath = "//*[@class='css-16tmax3' and text()='Filter & Sort']")
+    @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
     WebElement filter_btn;
-    @FindBy(xpath = "//*[@class='css-1cne948']")
-    WebElement newest;
-    @FindBy(xpath = "//*[@class='css-6ecy9b' and text()='Topic']")
+    @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
     WebElement topic_btn;
     @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
-    @FindBy(xpath = "//*[@class='css-nv2ozg']//span[contains(text(),'View')]")
+    @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
     WebElement view_btn;
-    @FindBy(xpath = "//*[@class='css-zh12ej']")
-    WebElement result;
-    @FindBy(xpath = "//*[@class='cds-9 css-y8w9av cds-11 cds-grid-item cds-56']")
+    @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
     @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
