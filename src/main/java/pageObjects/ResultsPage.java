@@ -125,10 +125,11 @@ public class ResultsPage {
 
     public boolean searchAndLoadCards() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
-        List<WebElement> courseCards = allTitles;
+        commonCode.scrollIntoViewer(allTitles.get(0));
+        commonCode.takeScreenshot();
         boolean check=false;
         List<String> titlesList=new ArrayList<>();
-        for (WebElement card : courseCards) {
+        for (WebElement card : allTitles) {
             check=!card.getText().isEmpty();
             titlesList.add(card.getText());
         }
