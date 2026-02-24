@@ -46,12 +46,10 @@ public class ResultsPage {
     WebElement guidedProjectElement;
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedProjectCheckbox;
-    @FindBy(xpath = "cds-ProductCard-content")
+    @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
-    @FindBy(xpath = "cds-ProductCard-body")
+    @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
-    @FindBy(xpath = "cds-ProductCard-content")
-    List<WebElement> productCardContent;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
 
@@ -222,7 +220,7 @@ public class ResultsPage {
     }
 
     public boolean getTimeline(){
-        List<WebElement> l= productCardContent;
+        List<WebElement> l= productCard;
         boolean check=true;
         for(WebElement search: l){
             String str=search.findElement((By) metadata).getText();
