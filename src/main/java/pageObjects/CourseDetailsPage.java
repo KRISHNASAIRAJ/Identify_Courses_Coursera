@@ -1,9 +1,11 @@
 package pageObjects;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,6 +24,13 @@ public class CourseDetailsPage {
     WebElement stepByStep;
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
     WebElement installationCheck;
+
+    @FindBy(xpath = "//*[@id='reviews']//*[@class='cds-9 css-0 cds-10 cds-11 cds-grid-item cds-13 cds-76']")
+    WebElement reviews;
+    @FindBy(xpath = "//*[@class='cds-119 cds-113 cds-115 css-1fg25fw cds-142']")
+    WebElement instructor;
+    @FindBy(xpath = "//*[text()='Bio']/following-sibling::div")
+    WebElement bio;
 
     public CourseDetailsPage(WebDriver driver, WebDriverWait wait) {
         this.driver=driver;
@@ -53,4 +62,35 @@ public class CourseDetailsPage {
     public boolean noInstallation(){
         return installationCheck.isDisplayed();
     }
+
+    public void CheckReviews()
+    {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",reviews);
+        List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
+        for(WebElement it:ratings)
+        {
+            System.out.println(it.getText());
+        }
+    }
+
+    public void InstructorDetails()
+    {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});",instructor);
+        js.executeScript("arguments[0].click();",instructor);
+
+        List<WebElement> links=driver.findElements(By.xpath("//*[@class='cds-119 cds-113 cds-115 m-l-1s css-1qn2qsw cds-142']"));
+        if(!links.isEmpty())
+        {
+            for(WebElement it:links)
+            {
+                System.out.println(it.getText());
+            }
+        }
+
+        System.out.println(bio.getText());
+
+    }
+
 }

@@ -14,9 +14,14 @@
             <class name="testcases.TC_014_DurationLabelExtraction"/>
             <class name="testcases.TC_015_ProjectStepsExtraction"/>
             <class name="testcases.TC_016_NoSetupGuarantee"/>
+            <class name="testcases.TC_17_VerifyRatings"/>
+            <class name="testcases.TC_18_InstructorDetails"/>
+            <class name="testcases.TC_20_SearchBarFunctionalityWithInvalidKeyword"/>
             <class name="testcases.TC_023_SearchBarFunctionality"/>
             <class name="testcases.TC_024_getAllLanguagesAndLevels"/>
+            <class name="testcases.TC_13_SortFunctionExistence"/>
             <class name="testcases.TC_025_FirstTwoCoursesDetails"/>
+            <class name="testcases.TC_19_CheckFaq"/>
             <class name="testcases.TC_026_checkLoginButtonEnabledOrNot"/>
             <class name="testcases.TC_027_programOverview"/>
             <class name="testcases.TC_028_formSubmissionWithValidData"/>

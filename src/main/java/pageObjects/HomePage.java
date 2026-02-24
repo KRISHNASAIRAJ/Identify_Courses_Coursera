@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
+import java.util.List;
+
 public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
@@ -51,6 +53,26 @@ public class HomePage {
         searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         searchBar.sendKeys(input);
         searchBar.sendKeys(Keys.ENTER);
+    }
+
+    public boolean searchWithInvalid(String input)
+    {
+        searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        searchBar.sendKeys(input);
+        searchBar.sendKeys(Keys.ENTER);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3")));
+
+        List<WebElement> titles = driver.findElements(By.cssSelector("h3"));
+
+        // validate none of the titles contain the invalid keyword
+        for (WebElement t : titles) {
+            if (t.getText().toLowerCase().contains(input.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
     public void dismissPopup() {

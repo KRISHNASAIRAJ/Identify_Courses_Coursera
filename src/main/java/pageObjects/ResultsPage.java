@@ -1,9 +1,6 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -54,6 +51,25 @@ public class ResultsPage {
     List<WebElement> productCardContent;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
+
+    @FindBy(xpath = "//*[@class='css-16tmax3' and text()='Filter & Sort']")
+    WebElement filter_btn;
+    @FindBy(xpath = "//*[@class='css-1cne948']")
+    WebElement newest;
+    @FindBy(xpath = "//*[@class='css-6ecy9b' and text()='Topic']")
+    WebElement topic_btn;
+    @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
+    WebElement ComputerScienceBtn;
+    @FindBy(xpath = "//*[@class='css-nv2ozg']//span[contains(text(),'View')]")
+    WebElement view_btn;
+    @FindBy(xpath = "//*[@class='css-zh12ej']")
+    WebElement result;
+    @FindBy(xpath = "//*[@class='cds-9 css-y8w9av cds-11 cds-grid-item cds-56']")
+    WebElement faq;
+    @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
+    WebElement course;
+
+
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
@@ -193,6 +209,56 @@ public class ResultsPage {
             }
         }
         return check;
+    }
+
+    public boolean FilterAndSortVisible(){
+        return filter_btn.isDisplayed();
+    }
+
+    public void FilterAndSortClick() {
+        filter_btn.click();
+        //newest.click();
+        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
+        wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
+    }
+
+    public void clickOnCourse() {
+        wait.until(ExpectedConditions.elementToBeClickable(course)).click();
+    }
+
+    public boolean checkForFAQ() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", faq);
+        return faq.isDisplayed();
+    }
+
+    public boolean clickCourse_Switch_CheckFAQ_Return() {
+        String parentHandle = driver.getWindowHandle();
+        int beforeCount = driver.getWindowHandles().size();
+
+        clickOnCourse();
+        wait.until(d -> d.getWindowHandles().size() > beforeCount);
+
+        // Switch to child
+        String childHandle = getNewTabHandle(parentHandle);
+        driver.switchTo().window(childHandle);
+
+        try {
+            return checkForFAQ();
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;
+        } finally {
+            try { driver.close(); } catch (Exception ignored) {}
+            driver.switchTo().window(parentHandle);
+        }
+    }
+
+    private String getNewTabHandle(String parentHandle) {
+        for (String h : driver.getWindowHandles()) {
+            if (!h.equals(parentHandle)) return h;
+        }
+        throw new IllegalStateException("New tab not found after clicking the course.");
     }
 
 }

@@ -28,7 +28,7 @@ public class TC_025_FirstTwoCoursesDetails extends BaseTest {
         resultsPage.clickViewButton();
     }
     @Test(priority = 27)
-    void beginnersLevelCoursesData() throws IOException {
+    void beginnersLevelCoursesData() {
         resultsPage.getListOfTitles();
     }
 }
