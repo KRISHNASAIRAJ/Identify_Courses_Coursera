@@ -1,25 +1,29 @@
 package pageObjects;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
+    ExcelWriter excelWriter;
     CommonCode commonCode;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
     @FindBy(xpath = "//span[text()='View']")
-    WebElement viewButton;
+    WebElement viewBtn;
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
     WebElement loginButton;
     @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
@@ -48,20 +52,15 @@ public class ResultsPage {
     WebElement productCardBody;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
-
-    @FindBy(xpath = "//*[@class='css-16tmax3' and text()='Filter & Sort']")
-    WebElement filterButton;
-    @FindBy(xpath = "//*[@class='css-1cne948']")
-    WebElement newest;
-    @FindBy(xpath = "//*[@class='css-6ecy9b' and text()='Topic']")
-    WebElement topicButton;
+    @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
+    WebElement filter_btn;
+    @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
+    WebElement topic_btn;
     @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
-    @FindBy(xpath = "//*[@class='css-nv2ozg']//span[contains(text(),'View')]")
+    @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
     WebElement view_btn;
-    @FindBy(xpath = "//*[@class='css-zh12ej']")
-    WebElement result;
-    @FindBy(xpath = "//*[@class='cds-9 css-y8w9av cds-11 cds-grid-item cds-56']")
+    @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
     @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
@@ -83,13 +82,13 @@ public class ResultsPage {
     public void selectDifficultyLevel(String difficultyInput){
         difficultyLevel.click();
         By beginnerOption=By.xpath("//span[text()='"+difficultyInput+"']");
-        wait.until(ExpectedConditions.elementToBeClickable(beginnerOption)).click();
+        driver.findElement(beginnerOption).click();
     }
     public boolean isViewButtonEnabled(){
-        return wait.until(ExpectedConditions.visibilityOf(viewButton)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(viewBtn)).isDisplayed();
     }
     public void clickViewButton(){
-        viewButton.click();
+        viewBtn.click();
     }
 
     public boolean areLanguageOptionsClickable(){
@@ -100,10 +99,10 @@ public class ResultsPage {
         By englishLanguage =By.xpath("//span[text()='"+language+"']");
         driver.findElement(englishLanguage).click();
     }
-
     public void getLanguages() throws IOException {
         languageOptions.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(languages));
+//        int languageCount=languages.size();
         List<String> languagesList=new ArrayList<>();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
@@ -228,12 +227,13 @@ public class ResultsPage {
     }
 
     public boolean FilterAndSortVisible(){
-        return filterButton.isDisplayed();
+        return filter_btn.isDisplayed();
     }
 
     public void FilterAndSortClick() {
-        filterButton.click();
-        wait.until(ExpectedConditions.visibilityOf(topicButton)).click();
+        filter_btn.click();
+        //newest.click();
+        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
         wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
         wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
     }
@@ -251,10 +251,14 @@ public class ResultsPage {
     public boolean clickCourse_Switch_CheckFAQ_Return() {
         String parentHandle = driver.getWindowHandle();
         int beforeCount = driver.getWindowHandles().size();
+
         clickOnCourse();
         wait.until(d -> d.getWindowHandles().size() > beforeCount);
+
+        // Switch to child
         String childHandle = getNewTabHandle(parentHandle);
         driver.switchTo().window(childHandle);
+
         try {
             return checkForFAQ();
         } catch (TimeoutException | NoSuchElementException e) {

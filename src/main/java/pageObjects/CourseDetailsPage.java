@@ -22,10 +22,9 @@ public class CourseDetailsPage {
     WebElement stepByStep;
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
     WebElement installationCheck;
-
-    @FindBy(xpath = "//*[@id='reviews']//*[@class='cds-9 css-0 cds-10 cds-11 cds-grid-item cds-13 cds-76']")
+    @FindBy(xpath = "//h2[contains(text(),'Learner reviews')]")
     WebElement reviews;
-    @FindBy(xpath = "//*[@class='cds-119 cds-113 cds-115 css-1fg25fw cds-142']")
+    @FindBy(xpath = "//p//a[starts-with(@href,'/instructor/')]/span")
     WebElement instructor;
     @FindBy(xpath = "//*[text()='Bio']/following-sibling::div")
     WebElement bio;
@@ -64,7 +63,7 @@ public class CourseDetailsPage {
     public void CheckReviews()
     {
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",reviews);
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});",reviews);
         List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
         for(WebElement it:ratings)
         {
