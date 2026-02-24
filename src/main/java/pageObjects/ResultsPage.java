@@ -83,7 +83,7 @@ public class ResultsPage {
     public void selectDifficultyLevel(String difficultyInput){
         difficultyLevel.click();
         By beginnerOption=By.xpath("//span[text()='"+difficultyInput+"']");
-        driver.findElement(beginnerOption).click();
+        wait.until(ExpectedConditions.elementToBeClickable(beginnerOption)).click();
     }
     public boolean isViewButtonEnabled(){
         return wait.until(ExpectedConditions.visibilityOf(viewButton)).isDisplayed();
@@ -100,7 +100,7 @@ public class ResultsPage {
         By englishLanguage =By.xpath("//span[text()='"+language+"']");
         driver.findElement(englishLanguage).click();
     }
-    
+
     public void getLanguages() throws IOException {
         languageOptions.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(languages));

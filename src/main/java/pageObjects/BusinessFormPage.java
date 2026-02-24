@@ -9,11 +9,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
-import java.util.List;
-
 public class BusinessFormPage {
     WebDriver driver;
     WebDriverWait wait;
+    CommonCode commonCode;
     @FindBy(xpath = "//span[text()=' Businesses']")
     WebElement business;
     @FindBy(xpath = "//form[contains(@id,'mktoForm')]")
@@ -49,7 +48,6 @@ public class BusinessFormPage {
     @FindBy(xpath = "//h1[text()='Coursera for Teams is your best next step']")
     WebElement formStatusDisplay;
 
-    CommonCode commonCode;
     public BusinessFormPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;

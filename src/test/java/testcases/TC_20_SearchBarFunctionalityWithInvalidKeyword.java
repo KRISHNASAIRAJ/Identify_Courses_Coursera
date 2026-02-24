@@ -22,6 +22,5 @@ public class TC_20_SearchBarFunctionalityWithInvalidKeyword extends BaseTest {
         Assert.assertTrue(homePage.searchBarVisibility());
         commonCode.takeScreenshot();
         Assert.assertTrue(homePage.searchWithInvalid("agdwterjgdwetf"));
-
     }
 }

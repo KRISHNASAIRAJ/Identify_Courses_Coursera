@@ -68,7 +68,7 @@ public class CourseDetailsPage {
         List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
         for(WebElement it:ratings)
         {
-            System.out.println(it.getText());
+//            System.out.println(it.getText());
         }
     }
 
@@ -77,7 +77,6 @@ public class CourseDetailsPage {
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",instructor);
         js.executeScript("arguments[0].click();",instructor);
-
         List<WebElement> links=driver.findElements(By.xpath("//*[@class='cds-119 cds-113 cds-115 m-l-1s css-1qn2qsw cds-142']"));
         if(!links.isEmpty())
         {
@@ -86,9 +85,7 @@ public class CourseDetailsPage {
                 System.out.println(it.getText());
             }
         }
-
-        System.out.println(bio.getText());
-
+//        System.out.println(bio.getText());
     }
 
 }

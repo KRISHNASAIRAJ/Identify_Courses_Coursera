@@ -18,7 +18,6 @@ public class TC_19_CheckFaq extends BaseTest {
     @Test
     void CheckForFaq()
     {
-
         Assert.assertTrue(resultsPage.clickCourse_Switch_CheckFAQ_Return(),"FAQ section is not displayed");
     }
 }
