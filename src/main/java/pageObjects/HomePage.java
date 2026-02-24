@@ -65,7 +65,6 @@ public class HomePage {
 
         List<WebElement> titles = driver.findElements(By.cssSelector("h3"));
 
-        // validate none of the titles contain the invalid keyword
         for (WebElement t : titles) {
             if (t.getText().toLowerCase().contains(input.toLowerCase())) {
                 return false;
@@ -93,7 +92,6 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    //---------------------------------------------
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
     WebElement logInButton;
     @FindBy(xpath = "//label[contains(text(),'Email')]")
@@ -104,6 +102,8 @@ public class HomePage {
     WebElement freeTrial;
     @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
     WebElement afterFreeTrialClick;
+    @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
+    WebElement closeBtn;
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
@@ -116,8 +116,7 @@ public class HomePage {
         return emailLabel.isDisplayed();
     }
     public void closeLoginForm(){
-        driver.findElement(By.xpath("//button[@data-e2e='close-modal-button']")).click();
-
+        closeBtn.click();
     }
     public boolean isTenThousandTextVisible() throws Exception {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
