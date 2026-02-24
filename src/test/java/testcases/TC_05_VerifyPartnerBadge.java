@@ -8,16 +8,15 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_011_SkillsExtraction extends BaseTest {
-    //By Irfan
+public class TC_05_VerifyPartnerBadge extends BaseTest {
+    //By Aditya
     ResultsPage resultsPage;
     @BeforeTest
     void setUp() throws IOException {
-        resultsPage =new ResultsPage(driver,wait);
+        resultsPage=new ResultsPage(driver,wait);
     }
-    @Test(priority = 11)
-    public void extractSkills(){
-        resultsPage.guidedProject();
-        Assert.assertTrue(resultsPage.getSkills());
+    @Test(priority = 6)
+    public void testSearchPartnerAndBadge() throws IOException {
+        Assert.assertTrue(resultsPage.companyCourseName());
     }
 }

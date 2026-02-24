@@ -9,7 +9,7 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_07_VerifyProductNames extends BaseTest {
+public class TC_04_VerifyProductNames extends BaseTest {
     //By Aditya
     HomePage homePage;
     ResultsPage resultsPage;

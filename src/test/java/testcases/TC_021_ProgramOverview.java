@@ -5,7 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.DegreeCoursesPage;
 
-public class TC_027_programOverview extends BaseTest {
+public class TC_021_ProgramOverview extends BaseTest {
+    //Krishna
     @Test(priority = 29)
     void programOverview() throws InterruptedException {
         DegreeCoursesPage obj=new DegreeCoursesPage(driver,wait);

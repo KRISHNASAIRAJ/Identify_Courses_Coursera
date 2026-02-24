@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 public class TC_04_VerifyLoginAndEmail extends BaseTest {
+    //Aditya
     @Test
     public void testLogInAndEmailLabel() throws Exception {
         HomePage homePage = new HomePage(driver,wait);

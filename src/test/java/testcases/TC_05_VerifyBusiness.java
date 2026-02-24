@@ -18,7 +18,6 @@ public class TC_05_VerifyBusiness extends BaseTest {
     @Test
     public void checkBusiness() throws Exception {
         Assert.assertTrue(homePage.businessTitle());
-
     }
     @Test
     public void checkBusinessFunctionality() throws IOException {

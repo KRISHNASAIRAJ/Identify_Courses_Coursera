@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
-import java.io.IOException;
+import java.util.List;
 
 public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
+    CommonCode commonCode;
     @FindBy(xpath = "//a[@data-click-key='front_page.front_page_story.click.navigation_meta_nav_Individuals']")
     WebElement logo;
     @FindBy(id = "search-autocomplete-input")
@@ -21,10 +22,21 @@ public class HomePage {
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
-    WebElement verifybusinessdata;
+    WebElement verifyBusinessData;
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
-    CommonCode commonCode;
+    @FindBy(xpath = "//span[contains(text(),'Log In')]")
+    WebElement logInButton;
+    @FindBy(xpath = "//label[contains(text(),'Email')]")
+    WebElement emailLabel;
+    @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
+    WebElement tenThousandText;
+    @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
+    WebElement freeTrial;
+    @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
+    WebElement afterFreeTrialClick;
+    @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
+    WebElement closeBtn;
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -55,6 +67,21 @@ public class HomePage {
         searchBar.sendKeys(Keys.ENTER);
     }
 
+    public boolean searchWithInvalid(String input)
+    {
+        searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        searchBar.sendKeys(input);
+        searchBar.sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3")));
+        List<WebElement> titles = driver.findElements(By.cssSelector("h3"));
+        for (WebElement t : titles) {
+            if (t.getText().toLowerCase().contains(input.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void dismissPopup() {
         wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
     }
@@ -63,9 +90,9 @@ public class HomePage {
         return gotoBusiness.isDisplayed();
     }
 
-    public boolean businessHome() throws IOException {
+    public boolean businessHome() {
             gotoBusiness.click();
-            return verifybusinessdata.isDisplayed();
+            return verifyBusinessData.isDisplayed();
     }
 
     public boolean footerCheck(){
@@ -73,17 +100,6 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    //---------------------------------------------
-    @FindBy(xpath = "//span[contains(text(),'Log In')]")
-    WebElement logInButton;
-    @FindBy(xpath = "//label[contains(text(),'Email')]")
-    WebElement emailLabel;
-    @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
-    WebElement tenThousandText;
-    @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
-    WebElement freeTrial;
-    @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
-    WebElement afterFreeTrialClick;
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
@@ -96,8 +112,7 @@ public class HomePage {
         return emailLabel.isDisplayed();
     }
     public void closeLoginForm(){
-        driver.findElement(By.xpath("//button[@data-e2e='close-modal-button']")).click();
-
+        closeBtn.click();
     }
     public boolean isTenThousandTextVisible() throws Exception {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));

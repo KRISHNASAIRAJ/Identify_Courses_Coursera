@@ -6,17 +6,18 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.ResultsPage;
 
-import java.io.IOException;
-
-public class TC_10_VerifyLevels extends BaseTest {
-    //By Aditya
+public class TC_019_CheckFAQ extends BaseTest {
+    //Harsh
     ResultsPage resultsPage;
     @BeforeTest
-    void setUp() throws IOException {
+    void setUp()
+    {
         resultsPage=new ResultsPage(driver,wait);
     }
-    @Test(priority = 8)
-    void testCheckLevels() throws IOException {
-        Assert.assertTrue(resultsPage.courseLevel());
+
+    @Test
+    void CheckForFaq()
+    {
+        Assert.assertTrue(resultsPage.clickCourse_Switch_CheckFAQ_Return(),"FAQ section is not displayed");
     }
 }

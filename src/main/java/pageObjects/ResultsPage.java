@@ -1,9 +1,6 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -49,14 +46,26 @@ public class ResultsPage {
     WebElement guidedProjectElement;
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedProjectCheckbox;
-    @FindBy(xpath = "cds-ProductCard-content")
+    @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
-    @FindBy(xpath = "cds-ProductCard-body")
+    @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
-    @FindBy(xpath = "cds-ProductCard-content")
-    List<WebElement> productCardContent;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
+    @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
+    WebElement filter_btn;
+    @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
+    WebElement topic_btn;
+    @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
+    WebElement ComputerScienceBtn;
+    @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
+    WebElement view_btn;
+    @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
+    WebElement faq;
+    @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
+    WebElement course;
+
+
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
@@ -118,10 +127,9 @@ public class ResultsPage {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
         commonCode.scrollIntoViewer(allTitles.get(0));
         commonCode.takeScreenshot();
-        List<WebElement> courseCards = allTitles;
         boolean check=false;
         List<String> titlesList=new ArrayList<>();
-        for (WebElement card : courseCards) {
+        for (WebElement card : allTitles) {
             check=!card.getText().isEmpty();
             titlesList.add(card.getText());
         }
@@ -208,7 +216,7 @@ public class ResultsPage {
     }
 
     public boolean getTimeline(){
-        List<WebElement> l= productCardContent;
+        List<WebElement> l= productCard;
         boolean check=true;
         for(WebElement search: l){
             String str=search.findElement((By) metadata).getText();
@@ -217,6 +225,56 @@ public class ResultsPage {
             }
         }
         return check;
+    }
+
+    public boolean FilterAndSortVisible(){
+        return filter_btn.isDisplayed();
+    }
+
+    public void FilterAndSortClick() {
+        filter_btn.click();
+        //newest.click();
+        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
+        wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
+    }
+
+    public void clickOnCourse() {
+        wait.until(ExpectedConditions.elementToBeClickable(course)).click();
+    }
+
+    public boolean checkForFAQ() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", faq);
+        return faq.isDisplayed();
+    }
+
+    public boolean clickCourse_Switch_CheckFAQ_Return() {
+        String parentHandle = driver.getWindowHandle();
+        int beforeCount = driver.getWindowHandles().size();
+
+        clickOnCourse();
+        wait.until(d -> d.getWindowHandles().size() > beforeCount);
+
+        // Switch to child
+        String childHandle = getNewTabHandle(parentHandle);
+        driver.switchTo().window(childHandle);
+
+        try {
+            return checkForFAQ();
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;
+        } finally {
+            try { driver.close(); } catch (Exception ignored) {}
+            driver.switchTo().window(parentHandle);
+        }
+    }
+
+    private String getNewTabHandle(String parentHandle) {
+        for (String h : driver.getWindowHandles()) {
+            if (!h.equals(parentHandle)) return h;
+        }
+        throw new IllegalStateException("New tab not found after clicking the course.");
     }
 
 }

@@ -8,16 +8,15 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_014_DurationLabelExtraction extends BaseTest {
-    //By Irfan
+public class TC_07_VerifyLevels extends BaseTest {
+    //By Aditya
     ResultsPage resultsPage;
     @BeforeTest
     void setUp() throws IOException {
-        resultsPage =new ResultsPage(driver,wait);
+        resultsPage=new ResultsPage(driver,wait);
     }
-    @Test
-    public void extractTimeline() throws InterruptedException {
-        Assert.assertTrue(resultsPage.getTimeline());
+    @Test(priority = 8)
+    void testCheckLevels() throws IOException {
+        Assert.assertTrue(resultsPage.courseLevel());
     }
 }
-

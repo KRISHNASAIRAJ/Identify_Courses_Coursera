@@ -8,7 +8,8 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_024_getAllLanguagesAndLevels extends BaseTest {
+public class TC_016_GetAllLanguagesAndLevels extends BaseTest {
+    //Krishna
     ResultsPage resultsPage;
     @BeforeTest
     void setUp(){

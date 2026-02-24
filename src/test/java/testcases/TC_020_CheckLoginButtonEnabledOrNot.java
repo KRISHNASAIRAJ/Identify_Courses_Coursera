@@ -5,7 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.ResultsPage;
 
-public class TC_026_checkLoginButtonEnabledOrNot extends BaseTest {
+public class TC_020_CheckLoginButtonEnabledOrNot extends BaseTest {
+    //Aditya
     @Test(priority = 28)
     void checkLoginButton(){
         ResultsPage resultsPage =new ResultsPage(driver,wait);
