@@ -4,12 +4,12 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.HomePage;
 import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_025_FirstTwoCoursesDetails extends BaseTest {
+public class TC_018_FirstTwoCoursesDetails extends BaseTest {
+    //Krishna
     ResultsPage resultsPage;
     @BeforeTest
     void setUp(){

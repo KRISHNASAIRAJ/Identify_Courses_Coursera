@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 public class TC_06_Verify10000Courses extends BaseTest {
+    //Aditya
         @Test
         public void tenThousandAndFreeTrial() throws Exception {
             HomePage homepage = new HomePage(driver, wait);

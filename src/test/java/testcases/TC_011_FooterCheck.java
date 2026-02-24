@@ -9,9 +9,9 @@ import pageObjects.HomePage;
 
 import java.io.IOException;
 
-public class TC_11_FooterCheck extends BaseTest {
+public class TC_011_FooterCheck extends BaseTest {
+    //Aditya
     HomePage homePage;
-
     @BeforeTest
     void setUp() throws IOException {
         homePage =new HomePage(driver,wait);

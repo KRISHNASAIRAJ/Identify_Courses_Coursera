@@ -9,7 +9,8 @@ import utilities.CommonCode;
 
 import java.io.IOException;
 
-public class TC_023_SearchBarFunctionality extends BaseTest {
+public class TC_015_SearchBarFunctionality extends BaseTest {
+    //Krishna
     HomePage homePage;
     CommonCode commonCode;
     @BeforeTest

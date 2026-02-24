@@ -5,17 +5,17 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.CourseDetailsPage;
 
-public class TC_18_InstructorDetails extends BaseTest {
+public class TC_012_VerifyRatings extends BaseTest {
+    //Harsh
     CourseDetailsPage courseDetailsPage;
     @BeforeTest
     void setUp()
     {
         courseDetailsPage=new CourseDetailsPage(driver,wait);
     }
-
     @Test
-    void getLinks()
+    void CheckForRating()
     {
-        courseDetailsPage.InstructorDetails();
+        courseDetailsPage.CheckReviews();
     }
 }

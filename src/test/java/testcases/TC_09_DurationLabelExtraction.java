@@ -8,15 +8,16 @@ import pageObjects.ResultsPage;
 
 import java.io.IOException;
 
-public class TC_08_VerifyPartnerBadge extends BaseTest {
-    //By Aditya
+public class TC_09_DurationLabelExtraction extends BaseTest {
+    //By Irfan
     ResultsPage resultsPage;
     @BeforeTest
     void setUp() throws IOException {
-        resultsPage=new ResultsPage(driver,wait);
+        resultsPage =new ResultsPage(driver,wait);
     }
-    @Test(priority = 6)
-    public void testSearchPartnerAndBadge() throws IOException {
-        Assert.assertTrue(resultsPage.companyCourseName());
+    @Test
+    public void extractTimeline() throws InterruptedException {
+        Assert.assertTrue(resultsPage.getTimeline());
     }
 }
+

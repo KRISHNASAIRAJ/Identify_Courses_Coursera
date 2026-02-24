@@ -8,16 +8,17 @@ import pageObjects.CourseDetailsPage;
 
 import java.io.IOException;
 
-public class TC_016_NoSetupGuarantee extends BaseTest {
+public class TC_010_ProjectStepsExtraction extends BaseTest {
     //By Irfan
     CourseDetailsPage courseDetailsPage;
     @BeforeTest
-    void setUp() throws IOException {
+    void setUp() throws IOException, InterruptedException {
         courseDetailsPage =new CourseDetailsPage(driver,wait);
     }
     @Test
-    public void noInstallationCheck(){
-        Assert.assertTrue(courseDetailsPage.noInstallation());
-    }
+    public void extractInstructions() throws InterruptedException {
+        courseDetailsPage.courseDetails();
+        Assert.assertTrue(courseDetailsPage.stepByInstructionsCheck());
 
+    }
 }
