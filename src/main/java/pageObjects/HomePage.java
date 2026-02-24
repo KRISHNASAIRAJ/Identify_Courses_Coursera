@@ -21,7 +21,7 @@ public class HomePage {
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
-    WebElement verifybusinessdata;
+    WebElement verifyBusinessData;
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
     CommonCode commonCode;
@@ -84,7 +84,7 @@ public class HomePage {
 
     public boolean businessHome() {
             gotoBusiness.click();
-            return verifybusinessdata.isDisplayed();
+            return verifyBusinessData.isDisplayed();
     }
 
     public boolean footerCheck(){
