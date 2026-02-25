@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusinessFormPage;
 
-public class TC_023_formSubmissionWithInvalidData extends BaseTest {
+public class TC_023_FormSubmissionWithInvalidData extends BaseTest {
     //Krishna
     @Test(priority = 25)
     void formSubmissionWithInvalidData() throws InterruptedException{

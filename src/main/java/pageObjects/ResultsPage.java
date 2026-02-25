@@ -15,7 +15,6 @@ import java.util.List;
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
-    ExcelWriter excelWriter;
     CommonCode commonCode;
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
@@ -50,13 +49,13 @@ public class ResultsPage {
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
     @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
-    WebElement filter_btn;
+    WebElement filterBtn;
     @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
-    WebElement topic_btn;
+    WebElement topicBtn;
     @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
     @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
-    WebElement view_btn;
+    WebElement viewFilterBtn;
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
     @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
@@ -224,15 +223,14 @@ public class ResultsPage {
     }
 
     public boolean FilterAndSortVisible(){
-        return filter_btn.isDisplayed();
+        return filterBtn.isDisplayed();
     }
 
     public void FilterAndSortClick() {
-        filter_btn.click();
-        //newest.click();
-        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
+        filterBtn.click();
+        wait.until(ExpectedConditions.visibilityOf(topicBtn)).click();
         wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
-        wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
+        wait.until(ExpectedConditions.visibilityOf(viewFilterBtn)).click();
     }
 
     public void clickOnCourse() {
@@ -245,17 +243,13 @@ public class ResultsPage {
         return faq.isDisplayed();
     }
 
-    public boolean clickCourse_Switch_CheckFAQ_Return() {
+    public boolean clickCourseSwitchCheckFAQReturn() {
         String parentHandle = driver.getWindowHandle();
         int beforeCount = driver.getWindowHandles().size();
-
         clickOnCourse();
         wait.until(d -> d.getWindowHandles().size() > beforeCount);
-
-        // Switch to child
         String childHandle = getNewTabHandle(parentHandle);
         driver.switchTo().window(childHandle);
-
         try {
             return checkForFAQ();
         } catch (TimeoutException | NoSuchElementException e) {
