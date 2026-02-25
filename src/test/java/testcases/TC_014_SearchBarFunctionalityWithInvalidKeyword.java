@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import utilities.CommonCode;
+import utilities.Log;
 
 import java.io.IOException;
 
@@ -23,5 +24,6 @@ public class TC_014_SearchBarFunctionalityWithInvalidKeyword extends BaseTest {
         Assert.assertTrue(homePage.searchBarVisibility());
         commonCode.takeScreenshot();
         Assert.assertTrue(homePage.searchWithInvalid("agdwterjgdwetf"));
+        Log.info("Search with invalid keyword verification completed");
     }
 }

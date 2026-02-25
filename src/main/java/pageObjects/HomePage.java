@@ -6,7 +6,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
+import utilities.ExcelWriter;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage {
@@ -37,6 +40,10 @@ public class HomePage {
     WebElement afterFreeTrialClick;
     @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
     WebElement closeBtn;
+    @FindBy(xpath = "//a[contains(@href,'help') and contains(text(),'Help')]")
+    WebElement help;
+    @FindBy(xpath = "//div[@class='category_tile-title']")
+    List<WebElement> helpSections;
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -127,4 +134,24 @@ public class HomePage {
         return courseraPlusHeading.isDisplayed();
     }
 
+    public boolean checkForHelpSection()
+    {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",help);
+        return help.isDisplayed();
+    }
+
+    public void clickHelpSection() throws IOException {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        wait.until(ExpectedConditions.visibilityOf(help));
+        js.executeScript("arguments[0].click();",help);
+
+        List<String> sections = new ArrayList<>();
+        wait.until(ExpectedConditions.visibilityOfAllElements(helpSections));
+        for(WebElement it:helpSections)
+        {
+            sections.add(it.getText());
+        }
+        ExcelWriter.writeList("Help Section",sections,"Sections");
+    }
 }

@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.ResultsPage;
+import utilities.Log;
 
 public class TC_019_CheckFAQ extends BaseTest {
     //Harsh
@@ -16,8 +17,9 @@ public class TC_019_CheckFAQ extends BaseTest {
     }
 
     @Test
-    void CheckForFaq()
+    void checkForFaq()
     {
-        Assert.assertTrue(resultsPage.clickCourse_Switch_CheckFAQ_Return(),"FAQ section is not displayed");
+        Assert.assertTrue(resultsPage.clickCourseSwitchCheckFAQReturn(),"FAQ section is not displayed");
+        Log.info("FAQ verification completed");
     }
 }

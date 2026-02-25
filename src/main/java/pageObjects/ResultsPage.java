@@ -49,19 +49,18 @@ public class ResultsPage {
     WebElement productCardBody;
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
-    @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
+    @FindBy(xpath = "//button[@data-testid='filter-and-sort-button']")
     WebElement filter_btn;
-    @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
+    @FindBy(xpath = "//div[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
     WebElement topic_btn;
-    @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
+    @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
-    @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
+    @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
     WebElement view_btn;
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
     @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
-
 
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@aria-label='Rating']");
@@ -110,7 +109,6 @@ public class ResultsPage {
     public void getLevels() throws IOException {
         difficultyLevel.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(difficultyLevels));
-        int difficultyCount=difficultyLevels.size();
         commonCode.takeScreenshot();
         List<String> levelsList=new ArrayList<>();
         for(WebElement difficulty:difficultyLevels){
@@ -223,13 +221,12 @@ public class ResultsPage {
         return check;
     }
 
-    public boolean FilterAndSortVisible(){
+    public boolean filterAndSortVisible(){
         return filter_btn.isDisplayed();
     }
 
-    public void FilterAndSortClick() {
+    public void filterAndSortClick() {
         filter_btn.click();
-        //newest.click();
         wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
         wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
         wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
@@ -245,14 +242,13 @@ public class ResultsPage {
         return faq.isDisplayed();
     }
 
-    public boolean clickCourse_Switch_CheckFAQ_Return() {
+    public boolean clickCourseSwitchCheckFAQReturn() {
         String parentHandle = driver.getWindowHandle();
         int beforeCount = driver.getWindowHandles().size();
 
         clickOnCourse();
         wait.until(d -> d.getWindowHandles().size() > beforeCount);
 
-        // Switch to child
         String childHandle = getNewTabHandle(parentHandle);
         driver.switchTo().window(childHandle);
 

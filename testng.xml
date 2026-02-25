@@ -29,6 +29,7 @@
             <class name="testcases.TC_021_ProgramOverview"/>
             <class name="testcases.TC_022_formSubmissionWithValidData"/>
             <class name="testcases.TC_023_formSubmissionWithInvalidData"/>
+            <class name="testcases.TC_024_CheckForHelpSection"/>
         </classes>
     </test>
 </suite>

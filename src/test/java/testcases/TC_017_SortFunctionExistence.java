@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.ResultsPage;
+import utilities.Log;
 
 
 public class TC_017_SortFunctionExistence extends BaseTest {
@@ -16,8 +17,9 @@ public class TC_017_SortFunctionExistence extends BaseTest {
     }
 
     @Test
-    void CheckForSortFunction() {
-        Assert.assertTrue(result.FilterAndSortVisible(),"Filter and Sort Button is not Visible");
-        result.FilterAndSortClick();
+    void checkForSortFunction() {
+        Assert.assertTrue(result.filterAndSortVisible(),"Filter and Sort Button is not Visible");
+        result.filterAndSortClick();
+        Log.info("Filter and sort button verification completed");
     }
 }
