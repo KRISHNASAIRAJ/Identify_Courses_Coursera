@@ -15,7 +15,7 @@ public class TC_019_CheckFAQ extends BaseTest {
         resultsPage=new ResultsPage(driver,wait);
     }
 
-    @Test
+    @Test(priority = 21)
     void CheckForFaq()
     {
         Assert.assertTrue(resultsPage.clickCourse_Switch_CheckFAQ_Return(),"FAQ section is not displayed");

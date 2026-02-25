@@ -36,14 +36,13 @@ public class DegreeCoursesPage {
         PageFactory.initElements(driver,this);
     }
     public boolean isUniversityNamePresent(){
-
         return !university.getText().isEmpty();
     }
 
     public boolean isCourseNamePresent(){
         return !course.getText().isEmpty();
     }
-    public void find_courses(){
+    public void findCourses(){
         wait.until(ExpectedConditions.visibilityOf(degreesOption)).click();
         wait.until(ExpectedConditions.visibilityOf(filter1)).click();
         wait.until(ExpectedConditions.elementToBeClickable(mastersDegree)).click();
@@ -53,7 +52,6 @@ public class DegreeCoursesPage {
         wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
         String currentWindow=driver.getWindowHandle();
         wait.until(ExpectedConditions.visibilityOf(gridElement)).click();
-        String parentWindow="";
         Set<String> windowHandles=driver.getWindowHandles();
         for(String handle:windowHandles){
             if(handle!=currentWindow){

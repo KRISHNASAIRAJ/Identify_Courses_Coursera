@@ -7,7 +7,7 @@ import pageObjects.ResultsPage;
 
 public class TC_020_CheckLoginButtonEnabledOrNot extends BaseTest {
     //Aditya
-    @Test(priority = 28)
+    @Test(priority = 22)
     void checkLoginButton(){
         ResultsPage resultsPage =new ResultsPage(driver,wait);
         Assert.assertTrue(resultsPage.isLoginButtonEnabled());

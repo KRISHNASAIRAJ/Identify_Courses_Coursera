@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HomePage {
@@ -57,7 +58,8 @@ public class HomePage {
         return logo.isDisplayed();
     }
 
-    public boolean searchBarVisibility() {
+    public boolean searchBarVisibility() throws IOException {
+        commonCode.takeScreenshot();
         return wait.until(ExpectedConditions.visibilityOf(searchBar)).isDisplayed();
     }
 

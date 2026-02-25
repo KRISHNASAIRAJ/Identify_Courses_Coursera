@@ -21,7 +21,6 @@ public class TC_014_SearchBarFunctionalityWithInvalidKeyword extends BaseTest {
     @Test(priority = 21)
     void searchBarFunctionality() throws IOException {
         Assert.assertTrue(homePage.searchBarVisibility());
-        commonCode.takeScreenshot();
         Assert.assertTrue(homePage.searchWithInvalid("agdwterjgdwetf"));
     }
 }

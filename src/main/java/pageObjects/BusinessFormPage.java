@@ -63,7 +63,7 @@ public class BusinessFormPage {
     public void formFilling(
             String firstNameInp, String lastNameInp, String mailIdInp, String phoneInp, int organizationTypeIndex,
             String jobTitleInp, int needDescInp, int employeeRangeInp, String countryInp, String stateInp
-    ) throws InterruptedException {
+    ) {
         firstName.sendKeys(firstNameInp);
         lastName.sendKeys(lastNameInp);
         emailAddress.sendKeys(mailIdInp);

@@ -13,26 +13,21 @@ public class ExtentReportManager implements ITestListener {
         sparkReporter.config().setDocumentTitle("Automation Report");
         sparkReporter.config().setReportName("Functional Testing");
         sparkReporter.config().setTheme(Theme.STANDARD);
-
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("Environment", "QA");
-        extent.setSystemInfo("Tester", "Irfan");
+//        extent.setSystemInfo("Tester", "Krishnasairaj");
     }
 
     public void onTestSuccess(ITestResult result) {
-
         test = extent.createTest(result.getName()); // create a new enty in the report
         test.log(Status.PASS, "Test case PASSED is:" + result.getName()); // update status p/f/s
-
     }
 
     public void onTestFailure(ITestResult result) {
-
         test = extent.createTest(result.getName());
         test.log(Status.FAIL, "Test case FAILED is:" + result.getName());
         test.log(Status.FAIL, "Test Case FAILED cause is: " + result.getThrowable());
-
     }
 
     @Override
