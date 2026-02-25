@@ -43,7 +43,7 @@ public class DegreeCoursesPage {
     public boolean isCourseNamePresent(){
         return !course.getText().isEmpty();
     }
-    public void find_courses(){
+    public void findCourses(){
         wait.until(ExpectedConditions.visibilityOf(degreesOption)).click();
         wait.until(ExpectedConditions.visibilityOf(filter1)).click();
         wait.until(ExpectedConditions.elementToBeClickable(mastersDegree)).click();

@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 import pageObjects.BusinessFormPage;
 
 public class TC_022_formSubmissionWithValidData extends BaseTest {
-
-    @Test(priority = 30)
+    //Krishna
+    @Test(priority = 24)
     void formSubmissionWithValidData() throws InterruptedException{
         BusinessFormPage businessFormPage =new BusinessFormPage(driver,wait);
         businessFormPage.moveToFormArea();

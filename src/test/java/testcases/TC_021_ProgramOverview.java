@@ -7,10 +7,10 @@ import pageObjects.DegreeCoursesPage;
 
 public class TC_021_ProgramOverview extends BaseTest {
     //Krishna
-    @Test(priority = 29)
-    void programOverview() throws InterruptedException {
+    @Test(priority = 23)
+    void programOverview() {
         DegreeCoursesPage obj=new DegreeCoursesPage(driver,wait);
-        obj.find_courses();
+        obj.findCourses();
         Assert.assertTrue(obj.isCourseNamePresent());
         Assert.assertTrue(obj.isUniversityNamePresent());
     }
