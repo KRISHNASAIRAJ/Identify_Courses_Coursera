@@ -19,6 +19,7 @@ public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
     String setupInstructionsExtractor;
+
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
     List<WebElement> specificElement;
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
@@ -66,7 +67,7 @@ public class CourseDetailsPage {
     public boolean noInstallation(){
         return installationCheck.isDisplayed();
     }
-
+    // window handle in common code
     public List<String> fetchRatings() throws IOException {
         List<String> ratingsList = new ArrayList<>();
 
@@ -85,12 +86,9 @@ public class CourseDetailsPage {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
         ExcelWriter.writeList("Reviews",ratingsList,"Reviews");
         return ratingsList;
     }
-
-
 
     public List<String> instructorDetails() throws IOException {
         List<String> resultLinks = new ArrayList<>();

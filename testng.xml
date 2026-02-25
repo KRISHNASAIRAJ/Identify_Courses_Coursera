@@ -27,8 +27,8 @@
             <class name="testcases.TC_019_CheckFAQ"/>
             <class name="testcases.TC_020_CheckLoginButtonEnabledOrNot"/>
             <class name="testcases.TC_021_ProgramOverview"/>
-            <class name="testcases.TC_022_formSubmissionWithValidData"/>
-            <class name="testcases.TC_023_formSubmissionWithInvalidData"/>
+            <class name="testcases.TC_022_FormSubmissionWithValidData"/>
+            <class name="testcases.TC_023_FormSubmissionWithInvalidData"/>
             <class name="testcases.TC_024_CheckForHelpSection"/>
         </classes>
     </test>
