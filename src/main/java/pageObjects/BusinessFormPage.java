@@ -62,8 +62,8 @@ public class BusinessFormPage {
 
     public void formFilling(
             String firstNameInp, String lastNameInp, String mailIdInp, String phoneInp, int organizationTypeIndex,
-            String jobTitleInp, int needDescInp, int employeeRangeInp, String countryInp, String stateInp
-    ) {
+            String jobTitleInp, int needDescInp, int employeeRangeInp, String countryInp, String stateInp,
+    String companyName) {
         firstName.sendKeys(firstNameInp);
         lastName.sendKeys(lastNameInp);
         emailAddress.sendKeys(mailIdInp);
@@ -72,7 +72,7 @@ public class BusinessFormPage {
         organization.selectByIndex(organizationTypeIndex);
         jobTitle.sendKeys(jobTitleInp);
         try{
-            company.sendKeys("CTS");
+            company.sendKeys(companyName);
             Select employeeRangeForPEmail=new Select(employeeRangeForPersonalMail);
             employeeRangeForPEmail.selectByIndex(1);
         } catch (Exception ignore) {

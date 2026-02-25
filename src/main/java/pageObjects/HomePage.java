@@ -21,7 +21,7 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
-    WebElement goToBusiness;
+    WebElement gotoBusiness;
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
     WebElement verifyBusinessData;
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
@@ -89,11 +89,11 @@ public class HomePage {
     }
 
     public boolean businessTitle() {
-        return goToBusiness.isDisplayed();
+        return gotoBusiness.isDisplayed();
     }
 
     public boolean businessHome() {
-            goToBusiness.click();
+            gotoBusiness.click();
             return verifyBusinessData.isDisplayed();
     }
 
@@ -102,29 +102,29 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLoginButtonClickable(WebDriverWait wait) throws Exception {
+    public boolean isLogInButtonClickable(WebDriverWait wait){
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
     }
-    public void clickLoginButton() {
+    public void clickLogInButton() {
         logInButton.click();
     }
-    public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
+    public boolean isEmailLabelVisible(WebDriverWait wait){
         wait.until(ExpectedConditions.visibilityOf(emailLabel));
         return emailLabel.isDisplayed();
     }
     public void closeLoginForm(){
         closeBtn.click();
     }
-    public boolean isTenThousandTextVisible() throws Exception {
+    public boolean isTenThousandTextVisible() {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
         return tenThousandText.isDisplayed();
     }
-    public void clickFreeTrialButton() throws Exception {
+    public void clickFreeTrialButton(){
         wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
         freeTrial.click();
     }
-    public boolean isFreeTrialPageOpens() throws Exception {
+    public boolean isFreeTrialPageOpens(){
         WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
         return courseraPlusHeading.isDisplayed();
     }

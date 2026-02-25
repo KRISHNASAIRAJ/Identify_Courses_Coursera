@@ -16,7 +16,7 @@ public class TC_09_DurationLabelExtraction extends BaseTest {
         resultsPage =new ResultsPage(driver,wait);
     }
     @Test
-    public void extractTimeline() throws InterruptedException {
+    public void extractTimeline() {
         Assert.assertTrue(resultsPage.getTimeline());
     }
 }
