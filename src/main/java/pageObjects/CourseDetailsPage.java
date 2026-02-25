@@ -26,8 +26,6 @@ public class CourseDetailsPage {
     WebElement reviews;
     @FindBy(xpath = "//p//a[starts-with(@href,'/instructor/')]/span")
     WebElement instructor;
-    @FindBy(xpath = "//*[text()='Bio']/following-sibling::div")
-    WebElement bio;
 
     public CourseDetailsPage(WebDriver driver, WebDriverWait wait) {
         this.driver=driver;
@@ -65,10 +63,6 @@ public class CourseDetailsPage {
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",reviews);
         List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
-        for(WebElement it:ratings)
-        {
-//            System.out.println(it.getText());
-        }
     }
 
     public void InstructorDetails()
@@ -84,7 +78,6 @@ public class CourseDetailsPage {
                 System.out.println(it.getText());
             }
         }
-//        System.out.println(bio.getText());
     }
 
 }

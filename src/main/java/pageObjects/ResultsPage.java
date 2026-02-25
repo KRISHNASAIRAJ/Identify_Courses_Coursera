@@ -1,19 +1,16 @@
 package pageObjects;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ResultsPage {
     WebDriver driver;
@@ -102,7 +99,6 @@ public class ResultsPage {
     public void getLanguages() throws IOException {
         languageOptions.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(languages));
-//        int languageCount=languages.size();
         List<String> languagesList=new ArrayList<>();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
