@@ -20,7 +20,7 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
-    WebElement gotoBusiness;
+    WebElement goToBusiness;
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
     WebElement verifyBusinessData;
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
@@ -87,11 +87,11 @@ public class HomePage {
     }
 
     public boolean businessTitle() {
-        return gotoBusiness.isDisplayed();
+        return goToBusiness.isDisplayed();
     }
 
     public boolean businessHome() {
-            gotoBusiness.click();
+            goToBusiness.click();
             return verifyBusinessData.isDisplayed();
     }
 
@@ -100,11 +100,11 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+    public boolean isLoginButtonClickable(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
     }
-    public void clickLogInButton() {
+    public void clickLoginButton() {
         logInButton.click();
     }
     public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
