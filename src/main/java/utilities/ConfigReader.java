@@ -8,6 +8,7 @@ public class ConfigReader {
     Properties properties;
     public ConfigReader() throws IOException{
         properties=new Properties();
+        //change to DIR
         FileInputStream fis=new FileInputStream("src/test/resources/config.properties");
         properties.load(fis);
     }

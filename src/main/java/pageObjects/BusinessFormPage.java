@@ -13,6 +13,7 @@ public class BusinessFormPage {
     WebDriver driver;
     WebDriverWait wait;
     CommonCode commonCode;
+
     @FindBy(xpath = "//span[text()=' Businesses']")
     WebElement business;
     @FindBy(xpath = "//form[contains(@id,'mktoForm')]")

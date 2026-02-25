@@ -13,14 +13,9 @@ import java.io.IOException;
 public class TC_01_VerifyUrl extends BaseTest {
     //By Irfan
     HomePage homePage;
-    ConfigReader configReader;
-    @BeforeTest
-    void setUp() throws IOException {
-        homePage =new HomePage(driver,wait);
-        configReader=new ConfigReader();
-    }
     @Test(priority = 1)
     public void verifyURl() throws IOException {
+        homePage =new HomePage(driver,wait);
         Log.info("Getting the URL of the Page");
         Assert.assertEquals(homePage.getURL(),configReader.getProp("URL"));
         Log.info("URL verification completed");

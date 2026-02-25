@@ -16,6 +16,7 @@ public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
     String setupInstructionsExtractor;
+
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
     List<WebElement> specificElement;
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
@@ -62,7 +63,7 @@ public class CourseDetailsPage {
     {
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",reviews);
-        List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
+        List<WebElement>ratings=driver.findElements(By.xpath("//h2[contains(text(),'Learner reviews')]"));
     }
 
     public void InstructorDetails()
