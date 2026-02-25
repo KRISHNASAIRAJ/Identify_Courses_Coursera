@@ -102,29 +102,29 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+    public boolean isLogInButtonClickable(WebDriverWait wait){
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
     }
     public void clickLogInButton() {
         logInButton.click();
     }
-    public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
+    public boolean isEmailLabelVisible(WebDriverWait wait){
         wait.until(ExpectedConditions.visibilityOf(emailLabel));
         return emailLabel.isDisplayed();
     }
     public void closeLoginForm(){
         closeBtn.click();
     }
-    public boolean isTenThousandTextVisible() throws Exception {
+    public boolean isTenThousandTextVisible() {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
         return tenThousandText.isDisplayed();
     }
-    public void clickFreeTrialButton() throws Exception {
+    public void clickFreeTrialButton(){
         wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
         freeTrial.click();
     }
-    public boolean isFreeTrialPageOpens() throws Exception {
+    public boolean isFreeTrialPageOpens(){
         WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
         return courseraPlusHeading.isDisplayed();
     }
