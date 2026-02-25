@@ -5,13 +5,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public final class ExcelWriter {
+    private static final Path OUTPUT_DIR = Paths.get("Output");
     private static final String FILE_NAME =
             "Coursera_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".xlsx";
     private static final XSSFWorkbook WORKBOOK = new XSSFWorkbook();
+    private static final Path OUTPUT_FILE = OUTPUT_DIR.resolve(FILE_NAME);
     private ExcelWriter() {}
     public static void writeList(String sheetName, List<String> data, String columnName) throws IOException {
         Sheet sheet = WORKBOOK.getSheet(sheetName);
@@ -31,7 +35,7 @@ public final class ExcelWriter {
             row.createCell(colIndex).setCellValue(data.get(i));
         }
         sheet.autoSizeColumn(colIndex);
-        try (FileOutputStream out = new FileOutputStream(FILE_NAME)) {
+        try (FileOutputStream out = new FileOutputStream(OUTPUT_FILE.toFile())) {
             WORKBOOK.write(out);
         }
     }

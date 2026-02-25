@@ -12,16 +12,13 @@ import java.io.IOException;
 public class TC_015_SearchBarFunctionality extends BaseTest {
     //Krishna
     HomePage homePage;
-    CommonCode commonCode;
     @BeforeTest
     void setUp(){
         homePage =new HomePage(driver,wait);
-        commonCode=new CommonCode(driver,wait);
     }
     @Test(priority = 21)
     void searchBarFunctionality() throws IOException {
         Assert.assertTrue(homePage.searchBarVisibility());
-        commonCode.takeScreenshot();
         homePage.sendInputToSearchBar("Web Development");
     }
 }
