@@ -36,7 +36,6 @@ public class DegreeCoursesPage {
         PageFactory.initElements(driver,this);
     }
     public boolean isUniversityNamePresent(){
-
         return !university.getText().isEmpty();
     }
 
@@ -53,7 +52,6 @@ public class DegreeCoursesPage {
         wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
         String currentWindow=driver.getWindowHandle();
         wait.until(ExpectedConditions.visibilityOf(gridElement)).click();
-        String parentWindow="";
         Set<String> windowHandles=driver.getWindowHandles();
         for(String handle:windowHandles){
             if(handle!=currentWindow){
