@@ -17,7 +17,7 @@ public class HomePage {
     WebDriverWait wait;
     CommonCode commonCode;
 
-    @FindBy(xpath = "//a[@data-click-key='front_page.front_page_story.click.navigation_meta_nav_Individuals']")
+    @FindBy(xpath = "//*[@role='img' and @aria-label='Coursera']")
     WebElement logo;
 
     @FindBy(id = "search-autocomplete-input")
@@ -92,6 +92,7 @@ public class HomePage {
 
     public boolean searchWithInvalid(String input)
     {
+        wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         searchBar.sendKeys(input);
         searchBar.sendKeys(Keys.ENTER);
@@ -126,6 +127,7 @@ public class HomePage {
     }
 
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+        wait.until(ExpectedConditions.visibilityOf(logInButton));
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
     }
@@ -154,6 +156,7 @@ public class HomePage {
 
     public boolean checkForHelpSection()
     {
+        wait.until(ExpectedConditions.visibilityOf(help));
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);",help);
         return help.isDisplayed();

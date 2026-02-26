@@ -21,6 +21,7 @@ public class TC_014_SearchBarFunctionality extends BaseTest {
     @Test(priority = 22)
     void searchBarFunctionalityWithInvalidInput() throws IOException {
         commonCode=new CommonCode(driver,wait);
+        homePage =new HomePage(driver,wait);
         Assert.assertTrue(homePage.searchBarVisibility());
         Assert.assertTrue(homePage.searchWithInvalid("unknowcoursetext"));
     }

@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="utilities.ExtentReportManager"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="Coursera">
+    <test verbose="2" parallel="classes" thread-count="3" name="Coursera">
         <classes>
             <class name="testcases.TC_01_VerifyUrl"/>
             <class name="testcases.TC_02_VerifyTitle"/>
