@@ -12,7 +12,7 @@ public class TC_06_Verify10000Courses extends BaseTest {
         public void tenThousandAndFreeTrial() throws Exception {
             homePage = new HomePage(driver, wait);
             Assert.assertTrue(homePage.isTenThousandTextVisible(), "'10,000+' text is NOT visible on the homepage");
-//            homePage.clickFreeTrialButton();
+//            homePage.clickFreeTrialBtn();
 //            Assert.assertTrue(homePage.isFreeTrialPageOpens(),
 //                    "Free Trial Not Opening");
         }

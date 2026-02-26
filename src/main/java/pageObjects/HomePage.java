@@ -31,7 +31,7 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
-    WebElement logInButton;
+    WebElement logInBtn;
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
     @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
@@ -60,6 +60,7 @@ public class HomePage {
 
     public boolean checkLogo() {
         return logo.isDisplayed();
+
     }
 
     public boolean searchBarVisibility() throws IOException {
@@ -106,12 +107,12 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLogInButtonClickable(WebDriverWait wait){
-        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
+    public boolean isLogInBtnClickable(WebDriverWait wait){
+        wait.until(ExpectedConditions.elementToBeClickable(logInBtn));
         return true;
     }
-    public void clickLogInButton() {
-        logInButton.click();
+    public void clickLogInBtn() {
+        logInBtn.click();
     }
     public boolean isEmailLabelVisible(WebDriverWait wait){
         wait.until(ExpectedConditions.visibilityOf(emailLabel));
@@ -124,7 +125,7 @@ public class HomePage {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
         return tenThousandText.isDisplayed();
     }
-    public void clickFreeTrialButton(){
+    public void clickFreeTrialBtn(){
         wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
         freeTrial.click();
     }
