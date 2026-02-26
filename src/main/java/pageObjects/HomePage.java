@@ -26,7 +26,7 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
 
-    @FindBy(xpath = "//h3[text()='Drive your businessTab forward and empower your teams']")
+    @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
 
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
@@ -110,12 +110,14 @@ public class HomePage {
     }
 
     public boolean businessTitle() {
+        wait.until(ExpectedConditions.visibilityOf(gotoBusiness));
         return gotoBusiness.isDisplayed();
     }
 
     public boolean businessHome() {
             gotoBusiness.click();
-            return verifyBusinessData.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(verifyBusinessData));
+        return verifyBusinessData.isDisplayed();
     }
 
     public boolean footerCheck(){
