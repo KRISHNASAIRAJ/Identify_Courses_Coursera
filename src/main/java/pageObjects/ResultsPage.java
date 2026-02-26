@@ -47,18 +47,25 @@ public class ResultsPage {
     List<WebElement> productCard;
     @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
+
     @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
     WebElement filterBtn;
+
     @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
     WebElement topicBtn;
+
     @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
+
     @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
     WebElement viewFilterBtn;
+
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
+
     @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
 

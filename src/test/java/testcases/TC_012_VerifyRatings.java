@@ -21,6 +21,6 @@ public class TC_012_VerifyRatings extends BaseTest {
         homePage.sendInputToSearchBar("Python");
         resultsPage.guidedProject();
         courseDetailsPage.courseDetails();
-        courseDetailsPage.CheckReviews();
+        courseDetailsPage.checkReviews();
     }
 }

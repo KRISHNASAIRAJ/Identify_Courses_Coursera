@@ -20,6 +20,6 @@ public class TC_013_InstructorDetails extends BaseTest {
         homePage.sendInputToSearchBar("Python");
         resultsPage.guidedProject();
         courseDetailsPage.courseDetails();
-        courseDetailsPage.InstructorDetails();
+        courseDetailsPage.instructorDetails();
     }
 }
