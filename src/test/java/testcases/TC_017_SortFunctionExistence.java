@@ -4,22 +4,21 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pageObjects.HomePage;
 import pageObjects.ResultsPage;
-import utilities.Log;
 
 
 public class TC_017_SortFunctionExistence extends BaseTest {
     //Harsh
-    ResultsPage result;
-    @BeforeTest
-    void setUp(){
-        result=new ResultsPage(driver,wait);
-    }
+    ResultsPage resultsPage;
+    HomePage homePage;
 
     @Test
-    void checkForSortFunction() {
-        Assert.assertTrue(result.filterAndSortVisible(),"Filter and Sort Button is not Visible");
-        result.filterAndSortClick();
-        Log.info("Filter and sort button verification completed");
+    void CheckForSortFunction() {
+        homePage=new HomePage(driver,wait);
+        homePage.sendInputToSearchBar("Web Development");
+        resultsPage =new ResultsPage(driver,wait);
+        Assert.assertTrue(resultsPage.FilterAndSortVisible(),"Filter and Sort Button is not Visible");
+        resultsPage.FilterAndSortClick();
     }
 }

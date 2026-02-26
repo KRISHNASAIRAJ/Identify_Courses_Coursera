@@ -1,27 +1,26 @@
 package testcases;
 
 import basetest.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.CourseDetailsPage;
-import utilities.Log;
-
-import java.io.IOException;
-import java.util.List;
+import pageObjects.HomePage;
+import pageObjects.ResultsPage;
 
 public class TC_012_VerifyRatings extends BaseTest {
     //Harsh
     CourseDetailsPage courseDetailsPage;
-    @BeforeTest
-    void setUp()
-    {
-        courseDetailsPage=new CourseDetailsPage(driver,wait);
-    }
+    HomePage homePage;
+    ResultsPage resultsPage;
+
     @Test
-    void checkForRating() throws IOException {
-        List<String> ratingList = courseDetailsPage.fetchRatings();
-        Assert.assertFalse(ratingList.isEmpty(), " No ratings found on course page");
-        Log.info("Successfully fetched Ratings");
+    void CheckForRating() throws InterruptedException {
+        homePage=new HomePage(driver,wait);
+        resultsPage=new ResultsPage(driver,wait);
+        courseDetailsPage=new CourseDetailsPage(driver,wait);
+        homePage.sendInputToSearchBar("Python");
+        resultsPage.guidedProject();
+        courseDetailsPage.courseDetails();
+        courseDetailsPage.CheckReviews();
     }
 }

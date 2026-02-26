@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public final class ExcelWriter {
-    private static final Path OUTPUT_DIR = Paths.get("Output");
+    private static final Path OUTPUT_DIR = Paths.get("TestData");
     private static final String FILE_NAME =
             "Coursera_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".xlsx";
     private static final XSSFWorkbook WORKBOOK = new XSSFWorkbook();

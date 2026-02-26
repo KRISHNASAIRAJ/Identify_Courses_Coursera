@@ -12,6 +12,7 @@ import java.util.Set;
 public class DegreeCoursesPage {
     WebDriver driver;
     WebDriverWait wait;
+
     @FindBy(xpath = "//a[@data-testid='nav-link-grid-item-degrees']")
     WebElement degreesOption;
     @FindBy(xpath = "//span[contains(@class,'cds-multiSelect-label') and text()='Program Level']")
@@ -30,6 +31,7 @@ public class DegreeCoursesPage {
     WebElement course;
     @FindBy(xpath = "//h1[contains(@class,'cds-119')]/following-sibling::h2")
     WebElement university;
+
     public DegreeCoursesPage(WebDriver driver,WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;

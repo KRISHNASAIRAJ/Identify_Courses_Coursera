@@ -1,28 +1,25 @@
 package testcases;
 
 import basetest.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.CourseDetailsPage;
-import utilities.Log;
-
-import java.io.IOException;
-import java.util.List;
+import pageObjects.HomePage;
+import pageObjects.ResultsPage;
 
 public class TC_013_InstructorDetails extends BaseTest {
     //Harsh
     CourseDetailsPage courseDetailsPage;
-    @BeforeTest
-    void setUp()
-    {
-        courseDetailsPage=new CourseDetailsPage(driver,wait);
-    }
-
+    HomePage homePage;
+    ResultsPage resultsPage;
     @Test
-    void getInstructorDetails() throws IOException {
-        List<String> details = courseDetailsPage.instructorDetails();
-        Assert.assertFalse(details.isEmpty(), "Instructor details not found!");
-        Log.info("Successfully fetched Instructor details");
+    void getLinks() throws InterruptedException {
+        homePage=new HomePage(driver,wait);
+        resultsPage=new ResultsPage(driver,wait);
+        courseDetailsPage=new CourseDetailsPage(driver,wait);
+        homePage.sendInputToSearchBar("Python");
+        resultsPage.guidedProject();
+        courseDetailsPage.courseDetails();
+        courseDetailsPage.InstructorDetails();
     }
 }
