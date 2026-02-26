@@ -24,7 +24,7 @@ public class HomePage {
     WebElement searchBar;
     //WORK THIS
     @FindBy(xpath = "//button[@id='ior2l']")
-    WebElement notNow;
+    WebElement notNowBtn;
 
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
@@ -91,7 +91,7 @@ public class HomePage {
     }
 
     public void dismissPopup() {
-        wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
+        wait.until(ExpectedConditions.elementToBeClickable((By) notNowBtn)).click();
     }
 
     public boolean businessTitle() {
@@ -100,7 +100,7 @@ public class HomePage {
     }
 
     public boolean businessHome() {
-            gotoBusiness.click();
+        gotoBusiness.click();
         wait.until(ExpectedConditions.visibilityOf(verifyBusinessData));
         return verifyBusinessData.isDisplayed();
     }

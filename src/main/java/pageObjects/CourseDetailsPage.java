@@ -20,7 +20,7 @@ public class CourseDetailsPage {
     String setupInstructionsExtractor;
 
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
-    List<WebElement> specificElement;
+    List<WebElement> productCards;
 
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
     WebElement stepByStep;
@@ -41,7 +41,7 @@ public class CourseDetailsPage {
     List<WebElement> ratings;
 
     @FindBy(xpath = "//ul[contains(@class,'rc-PartnerLinksV2')]//a | //div[contains(@class,'rc-ExternalLinks')]//a")
-    List<WebElement> links;
+    List<WebElement> lnks;
 
     public CourseDetailsPage(WebDriver driver, WebDriverWait wait) {
         this.driver=driver;
@@ -51,8 +51,8 @@ public class CourseDetailsPage {
 
     public void courseDetails() throws InterruptedException {
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        wait.until(ExpectedConditions.visibilityOfAllElements(specificElement));
-        String ans=specificElement.get(0).getAttribute("href");
+        wait.until(ExpectedConditions.visibilityOfAllElements(productCards));
+        String ans= productCards.get(0).getAttribute("href");
         driver.navigate().to(ans);
         String parentWindow = driver.getWindowHandle();
         Set<String> windows = driver.getWindowHandles();
@@ -103,13 +103,13 @@ public class CourseDetailsPage {
             String name= instructorName.getText();
             resultName.add(name);
             ExcelWriter.writeList("Instructor Details",resultName ,"Name");
-            if (!links.isEmpty()) {
-                for (WebElement it : links) {
+            if (!lnks.isEmpty()) {
+                for (WebElement it : lnks) {
                     String text = it.getText().trim();
                     resultLinks.add(text);
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         ExcelWriter.writeList("Instructor Details",resultLinks,"Links");
         return resultLinks;
