@@ -16,6 +16,6 @@ public class TC_012_VerifyRatings extends BaseTest {
     @Test
     void CheckForRating()
     {
-        courseDetailsPage.CheckReviews();
+        courseDetailsPage.checkReviews();
     }
 }

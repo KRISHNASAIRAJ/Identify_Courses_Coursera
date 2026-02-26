@@ -58,26 +58,18 @@ public class CourseDetailsPage {
         return installationCheck.isDisplayed();
     }
 
-    public void CheckReviews()
+    public void checkReviews()
     {
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",reviews);
         List<WebElement>ratings=driver.findElements(By.xpath("//*[@class='css-1xgm7zn']//*[@class='css-kimdhf']"));
     }
 
-    public void InstructorDetails()
+    public void instructorDetails()
     {
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",instructor);
         js.executeScript("arguments[0].click();",instructor);
-        List<WebElement> links=driver.findElements(By.xpath("//*[@class='cds-119 cds-113 cds-115 m-l-1s css-1qn2qsw cds-142']"));
-        if(!links.isEmpty())
-        {
-            for(WebElement it:links)
-            {
-                System.out.println(it.getText());
-            }
-        }
     }
 
 }

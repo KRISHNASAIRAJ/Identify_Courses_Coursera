@@ -17,6 +17,6 @@ public class TC_013_InstructorDetails extends BaseTest {
     @Test
     void getLinks()
     {
-        courseDetailsPage.InstructorDetails();
+        courseDetailsPage.instructorDetails();
     }
 }
