@@ -18,7 +18,7 @@ public class TC_017_SortFunctionExistence extends BaseTest {
         homePage=new HomePage(driver,wait);
         homePage.sendInputToSearchBar("Web Development");
         resultsPage =new ResultsPage(driver,wait);
-        Assert.assertTrue(resultsPage.FilterAndSortVisible(),"Filter and Sort Button is not Visible");
-        resultsPage.FilterAndSortClick();
+        Assert.assertTrue(resultsPage.filterAndSortVisible(),"Filter and Sort Button is not Visible");
+        resultsPage.filterAndSortClick();
     }
 }

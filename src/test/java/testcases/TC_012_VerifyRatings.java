@@ -1,11 +1,16 @@
 package testcases;
 
 import basetest.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.CourseDetailsPage;
 import pageObjects.HomePage;
 import pageObjects.ResultsPage;
+import utilities.Log;
+
+import java.io.IOException;
+import java.util.List;
 
 public class TC_012_VerifyRatings extends BaseTest {
     //Harsh
@@ -14,13 +19,15 @@ public class TC_012_VerifyRatings extends BaseTest {
     ResultsPage resultsPage;
 
     @Test
-    void CheckForRating() throws InterruptedException {
+    void CheckForRating() throws InterruptedException, IOException {
         homePage=new HomePage(driver,wait);
         resultsPage=new ResultsPage(driver,wait);
         courseDetailsPage=new CourseDetailsPage(driver,wait);
         homePage.sendInputToSearchBar("Python");
         resultsPage.guidedProject();
         courseDetailsPage.courseDetails();
-        courseDetailsPage.checkReviews();
+        List<String> ratingList = courseDetailsPage.fetchRatings();
+        Assert.assertFalse(ratingList.isEmpty(), " No ratings found on course page");
+        Log.info("Successfully fetched Ratings");
     }
 }

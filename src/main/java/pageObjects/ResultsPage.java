@@ -15,60 +15,74 @@ import java.util.List;
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
+    ExcelWriter excelWriter;
     CommonCode commonCode;
 
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
+
     @FindBy(xpath = "//span[text()='View']")
     WebElement viewBtn;
+
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
     WebElement loginButton;
+
     @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
     List<WebElement> allTitles;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-language']")
     WebElement languageOptions;
+
     @FindBy(xpath = "(//div[@class='cds-ProductCard-content'])[position()<=2]")
     List<WebElement> courseDetails;
+
     @FindBy(xpath = "//div[contains(@data-testid,'language')]/label/div/span")
     List<WebElement> languages;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-interactiveArea']")
     List<WebElement> companyName;
+
     @FindBy(xpath = "//div[contains(@data-testid,'productDifficultyLevel')]/label/div/span")
     List<WebElement> difficultyLevels;
+
     @FindBy(xpath = "//div[contains(text(),'reviews')]")
     List<WebElement> review;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     List<WebElement> level;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
     WebElement guidedProjectElement;
+
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedProjectChk;
+
     @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
+
     @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
 
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
 
-    @FindBy(xpath = "//*[@data-testid='filter-and-sort-button']")
-    WebElement filterBtn;
+    @FindBy(xpath = "//button[@data-testid='filter-and-sort-button']")
+    WebElement filter_btn;
 
-    @FindBy(xpath = "//*[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
-    WebElement topicBtn;
+    @FindBy(xpath = "//div[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
+    WebElement topic_btn;
 
-    @FindBy(xpath = "//*[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
+    @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
 
-    @FindBy(xpath = "//*[@class='cds-button-label' and contains(text(),'View')]")
-    WebElement viewFilterBtn;
+    @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
+    WebElement view_btn;
 
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
 
-    @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
+    @FindBy(xpath = "(//div[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
-
 
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@class='cds-ProductCard-footer']/div/div/div/span");
@@ -117,7 +131,6 @@ public class ResultsPage {
     public void getLevels() throws IOException {
         difficultyLevel.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(difficultyLevels));
-        int difficultyCount=difficultyLevels.size();
         commonCode.takeScreenshot();
         List<String> levelsList=new ArrayList<>();
         for(WebElement difficulty:difficultyLevels){
@@ -231,15 +244,15 @@ public class ResultsPage {
         return check;
     }
 
-    public boolean FilterAndSortVisible(){
-        return filterBtn.isDisplayed();
+    public boolean filterAndSortVisible(){
+        return filter_btn.isDisplayed();
     }
 
-    public void FilterAndSortClick() {
-        filterBtn.click();
-        wait.until(ExpectedConditions.visibilityOf(topicBtn)).click();
+    public void filterAndSortClick() {
+        filter_btn.click();
+        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
         wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
-        wait.until(ExpectedConditions.visibilityOf(viewFilterBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
     }
 
     public void clickOnCourse() {
@@ -255,10 +268,13 @@ public class ResultsPage {
     public boolean clickCourseSwitchCheckFAQReturn() {
         String parentHandle = driver.getWindowHandle();
         int beforeCount = driver.getWindowHandles().size();
+
         clickOnCourse();
         wait.until(d -> d.getWindowHandles().size() > beforeCount);
+
         String childHandle = getNewTabHandle(parentHandle);
         driver.switchTo().window(childHandle);
+
         try {
             return checkForFAQ();
         } catch (TimeoutException | NoSuchElementException e) {

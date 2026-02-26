@@ -6,8 +6,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
+import utilities.ExcelWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage {
@@ -24,24 +26,38 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
 
-    @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
+    @FindBy(xpath = "//h3[text()='Drive your businessTab forward and empower your teams']")
     WebElement gotoBusiness;
+
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
     WebElement verifyBusinessData;
+
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
+
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
     WebElement logInButton;
+
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
+
     @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
     WebElement tenThousandText;
+
     @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
     WebElement freeTrial;
+
     @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
     WebElement afterFreeTrialClick;
+
     @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
     WebElement closeBtn;
+
+    @FindBy(xpath = "//a[contains(@href,'help') and contains(text(),'Help')]")
+    WebElement help;
+
+    @FindBy(xpath = "//div[@class='category_tile-title']")
+    List<WebElement> helpSections;
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -63,8 +79,7 @@ public class HomePage {
         return logo.isDisplayed();
     }
 
-    public boolean searchBarVisibility() throws IOException {
-        commonCode.takeScreenshot();
+    public boolean searchBarVisibility() {
         return wait.until(ExpectedConditions.visibilityOf(searchBar)).isDisplayed();
     }
 
@@ -108,31 +123,51 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLogInButtonClickable(WebDriverWait wait){
+    public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(logInButton));
         return true;
     }
     public void clickLogInButton() {
         logInButton.click();
     }
-    public boolean isEmailLabelVisible(WebDriverWait wait){
+    public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.visibilityOf(emailLabel));
         return emailLabel.isDisplayed();
     }
     public void closeLoginForm(){
         closeBtn.click();
     }
-    public boolean isTenThousandTextVisible() {
+    public boolean isTenThousandTextVisible() throws Exception {
         wait.until(ExpectedConditions.visibilityOf(tenThousandText));
         return tenThousandText.isDisplayed();
     }
-    public void clickFreeTrialButton(){
+    public void clickFreeTrialButton() throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
         freeTrial.click();
     }
-    public boolean isFreeTrialPageOpens(){
+    public boolean isFreeTrialPageOpens() throws Exception {
         WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
         return courseraPlusHeading.isDisplayed();
     }
 
+    public boolean checkForHelpSection()
+    {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",help);
+        return help.isDisplayed();
+    }
+
+    public void clickHelpSection() throws IOException {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        wait.until(ExpectedConditions.visibilityOf(help));
+        js.executeScript("arguments[0].click();",help);
+
+        List<String> sections = new ArrayList<>();
+        wait.until(ExpectedConditions.visibilityOfAllElements(helpSections));
+        for(WebElement it:helpSections)
+        {
+            sections.add(it.getText());
+        }
+        ExcelWriter.writeList("Help Section",sections,"Sections");
+    }
 }
