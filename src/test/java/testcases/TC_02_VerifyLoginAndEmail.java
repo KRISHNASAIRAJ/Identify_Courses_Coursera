@@ -5,10 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
-public class TC_04_VerifyLoginAndEmail extends BaseTest {
+public class TC_02_VerifyLoginAndEmail extends BaseTest {
     //Aditya
     HomePage homePage;
-    @Test
+    @Test(priority = 4)
     public void testLogInAndEmailLabel() throws Exception {
         homePage = new HomePage(driver,wait);
         Assert.assertTrue(homePage.isLogInButtonClickable(wait), "Log In button is NOT clickable on the homepage");

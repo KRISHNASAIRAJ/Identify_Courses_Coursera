@@ -90,22 +90,6 @@ public class HomePage {
         searchBar.sendKeys(Keys.ENTER);
     }
 
-    public boolean searchWithInvalid(String input)
-    {
-        wait.until(ExpectedConditions.visibilityOf(searchBar));
-        searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
-        searchBar.sendKeys(input);
-        searchBar.sendKeys(Keys.ENTER);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3")));
-        List<WebElement> titles = driver.findElements(By.cssSelector("h3"));
-        for (WebElement t : titles) {
-            if (t.getText().toLowerCase().contains(input.toLowerCase())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public void dismissPopup() {
         wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
     }

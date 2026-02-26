@@ -6,26 +6,23 @@
     </listeners>
     <test verbose="2" parallel="classes" thread-count="3" name="Coursera">
         <classes>
-            <class name="testcases.TC_01_VerifyUrl"/>
-            <class name="testcases.TC_02_VerifyTitle"/>
-            <class name="testcases.TC_03_VerifyLogo"/>
-            <class name="testcases.TC_04_VerifyLoginAndEmail"/>
-            <class name="testcases.TC_04_VerifyProductNames"/>
-            <class name="testcases.TC_05_VerifyBusiness"/>
-            <class name="testcases.TC_05_VerifyPartnerBadge"/>
-            <class name="testcases.TC_06_Verify10000Courses"/>
-            <class name="testcases.TC_011_FooterCheck"/>
-            <class name="testcases.TC_06_VerifyReviews"/>
-            <class name="testcases.TC_07_VerifyLevels"/>
-            <class name="testcases.TC_08_SkillsExtraction"/>
-            <class name="testcases.TC_09_DurationLabelExtraction"/>
-            <class name="testcases.TC_010_ProjectStepsExtraction"/>
-            <class name="testcases.TC_011_NoSetupGuarantee"/>
-            <class name="testcases.TC_012_VerifyRatings"/>
-            <class name="testcases.TC_013_InstructorDetails"/>
-            <class name="testcases.TC_014_SearchBarFunctionality"/>
-            <class name="testcases.TC_016_GetAllLanguagesAndLevels"/>
-            <class name="testcases.TC_017_SortFunctionExistence"/>
+            <class name="testcases.TC_01_PageIdentityVerification"/>
+            <class name="testcases.TC_02_VerifyLoginAndEmail"/>
+            <class name="testcases.TC_03_VerifyBusiness"/>
+            <class name="testcases.TC_04_Verify10000Courses"/>
+            <class name="testcases.TC_05_FooterCheck"/>
+            <class name="testcases.TC_06_SearchBarFunctionality"/>
+            <class name="testcases.TC_07_VerifyProductNamesAndPartner"/>
+            <class name="testcases.TC_08_VerifyReviews"/>
+            <class name="testcases.TC_09_VerifyLevels"/>
+            <class name="testcases.TC_010_SkillsExtraction"/>
+            <class name="testcases.TC_011_DurationLabelExtraction"/>
+            <class name="testcases.TC_012_ProjectStepsExtraction"/>
+            <class name="testcases.TC_013_NoSetupGuarantee"/>
+            <class name="testcases.TC_014_VerifyRatings"/>
+            <class name="testcases.TC_015_InstructorDetails"/>
+            <class name="testcases.TC_016_SortFunctionExistence"/>
+            <class name="testcases.TC_017_GetAllLanguagesAndLevels"/>
             <class name="testcases.TC_018_FirstTwoCoursesDetails"/>
             <class name="testcases.TC_019_CheckFAQ"/>
             <class name="testcases.TC_020_CheckLoginButtonEnabledOrNot"/>

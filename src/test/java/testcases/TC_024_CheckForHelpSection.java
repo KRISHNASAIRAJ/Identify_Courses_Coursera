@@ -13,7 +13,7 @@ import java.io.IOException;
 public class TC_024_CheckForHelpSection extends BaseTest {
     HomePage homePage;
 
-    @Test
+    @Test(priority = 33)
     void checkHelpSection() throws IOException {
         homePage=new HomePage(driver,wait);
         Assert.assertTrue(homePage.checkForHelpSection(),"Help section is not displayed");

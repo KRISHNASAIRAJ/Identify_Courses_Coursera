@@ -8,12 +8,12 @@ import pageObjects.HomePage;
 import pageObjects.ResultsPage;
 
 
-public class TC_017_SortFunctionExistence extends BaseTest {
+public class TC_016_SortFunctionExistence extends BaseTest {
     //Harsh
     ResultsPage resultsPage;
     HomePage homePage;
 
-    @Test
+    @Test(priority = 21)
     void CheckForSortFunction() {
         homePage=new HomePage(driver,wait);
         homePage.sendInputToSearchBar("Web Development");
