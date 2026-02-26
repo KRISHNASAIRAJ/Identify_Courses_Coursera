@@ -15,37 +15,53 @@ public class BusinessFormPage {
     CommonCode commonCode;
 
     @FindBy(xpath = "//span[text()=' Businesses']")
-    WebElement business;
+    WebElement businessTab;
+
     @FindBy(xpath = "//form[contains(@id,'mktoForm')]")
     WebElement form;
+
     @FindBy(id="FirstName")
     WebElement firstName;
+
     @FindBy(id="LastName")
     WebElement lastName;
+
     @FindBy(id="Email")
     WebElement emailAddress;
+
     @FindBy(id="Phone")
     WebElement phone;
+
     @FindBy(id = "Company")
     WebElement company;
+
     @FindBy(id="rentalField9")
     WebElement organizationType;
+
     @FindBy(id="Title")
     WebElement jobTitle;
+
     @FindBy(id="Self_reported_employees_to_buy_for__c")
     WebElement employeeRange;
+
     @FindBy(id="Employee_Range__c")
     WebElement employeeRangeForPersonalMail;
+
     @FindBy(id="Self_Reported_Needs__c")
     WebElement needs;
+
     @FindBy(id="Country")
     WebElement country;
+
     @FindBy(id="State")
     WebElement state;
+
     @FindBy(xpath = "//button[@type='submit']")
     WebElement submit;
+
     @FindBy(className="mktoError")
     WebElement invalidEId;
+
     @FindBy(xpath = "//h1[text()='Coursera for Teams is your best next step']")
     WebElement formStatusDisplay;
 
@@ -57,7 +73,8 @@ public class BusinessFormPage {
     }
 
     public void moveToFormArea(){
-        business.click();
+        wait.until(ExpectedConditions.visibilityOf(businessTab));
+        businessTab.click();
         commonCode.scrollIntoViewer(form);
     }
 

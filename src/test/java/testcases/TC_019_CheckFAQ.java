@@ -14,7 +14,7 @@ public class TC_019_CheckFAQ extends BaseTest {
     HomePage homePage;
     CourseDetailsPage courseDetailsPage;
 
-    @Test(priority = 21)
+    @Test(priority = 28)
     void CheckForFaq() throws InterruptedException {
         homePage=new HomePage(driver,wait);
         resultsPage=new ResultsPage(driver,wait);
@@ -22,7 +22,7 @@ public class TC_019_CheckFAQ extends BaseTest {
         homePage.sendInputToSearchBar("Web Development");
         resultsPage.selectDifficultyLevel("Beginner");
         resultsPage.clickViewButton();
-        resultsPage.FilterAndSortClick();
+        resultsPage.filterAndSortClick();
         Assert.assertTrue(resultsPage.clickCourseSwitchCheckFAQReturn(),"FAQ section is not displayed");
     }
 }

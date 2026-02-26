@@ -21,6 +21,7 @@ public class CommonCode {
         this.js=(JavascriptExecutor) driver;
     }
     public void scrollIntoViewer(WebElement ele){
+        wait.until(ExpectedConditions.visibilityOf(ele));
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",ele);
     }
 

@@ -15,20 +15,28 @@ public class DegreeCoursesPage {
 
     @FindBy(xpath = "//a[@data-testid='nav-link-grid-item-degrees']")
     WebElement degreesOption;
+
     @FindBy(xpath = "//span[contains(@class,'cds-multiSelect-label') and text()='Program Level']")
     WebElement filter1;
+
     @FindBy(xpath = "//li[@data-key='MastersDegree']")
     WebElement mastersDegree;
+
     @FindBy(xpath = "//button[@aria-label='Apply selections']")
     WebElement applyButton;
+
     @FindBy(xpath = "//span[contains(@class,'cds-multiSelect-label') and text()='Subject']")
     WebElement filter2;
+
     @FindBy(xpath = "//li[@data-key='computer-science']")
     WebElement cseBtn;
+
     @FindBy(className = "cds-ProductCard-content")
     WebElement gridElement;
+
     @FindBy(xpath = "(//h3[contains(@class,'cds-CommonCard-title')])[1]")
     WebElement course;
+
     @FindBy(xpath = "//h1[contains(@class,'cds-119')]/following-sibling::h2")
     WebElement university;
 
