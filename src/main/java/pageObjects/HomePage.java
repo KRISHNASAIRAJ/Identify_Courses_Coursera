@@ -65,6 +65,7 @@ public class HomePage {
     }
 
     public boolean checkLogo() {
+        wait.until(ExpectedConditions.visibilityOf(logo));
         return logo.isDisplayed();
     }
 
@@ -73,6 +74,7 @@ public class HomePage {
     }
 
     public void sendInputToSearchBar(String input) {
+        wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         searchBar.sendKeys(input);
         searchBar.sendKeys(Keys.ENTER);

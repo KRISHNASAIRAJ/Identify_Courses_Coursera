@@ -16,8 +16,8 @@ public class TC_018_FirstTwoCoursesDetails extends BaseTest {
     @Test(priority = 18)
     void difficultyLevelFunctionality(){
         homePage=new HomePage(driver,wait);
-        homePage.sendInputToSearchBar("Web Development");
         resultsPage =new ResultsPage(driver,wait);
+        homePage.sendInputToSearchBar("Web Development");
         Assert.assertTrue(resultsPage.difficultyLevelVisibility());
         resultsPage.selectDifficultyLevel("Beginner");
         resultsPage.clickViewButton();
