@@ -4,18 +4,23 @@ import basetest.BaseTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.CourseDetailsPage;
+import pageObjects.HomePage;
+import pageObjects.ResultsPage;
 
 public class TC_012_VerifyRatings extends BaseTest {
     //Harsh
     CourseDetailsPage courseDetailsPage;
-    @BeforeTest
-    void setUp()
-    {
-        courseDetailsPage=new CourseDetailsPage(driver,wait);
-    }
+    HomePage homePage;
+    ResultsPage resultsPage;
+
     @Test
-    void CheckForRating()
-    {
-        courseDetailsPage.checkReviews();
+    void CheckForRating() throws InterruptedException {
+        homePage=new HomePage(driver,wait);
+        resultsPage=new ResultsPage(driver,wait);
+        courseDetailsPage=new CourseDetailsPage(driver,wait);
+        homePage.sendInputToSearchBar("Python");
+        resultsPage.guidedProject();
+        courseDetailsPage.courseDetails();
+        courseDetailsPage.CheckReviews();
     }
 }

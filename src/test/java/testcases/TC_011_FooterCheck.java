@@ -12,12 +12,10 @@ import java.io.IOException;
 public class TC_011_FooterCheck extends BaseTest {
     //Aditya
     HomePage homePage;
-    @BeforeTest
-    void setUp() throws IOException {
-        homePage =new HomePage(driver,wait);
-    }
+
     @Test
     public void checkFooter(){
+        homePage =new HomePage(driver,wait);
         Assert.assertTrue(homePage.footerCheck());
     }
 }

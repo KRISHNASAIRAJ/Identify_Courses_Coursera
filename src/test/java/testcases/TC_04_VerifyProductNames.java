@@ -13,13 +13,11 @@ public class TC_04_VerifyProductNames extends BaseTest {
     //By Aditya
     HomePage homePage;
     ResultsPage resultsPage;
-    @BeforeTest
-    void setUp() throws IOException {
-        homePage =new HomePage(driver,wait);
-        resultsPage=new ResultsPage(driver,wait);
-    }
+
         @Test(priority = 5)
         public void testSearchProductName() throws IOException {
+            homePage =new HomePage(driver,wait);
+            resultsPage=new ResultsPage(driver,wait);
             homePage.sendInputToSearchBar("Python");
             Assert.assertTrue(resultsPage.searchAndLoadCards());
         }
