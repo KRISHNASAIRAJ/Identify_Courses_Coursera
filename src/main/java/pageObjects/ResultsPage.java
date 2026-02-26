@@ -71,7 +71,7 @@ public class ResultsPage {
 
 
     By titleElement=By.xpath(".//h3");
-    By rating=By.xpath(".//div[@aria-label='Rating']");
+    By rating=By.xpath(".//div[@class='cds-ProductCard-footer']/div/div/div/span");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
     public ResultsPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
@@ -186,7 +186,7 @@ public class ResultsPage {
         for(WebElement card:courseDetails){
             wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
             courseTitles.add(card.findElement(titleElement).getText());
-            courseRatings.add(card.findElement(rating).getAttribute("aria-valuenow"));
+            courseRatings.add(card.findElement(rating).getText());
             courseDurations.add(card.findElement(duration).getText());
         }
         ExcelWriter.writeList("CourseDetails",courseTitles,"Title");
