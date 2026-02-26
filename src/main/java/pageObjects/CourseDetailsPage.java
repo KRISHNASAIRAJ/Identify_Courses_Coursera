@@ -21,18 +21,25 @@ public class CourseDetailsPage {
 
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
     List<WebElement> specificElement;
+
     @FindBy(xpath = "//div/h3[text()='Learn step-by-step']//parent::div")
     WebElement stepByStep;
+
     @FindBy(xpath = "//div[text()='No downloads or installation required']")
     WebElement installationCheck;
+
     @FindBy(xpath = "//h2[contains(text(),'Learner reviews')]")
     WebElement reviews;
-    @FindBy(xpath = "//p//a[starts-with(@href,'/instructorlnk/')]/span")
-    WebElement instructorlnk;
-    @FindBy(xpath = "(//*[@class='css-kimdhf'])[position()<=1]/preceding-sibling::h2")
-    WebElement instructor_name;
+
+    @FindBy(xpath = "//a[starts-with(@href, '/instructor/')]")
+    WebElement instructorClk;
+
+    @FindBy(xpath = "(//p[@class='css-kimdhf'])[position()<=1]/preceding-sibling::h2")
+    WebElement instructorName;
+
     @FindBy(xpath = "//div[@data-unit='reviews-bar-graph']//p[@class='css-kimdhf']")
     List<WebElement> ratings;
+
     @FindBy(xpath = "//ul[contains(@class,'rc-PartnerLinksV2')]//a | //div[contains(@class,'rc-ExternalLinks')]//a")
     List<WebElement> links;
 
@@ -91,10 +98,9 @@ public class CourseDetailsPage {
         List<String> resultName = new ArrayList<>();
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView({block:'center'});", instructorlnk);
-            js.executeScript("arguments[0].click();", instructorlnk);
-
-            String name=instructor_name.getText();
+            js.executeScript("arguments[0].click();", instructorClk);
+            wait.until(ExpectedConditions.visibilityOf(instructorClk));
+            String name= instructorName.getText();
             resultName.add(name);
             ExcelWriter.writeList("Instructor Details",resultName ,"Name");
             if (!links.isEmpty()) {

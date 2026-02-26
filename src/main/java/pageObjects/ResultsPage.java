@@ -20,46 +20,67 @@ public class ResultsPage {
 
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
+
     @FindBy(xpath = "//span[text()='View']")
     WebElement viewBtn;
+
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
     WebElement loginButton;
+
     @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
     List<WebElement> allTitles;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-language']")
     WebElement languageOptions;
+
     @FindBy(xpath = "(//div[@class='cds-ProductCard-content'])[position()<=2]")
     List<WebElement> courseDetails;
+
     @FindBy(xpath = "//div[contains(@data-testid,'language')]/label/div/span")
     List<WebElement> languages;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-interactiveArea']")
     List<WebElement> companyName;
+
     @FindBy(xpath = "//div[contains(@data-testid,'productDifficultyLevel')]/label/div/span")
     List<WebElement> difficultyLevels;
+
     @FindBy(xpath = "//div[contains(text(),'reviews')]")
     List<WebElement> review;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     List<WebElement> level;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
     WebElement guidedProjectElement;
+
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedProjectChk;
+
     @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
+
     @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
+
     @FindBy(xpath = "//button[@data-testid='filter-and-sort-button']")
     WebElement filter_btn;
+
     @FindBy(xpath = "//div[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
     WebElement topic_btn;
+
     @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement ComputerScienceBtn;
+
     @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
     WebElement view_btn;
+
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
+
     @FindBy(xpath = "(//div[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
 

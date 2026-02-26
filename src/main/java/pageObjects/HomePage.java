@@ -26,26 +26,36 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
 
-    @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
+    @FindBy(xpath = "//h3[text()='Drive your businessTab forward and empower your teams']")
     WebElement gotoBusiness;
+
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
     WebElement verifyBusinessData;
+
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
+
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
     WebElement logInButton;
+
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
+
     @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
     WebElement tenThousandText;
+
     @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
     WebElement freeTrial;
+
     @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
     WebElement afterFreeTrialClick;
+
     @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
     WebElement closeBtn;
+
     @FindBy(xpath = "//a[contains(@href,'help') and contains(text(),'Help')]")
     WebElement help;
+
     @FindBy(xpath = "//div[@class='category_tile-title']")
     List<WebElement> helpSections;
 
