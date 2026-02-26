@@ -11,12 +11,10 @@ import java.io.IOException;
 public class TC_05_VerifyBusiness extends BaseTest {
     //By Aditya
     HomePage homePage;
-    @BeforeTest
-    void setUp() throws IOException {
-        homePage =new HomePage(driver,wait);
-    }
+
     @Test
     public void checkBusiness() throws Exception {
+        homePage =new HomePage(driver,wait);
         Assert.assertTrue(homePage.businessTitle());
     }
     @Test

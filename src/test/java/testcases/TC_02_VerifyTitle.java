@@ -13,14 +13,9 @@ import java.io.IOException;
 public class TC_02_VerifyTitle extends BaseTest {
     //By Irfan
     HomePage homePage;
-    ConfigReader configReader;
-    @BeforeTest
-    void setUp() throws IOException {
-        homePage =new HomePage(driver,wait);
-        configReader=new ConfigReader();
-    }
     @Test(priority = 2)
-    public void verifyTitle(){
+    public void verifyTitle() throws IOException {
+        homePage =new HomePage(driver,wait);
         String actualTitle = homePage.getTitle();
         Assert.assertTrue(actualTitle.contains("Coursera"), "Page title does not contain expected text. Actual title: " + actualTitle);
         Log.info("Title verification completed");

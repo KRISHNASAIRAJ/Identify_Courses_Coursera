@@ -4,14 +4,18 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.DegreeCoursesPage;
+import pageObjects.HomePage;
 
 public class TC_021_ProgramOverview extends BaseTest {
     //Krishna
+    DegreeCoursesPage degreeCoursesPage;
+    HomePage homePage;
     @Test(priority = 23)
     void programOverview() {
-        DegreeCoursesPage obj=new DegreeCoursesPage(driver,wait);
-        obj.findCourses();
-        Assert.assertTrue(obj.isCourseNamePresent());
-        Assert.assertTrue(obj.isUniversityNamePresent());
+        homePage=new HomePage(driver,wait);
+        degreeCoursesPage=new DegreeCoursesPage(driver,wait);
+        degreeCoursesPage.findCourses();
+        Assert.assertTrue(degreeCoursesPage.isCourseNamePresent());
+        Assert.assertTrue(degreeCoursesPage.isUniversityNamePresent());
     }
 }

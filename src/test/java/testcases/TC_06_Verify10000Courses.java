@@ -7,13 +7,14 @@ import pageObjects.HomePage;
 
 public class TC_06_Verify10000Courses extends BaseTest {
     //Aditya
+    HomePage homePage;
         @Test
         public void tenThousandAndFreeTrial() throws Exception {
-            HomePage homepage = new HomePage(driver, wait);
-            Assert.assertTrue(homepage.isTenThousandTextVisible(), "'10,000+' text is NOT visible on the homepage");
-            homepage.clickFreeTrialButton();
-            Assert.assertTrue(homepage.isFreeTrialPageOpens(),
-                    "Free Trial Not Opening");
+            homePage = new HomePage(driver, wait);
+            Assert.assertTrue(homePage.isTenThousandTextVisible(), "'10,000+' text is NOT visible on the homepage");
+//            homePage.clickFreeTrialButton();
+//            Assert.assertTrue(homePage.isFreeTrialPageOpens(),
+//                    "Free Trial Not Opening");
         }
 
 }

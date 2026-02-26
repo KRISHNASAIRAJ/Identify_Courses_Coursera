@@ -16,6 +16,7 @@ public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
     CommonCode commonCode;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
     @FindBy(xpath = "//span[text()='View']")
@@ -41,7 +42,7 @@ public class ResultsPage {
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
     WebElement guidedProjectElement;
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
-    WebElement guidedProjectCheckbox;
+    WebElement guidedProjectChk;
     @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
     @FindBy(className = "cds-ProductCard-body")
@@ -120,7 +121,8 @@ public class ResultsPage {
 
     public boolean searchAndLoadCards() throws IOException {
         wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
-        commonCode.scrollIntoViewer(allTitles.get(0));
+        WebElement ele=wait.until(ExpectedConditions.visibilityOf(allTitles.get(0)));
+        commonCode.scrollIntoViewer(ele);
         commonCode.takeScreenshot();
         boolean check=false;
         List<String> titlesList=new ArrayList<>();
@@ -193,8 +195,8 @@ public class ResultsPage {
     public  void guidedProject(){
         wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
         guidedProjectElement.click();
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectCheckbox));
-        guidedProjectCheckbox.click();
+        wait.until(ExpectedConditions.visibilityOf(guidedProjectChk));
+        guidedProjectChk.click();
         clickViewButton();
     }
 

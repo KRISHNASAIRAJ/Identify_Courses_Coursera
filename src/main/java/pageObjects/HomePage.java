@@ -14,12 +14,16 @@ public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
     CommonCode commonCode;
+
     @FindBy(xpath = "//a[@data-click-key='front_page.front_page_story.click.navigation_meta_nav_Individuals']")
     WebElement logo;
+
     @FindBy(id = "search-autocomplete-input")
     WebElement searchBar;
+    //WORK THIS
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNow;
+
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
     @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
