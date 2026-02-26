@@ -36,7 +36,7 @@ public class HomePage {
     WebElement footer;
 
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
-    WebElement logInButton;
+    WebElement logInBtn;
 
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
@@ -111,12 +111,12 @@ public class HomePage {
     }
 
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
-        wait.until(ExpectedConditions.visibilityOf(logInButton));
-        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
+        wait.until(ExpectedConditions.visibilityOf(logInBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(logInBtn));
         return true;
     }
     public void clickLogInButton() {
-        logInButton.click();
+        logInBtn.click();
     }
     public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.visibilityOf(emailLabel));
