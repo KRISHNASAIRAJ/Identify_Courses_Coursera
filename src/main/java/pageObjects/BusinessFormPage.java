@@ -57,7 +57,7 @@ public class BusinessFormPage {
     WebElement state;
 
     @FindBy(xpath = "//button[@type='submit']")
-    WebElement submit;
+    WebElement submitBtn;
 
     @FindBy(className="mktoError")
     WebElement invalidEId;
@@ -104,7 +104,7 @@ public class BusinessFormPage {
         countries.selectByValue(countryInp);
         Select states=new Select(state);
         states.selectByValue(stateInp);
-        submit.click();
+        submitBtn.click();
     }
     public boolean emailCheck(){
         try {

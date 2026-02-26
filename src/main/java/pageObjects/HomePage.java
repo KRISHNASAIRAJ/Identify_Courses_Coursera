@@ -24,7 +24,7 @@ public class HomePage {
     WebElement searchBar;
     //WORK THIS
     @FindBy(xpath = "//button[@id='ior2l']")
-    WebElement notNow;
+    WebElement notNowBtn;
 
     @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
     WebElement gotoBusiness;
@@ -36,7 +36,7 @@ public class HomePage {
     WebElement footer;
 
     @FindBy(xpath = "//span[contains(text(),'Log In')]")
-    WebElement logInButton;
+    WebElement logInBtn;
 
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
@@ -91,7 +91,7 @@ public class HomePage {
     }
 
     public void dismissPopup() {
-        wait.until(ExpectedConditions.elementToBeClickable((By) notNow)).click();
+        wait.until(ExpectedConditions.elementToBeClickable((By) notNowBtn)).click();
     }
 
     public boolean businessTitle() {
@@ -100,7 +100,7 @@ public class HomePage {
     }
 
     public boolean businessHome() {
-            gotoBusiness.click();
+        gotoBusiness.click();
         wait.until(ExpectedConditions.visibilityOf(verifyBusinessData));
         return verifyBusinessData.isDisplayed();
     }
@@ -111,12 +111,12 @@ public class HomePage {
     }
 
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
-        wait.until(ExpectedConditions.visibilityOf(logInButton));
-        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
+        wait.until(ExpectedConditions.visibilityOf(logInBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(logInBtn));
         return true;
     }
     public void clickLogInButton() {
-        logInButton.click();
+        logInBtn.click();
     }
     public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
         wait.until(ExpectedConditions.visibilityOf(emailLabel));

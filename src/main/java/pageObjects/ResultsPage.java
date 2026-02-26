@@ -25,7 +25,7 @@ public class ResultsPage {
     WebElement viewBtn;
 
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
-    WebElement loginButton;
+    WebElement logInBtn;
 
     @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
     List<WebElement> allTitles;
@@ -52,7 +52,7 @@ public class ResultsPage {
     List<WebElement> level;
 
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
-    WebElement guidedProjectElement;
+    WebElement guidedProjectBtn;
 
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
     WebElement guidedProjectChk;
@@ -209,12 +209,12 @@ public class ResultsPage {
     }
 
     public boolean isLoginButtonEnabled(){
-        return (wait.until(ExpectedConditions.elementToBeClickable(loginButton)).isEnabled());
+        return (wait.until(ExpectedConditions.elementToBeClickable(logInBtn)).isEnabled());
     }
 
     public  void guidedProject(){
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
-        guidedProjectElement.click();
+        wait.until(ExpectedConditions.visibilityOf(guidedProjectBtn));
+        guidedProjectBtn.click();
         wait.until(ExpectedConditions.visibilityOf(guidedProjectChk));
         guidedProjectChk.click();
         clickViewButton();
