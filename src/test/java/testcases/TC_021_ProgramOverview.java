@@ -10,7 +10,7 @@ public class TC_021_ProgramOverview extends BaseTest {
     //Krishna
     DegreeCoursesPage degreeCoursesPage;
     HomePage homePage;
-    @Test(priority = 23)
+    @Test(priority = 30)
     void programOverview() {
         homePage=new HomePage(driver,wait);
         degreeCoursesPage=new DegreeCoursesPage(driver,wait);

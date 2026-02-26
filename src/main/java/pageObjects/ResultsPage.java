@@ -236,6 +236,8 @@ public class ResultsPage {
         List<WebElement> l= productCard;
         boolean check=true;
         for(WebElement search: l){
+            wait.until(ExpectedConditions.visibilityOf(search));
+            wait.until(ExpectedConditions.visibilityOf(metadata));
             String str=search.findElement((By) metadata).getText();
             if(!str.contains("Less Than 2 Hours")){
                 check=false;

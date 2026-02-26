@@ -73,6 +73,7 @@ public class BusinessFormPage {
     }
 
     public void moveToFormArea(){
+        wait.until(ExpectedConditions.visibilityOf(businessTab));
         businessTab.click();
         commonCode.scrollIntoViewer(form);
     }

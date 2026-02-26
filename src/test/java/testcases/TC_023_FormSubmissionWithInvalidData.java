@@ -10,7 +10,7 @@ public class TC_023_FormSubmissionWithInvalidData extends BaseTest {
     //Krishna
     HomePage homePage;
     BusinessFormPage businessFormPage;
-    @Test(priority = 25)
+    @Test(priority = 32)
     void formSubmissionWithInvalidData() {
         homePage=new HomePage(driver,wait);
         businessFormPage =new BusinessFormPage(driver,wait);

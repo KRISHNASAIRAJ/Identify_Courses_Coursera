@@ -10,7 +10,7 @@ public class TC_022_FormSubmissionWithValidData extends BaseTest {
     //Krishna
     HomePage homePage;
     BusinessFormPage businessFormPage;
-    @Test(priority = 24)
+    @Test(priority = 31)
     void formSubmissionWithValidData(){
         homePage=new HomePage(driver,wait);
         businessFormPage =new BusinessFormPage(driver,wait);
