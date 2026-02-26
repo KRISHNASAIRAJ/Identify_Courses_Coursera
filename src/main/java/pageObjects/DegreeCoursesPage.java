@@ -23,7 +23,7 @@ public class DegreeCoursesPage {
     WebElement mastersDegree;
 
     @FindBy(xpath = "//button[@aria-label='Apply selections']")
-    WebElement applyButton;
+    WebElement applyBtn;
 
     @FindBy(xpath = "//span[contains(@class,'cds-multiSelect-label') and text()='Subject']")
     WebElement filter2;
@@ -56,10 +56,10 @@ public class DegreeCoursesPage {
         wait.until(ExpectedConditions.visibilityOf(degreesOption)).click();
         wait.until(ExpectedConditions.visibilityOf(filter1)).click();
         wait.until(ExpectedConditions.elementToBeClickable(mastersDegree)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
         wait.until(ExpectedConditions.visibilityOf(filter2)).click();
         wait.until(ExpectedConditions.elementToBeClickable(cseBtn)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
         String currentWindow=driver.getWindowHandle();
         wait.until(ExpectedConditions.visibilityOf(gridElement)).click();
         Set<String> windowHandles=driver.getWindowHandles();
