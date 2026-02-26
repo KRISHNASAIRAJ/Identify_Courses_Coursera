@@ -60,7 +60,7 @@ public class ResultsPage {
     WebElement view_btn;
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
     WebElement faq;
-    @FindBy(xpath = "(//*[@class='cds-ProductCard-gridCard'])[position()<=1]")
+    @FindBy(xpath = "(//div[@class='cds-ProductCard-gridCard'])[position()<=1]")
     WebElement course;
 
     By titleElement=By.xpath(".//h3");

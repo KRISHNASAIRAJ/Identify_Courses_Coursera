@@ -48,9 +48,6 @@ public class BusinessFormPage {
     WebElement invalidEId;
     @FindBy(xpath = "//h1[text()='Coursera for Teams is your best next step']")
     WebElement formStatusDisplay;
-    @FindBy(xpath = "//span[text()=' Individuals']")
-    WebElement individual;
-
 
     public BusinessFormPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
@@ -108,10 +105,5 @@ public class BusinessFormPage {
         catch (Exception e){
             return false;
         }
-    }
-
-    public void clickOnIndividual()
-    {
-        individual.click();
     }
 }

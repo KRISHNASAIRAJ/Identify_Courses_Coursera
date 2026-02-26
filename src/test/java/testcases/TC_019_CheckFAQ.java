@@ -22,7 +22,7 @@ public class TC_019_CheckFAQ extends BaseTest {
         homePage.sendInputToSearchBar("Web Development");
         resultsPage.selectDifficultyLevel("Beginner");
         resultsPage.clickViewButton();
-        resultsPage.FilterAndSortClick();
+        resultsPage.filterAndSortClick();
         Assert.assertTrue(resultsPage.clickCourseSwitchCheckFAQReturn(),"FAQ section is not displayed");
     }
 }
