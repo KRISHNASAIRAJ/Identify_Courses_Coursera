@@ -259,7 +259,7 @@ public class ResultsPage {
         commonCode.elementClickableFunc(courseClk).click();
     }
 
-    public boolean checkForFAQ() {
+    public boolean checkForFAQ() throws IOException {
         commonCode.scrollIntoViewer(faqSection);
         return faqSection.isDisplayed();
     }
@@ -272,7 +272,7 @@ public class ResultsPage {
 
         try {
             return checkForFAQ();
-        } catch (TimeoutException | NoSuchElementException e) {
+        } catch (TimeoutException | NoSuchElementException | IOException e) {
             return false;
         }
     }

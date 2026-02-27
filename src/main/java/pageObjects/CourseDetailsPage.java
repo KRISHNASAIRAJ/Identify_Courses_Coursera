@@ -97,6 +97,7 @@ public class CourseDetailsPage {
         try {
             commonCode.jsClick(instructorClk);
             commonCode.visibilityElementFunc(instructorClk);
+            commonCode.takeScreenshot();
             String name= instructorName.getText();
             resultName.add(name);
             ExcelWriter.writeList("Instructor Details",resultName ,"Name");
