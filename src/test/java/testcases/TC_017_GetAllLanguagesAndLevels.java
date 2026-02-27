@@ -12,7 +12,6 @@ public class TC_017_GetAllLanguagesAndLevels extends BaseTest {
     //Krishna
     ResultsPage resultsPage;
     HomePage homePage;
-
     @Test(priority = 22)
     void getListOfLanguages() throws IOException {
         homePage=new HomePage(driver,wait);

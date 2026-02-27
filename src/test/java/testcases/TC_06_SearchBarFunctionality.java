@@ -12,7 +12,6 @@ import java.io.IOException;
 public class TC_06_SearchBarFunctionality extends BaseTest {
     //Harsh
     HomePage homePage;
-    CommonCode commonCode;
     @Test(priority = 9)
     void searchBarFunctionalityWithValidInput() throws IOException {
         homePage =new HomePage(driver,wait);

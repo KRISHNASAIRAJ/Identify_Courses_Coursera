@@ -6,12 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.CommonCode;
 
 import java.util.Set;
 
 public class DegreeCoursesPage {
     WebDriver driver;
     WebDriverWait wait;
+    CommonCode commonCode;
 
     @FindBy(xpath = "//a[@data-testid='nav-link-grid-item-degrees']")
     WebElement degreesOption;
@@ -44,6 +46,7 @@ public class DegreeCoursesPage {
         this.driver=driver;
         this.wait=wait;
         PageFactory.initElements(driver,this);
+        this.commonCode=new CommonCode(driver,wait);
     }
     public boolean isUniversityNamePresent(){
         return !university.getText().isEmpty();
@@ -53,15 +56,15 @@ public class DegreeCoursesPage {
         return !course.getText().isEmpty();
     }
     public void findCourses(){
-        wait.until(ExpectedConditions.visibilityOf(degreesOption)).click();
-        wait.until(ExpectedConditions.visibilityOf(filter1)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(mastersDegree)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
-        wait.until(ExpectedConditions.visibilityOf(filter2)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(cseBtn)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
+        commonCode.visibilityElementFunc(degreesOption).click();
+        commonCode.visibilityElementFunc(filter1).click();
+        commonCode.elementClickableFunc(mastersDegree).click();
+        commonCode.elementClickableFunc(applyBtn).click();
+        commonCode.visibilityElementFunc(filter2).click();
+        commonCode.elementClickableFunc(cseBtn).click();
+        commonCode.elementClickableFunc(applyBtn).click();
         String currentWindow=driver.getWindowHandle();
-        wait.until(ExpectedConditions.visibilityOf(gridElement)).click();
+        commonCode.visibilityElementFunc(gridElement).click();
         Set<String> windowHandles=driver.getWindowHandles();
         for(String handle:windowHandles){
             if(handle!=currentWindow){

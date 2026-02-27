@@ -12,7 +12,6 @@ public class TC_013_NoSetupGuarantee extends BaseTest {
     CourseDetailsPage courseDetailsPage;
     HomePage homePage;
     ResultsPage resultsPage;
-
     @Test(priority = 18)
     public void noInstallationCheck() throws InterruptedException {
         homePage=new HomePage(driver,wait);

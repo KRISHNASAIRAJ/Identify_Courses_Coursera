@@ -10,7 +10,6 @@ public class TC_010_SkillsExtraction extends BaseTest {
     //By Irfan
     ResultsPage resultsPage;
     HomePage homePage;
-
     @Test(priority = 15)
     public void extractSkills(){
         homePage=new HomePage(driver,wait);

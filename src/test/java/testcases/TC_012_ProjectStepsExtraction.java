@@ -12,7 +12,6 @@ public class TC_012_ProjectStepsExtraction extends BaseTest {
     CourseDetailsPage courseDetailsPage;
     HomePage homePage;
     ResultsPage resultsPage;
-
     @Test(priority = 17)
     public void extractInstructions() throws InterruptedException {
         homePage=new HomePage(driver,wait);

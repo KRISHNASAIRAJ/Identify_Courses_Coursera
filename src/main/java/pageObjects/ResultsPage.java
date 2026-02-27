@@ -3,7 +3,6 @@ package pageObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
@@ -15,7 +14,6 @@ import java.util.List;
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
-    ExcelWriter excelWriter;
     CommonCode commonCode;
 
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
@@ -46,10 +44,10 @@ public class ResultsPage {
     List<WebElement> difficultyLevels;
 
     @FindBy(xpath = "//div[contains(text(),'reviews')]")
-    List<WebElement> review;
+    List<WebElement> coursesReview;
 
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
-    List<WebElement> level;
+    List<WebElement> coursesLevel;
 
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
     WebElement guidedProjectBtn;
@@ -67,22 +65,22 @@ public class ResultsPage {
     WebElement metadata;
 
     @FindBy(xpath = "//button[@data-testid='filter-and-sort-button']")
-    WebElement filter_btn;
+    WebElement filterBtn;
 
     @FindBy(xpath = "//div[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
-    WebElement topic_btn;
+    WebElement topicBtn;
 
     @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
     WebElement computerScienceBtn;
 
     @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
-    WebElement view_btn;
+    WebElement viewBtn2;
 
     @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
-    WebElement faq;
+    WebElement faqSection;
 
     @FindBy(xpath = "(//div[@class='cds-ProductCard-gridCard'])[position()<=1]")
-    WebElement course;
+    WebElement courseClk;
 
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@class='cds-ProductCard-footer']/div/div/div/span");
@@ -95,7 +93,7 @@ public class ResultsPage {
     }
 
     public boolean difficultyLevelVisibility(){
-        return wait.until(ExpectedConditions.visibilityOf(difficultyLevel)).isDisplayed();
+        return commonCode.visibilityElementFunc(difficultyLevel).isDisplayed();
     }
     public void selectDifficultyLevel(String difficultyInput){
         difficultyLevel.click();
@@ -103,14 +101,14 @@ public class ResultsPage {
         driver.findElement(beginnerOption).click();
     }
     public boolean isViewButtonEnabled(){
-        return wait.until(ExpectedConditions.visibilityOf(viewBtn)).isDisplayed();
+        return commonCode.visibilityElementFunc(viewBtn).isDisplayed();
     }
     public void clickViewButton(){
         viewBtn.click();
     }
 
     public boolean areLanguageOptionsClickable(){
-        return wait.until(ExpectedConditions.elementToBeClickable(languageOptions)).isEnabled();
+        return commonCode.elementClickableFunc(languageOptions).isEnabled();
     }
     public void selectLanguage(String language){
         languageOptions.click();
@@ -119,7 +117,7 @@ public class ResultsPage {
     }
     public void getLanguages() throws IOException {
         languageOptions.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(languages));
+        commonCode.visibilityOfAllElementsFunc(languages);
         List<String> languagesList=new ArrayList<>();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
@@ -128,10 +126,9 @@ public class ResultsPage {
         ExcelWriter.writeList("Languages",languagesList,"Languages");
     }
 
-
     public void getLevels() throws IOException {
         difficultyLevel.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(difficultyLevels));
+        commonCode.visibilityOfAllElementsFunc(difficultyLevels);
         commonCode.takeScreenshot();
         List<String> levelsList=new ArrayList<>();
         for(WebElement difficulty:difficultyLevels){
@@ -141,8 +138,8 @@ public class ResultsPage {
     }
 
     public boolean searchAndLoadCards() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
-        WebElement ele=wait.until(ExpectedConditions.visibilityOf(allTitles.get(0)));
+        commonCode.visibilityOfAllElementsFunc(allTitles);
+        WebElement ele=commonCode.visibilityElementFunc(allTitles.get(0));
         commonCode.scrollIntoViewer(ele);
         commonCode.takeScreenshot();
         boolean check=false;
@@ -156,7 +153,7 @@ public class ResultsPage {
         }
 
     public boolean courseReviews() throws IOException {
-        List<WebElement> courseCards = review;
+        List<WebElement> courseCards = coursesReview;
         boolean bool = false;
         List<String> reviewsList=new ArrayList<>();
         for (WebElement card : courseCards){
@@ -168,19 +165,19 @@ public class ResultsPage {
     }
 
     public boolean courseLevel() throws IOException {
-        List<WebElement> courseCards = level;
+        List<WebElement> courseCards = coursesLevel;
         boolean bool = false;
         List<String> courseList=new ArrayList<>();
         for(WebElement card: courseCards){
             bool = !card.getText().isEmpty();
             courseList.add(card.getText());
         }
-        ExcelWriter.writeList("Courses",courseList,"course");
+        ExcelWriter.writeList("Courses",courseList,"courseClk");
         return bool;
     }
 
     public boolean companyCourseName() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(companyName));
+        commonCode.visibilityOfAllElementsFunc(companyName);
         List<WebElement> courseCards = companyName;
         boolean check = false;
         List<String> companyList=new ArrayList<>();
@@ -193,12 +190,12 @@ public class ResultsPage {
     }
 
     public void getListOfTitles() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
+        commonCode.visibilityOfAllElementsFunc(courseDetails);
         List<String> courseTitles=new ArrayList<>();
         List<String> courseRatings=new ArrayList<>();
         List<String> courseDurations=new ArrayList<>();
         for(WebElement card:courseDetails){
-            wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
+            commonCode.visibilityElementLocatedFunc(rating);
             courseTitles.add(card.findElement(titleElement).getText());
             courseRatings.add(card.findElement(rating).getText());
             courseDurations.add(card.findElement(duration).getText());
@@ -210,13 +207,13 @@ public class ResultsPage {
     }
 
     public boolean isLoginButtonEnabled(){
-        return (wait.until(ExpectedConditions.elementToBeClickable(logInBtn)).isEnabled());
+        return (commonCode.elementClickableFunc(logInBtn)).isEnabled();
     }
 
     public  void guidedProject(){
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectBtn));
+        commonCode.visibilityElementFunc(guidedProjectBtn);
         guidedProjectBtn.click();
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectChk));
+        commonCode.visibilityElementFunc(guidedProjectChk);
         guidedProjectChk.click();
         clickViewButton();
     }
@@ -237,8 +234,8 @@ public class ResultsPage {
         List<WebElement> l= productCard;
         boolean check=true;
         for(WebElement search: l){
-            wait.until(ExpectedConditions.visibilityOf(search));
-            wait.until(ExpectedConditions.visibilityOf(metadata));
+            commonCode.visibilityElementFunc(search);
+            commonCode.visibilityElementFunc(metadata);
             String str=search.findElement((By) metadata).getText();
             if(!str.contains("Less Than 2 Hours")){
                 check=false;
@@ -248,43 +245,35 @@ public class ResultsPage {
     }
 
     public boolean filterAndSortVisible(){
-        return filter_btn.isDisplayed();
+        return filterBtn.isDisplayed();
     }
 
     public void filterAndSortClick() {
-        filter_btn.click();
-        wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
-        wait.until(ExpectedConditions.visibilityOf(computerScienceBtn)).click();
-        wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
+        filterBtn.click();
+        commonCode.visibilityElementFunc(topicBtn).click();
+        commonCode.visibilityElementFunc(computerScienceBtn).click();
+        commonCode.visibilityElementFunc(viewBtn2).click();
     }
 
     public void clickOnCourse() {
-        wait.until(ExpectedConditions.elementToBeClickable(course)).click();
+        commonCode.elementClickableFunc(courseClk).click();
     }
 
-    public boolean checkForFAQ() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView({block:'center'});", faq);
-        return faq.isDisplayed();
+    public boolean checkForFAQ() throws IOException {
+        commonCode.scrollIntoViewer(faqSection);
+        return faqSection.isDisplayed();
     }
 
     public boolean clickCourseSwitchCheckFAQReturn() {
         String parentHandle = driver.getWindowHandle();
-        int beforeCount = driver.getWindowHandles().size();
-
         clickOnCourse();
-        wait.until(d -> d.getWindowHandles().size() > beforeCount);
-
         String childHandle = getNewTabHandle(parentHandle);
         driver.switchTo().window(childHandle);
 
         try {
             return checkForFAQ();
-        } catch (TimeoutException | NoSuchElementException e) {
+        } catch (TimeoutException | NoSuchElementException | IOException e) {
             return false;
-        } finally {
-            try { driver.close(); } catch (Exception ignored) {}
-            driver.switchTo().window(parentHandle);
         }
     }
 
@@ -292,7 +281,7 @@ public class ResultsPage {
         for (String h : driver.getWindowHandles()) {
             if (!h.equals(parentHandle)) return h;
         }
-        throw new IllegalStateException("New tab not found after clicking the course.");
+        throw new IllegalStateException("New tab not found after clicking the courseClk.");
     }
 
 }

@@ -16,8 +16,6 @@ public class TC_014_VerifyRatings extends BaseTest {
     CourseDetailsPage courseDetailsPage;
     HomePage homePage;
     ResultsPage resultsPage;
-
-
     @Test(priority = 19)
     void CheckForRating() throws InterruptedException, IOException {
         homePage=new HomePage(driver,wait);
