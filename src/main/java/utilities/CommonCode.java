@@ -15,6 +15,7 @@ public class CommonCode {
     WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor js;
+
     public CommonCode(WebDriver driver,WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
@@ -24,6 +25,10 @@ public class CommonCode {
         wait.until(ExpectedConditions.visibilityOf(ele));
         js.executeScript("arguments[0].scrollIntoView({block:'center'});",ele);
     }
+//    public void jsClick(WebElement ele){
+//        wait.until(ExpectedConditions.visibilityOf(ele));
+//        js.executeScript("arguments[0].click();",ele);
+//    }
 
     public void takeScreenshot() throws IOException {
         File source=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -42,5 +47,6 @@ public class CommonCode {
     public WebElement visibilityElementFunc(WebElement element){
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
 
 }

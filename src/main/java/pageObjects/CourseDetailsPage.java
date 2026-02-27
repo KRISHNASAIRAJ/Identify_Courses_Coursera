@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.CommonCode;
 import utilities.ExcelWriter;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
     String setupInstructionsExtractor;
+    CommonCode commonCode;
 
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
     List<WebElement> productCards;
@@ -80,7 +82,8 @@ public class CourseDetailsPage {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].scrollIntoView({block:'center'});", reviews);
-
+//         cannot use commoncode method because of lazy loading
+//            commonCode.scrollIntoViewer(reviews);
             for (WebElement r : ratings) {
                 String text = r.getText().trim();
                 if (!text.isEmpty()) {
@@ -99,6 +102,8 @@ public class CourseDetailsPage {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", instructorClk);
+//            cannot use commoncode method because of lazy loading
+//            commonCode.jsClick(instructorClk);
             wait.until(ExpectedConditions.visibilityOf(instructorClk));
             String name= instructorName.getText();
             resultName.add(name);

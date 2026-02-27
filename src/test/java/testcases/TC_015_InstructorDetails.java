@@ -16,6 +16,7 @@ public class TC_015_InstructorDetails extends BaseTest {
     CourseDetailsPage courseDetailsPage;
     HomePage homePage;
     ResultsPage resultsPage;
+
     @Test(priority = 20)
     void getLinks() throws InterruptedException, IOException {
         homePage=new HomePage(driver,wait);
