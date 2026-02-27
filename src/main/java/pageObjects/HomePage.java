@@ -26,11 +26,11 @@ public class HomePage {
     @FindBy(xpath = "//button[@id='ior2l']")
     WebElement notNowBtn;
 
-    @FindBy(xpath = "//h3[text()='Drive your business forward and empower your teams']")
-    WebElement gotoBusiness;
+    @FindBy(xpath = "//h2[contains(text(),'Explore categories')]")
+    WebElement gotoExploreCategories;
 
-    @FindBy(xpath = "//h1[@data-testid='how_module_hero_heading']")
-    WebElement verifyBusinessData;
+    @FindBy(xpath = "//a[@class='cds-149 cds-Pill-root css-1bw26k7']")
+    WebElement verifyCategories;
 
     @FindBy(xpath = "//div[@class='rc-CopyrightV2 lohp-rebrand']//span")
     WebElement footer;
@@ -41,8 +41,8 @@ public class HomePage {
     @FindBy(xpath = "//label[contains(text(),'Email')]")
     WebElement emailLabel;
 
-    @FindBy(xpath = "//h3[contains(text(),'10,000+')]")
-    WebElement tenThousandText;
+    @FindBy(xpath = "//div[@role='listitem']/a[@href='/browse/computer-science']")
+    WebElement computerScienceCategoryBtn;
 
     @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
     WebElement freeTrial;
@@ -54,10 +54,14 @@ public class HomePage {
     WebElement closeBtn;
 
     @FindBy(xpath = "//a[contains(@href,'help') and contains(text(),'Help')]")
-    WebElement helpClk;
+    WebElement help;
 
     @FindBy(xpath = "//div[@class='category_tile-title']")
     List<WebElement> helpSections;
+
+    @FindBy(xpath = "//div[@class='css-fxrpmp']")
+    WebElement credentialsComputerScience;
+
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -75,16 +79,16 @@ public class HomePage {
     }
 
     public boolean checkLogo() {
-        commonCode.visibilityElementFunc(logo);
+        wait.until(ExpectedConditions.visibilityOf(logo));
         return logo.isDisplayed();
     }
 
     public boolean searchBarVisibility() {
-        return commonCode.visibilityElementFunc(searchBar).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(searchBar)).isDisplayed();
     }
 
     public void sendInputToSearchBar(String input) {
-        commonCode.visibilityElementFunc(searchBar);
+        wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         searchBar.sendKeys(input);
         searchBar.sendKeys(Keys.ENTER);
@@ -94,15 +98,14 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable((By) notNowBtn)).click();
     }
 
-    public boolean businessTitle() {
-        commonCode.visibilityElementFunc(gotoBusiness);
-        return gotoBusiness.isDisplayed();
+    public boolean exploreCategoriesTitle() {
+        wait.until(ExpectedConditions.visibilityOf(gotoExploreCategories));
+        return gotoExploreCategories.isDisplayed();
     }
 
-    public boolean businessHome() {
-        gotoBusiness.click();
-        commonCode.visibilityElementFunc(verifyBusinessData);
-        return verifyBusinessData.isDisplayed();
+    public boolean categoriesNames() {
+        wait.until(ExpectedConditions.visibilityOf(verifyCategories));
+        return verifyCategories.isDisplayed();
     }
 
     public boolean footerCheck(){
@@ -111,50 +114,61 @@ public class HomePage {
     }
 
     public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
-        commonCode.visibilityElementFunc(logInBtn);
-        commonCode.elementClickableFunc(logInBtn);
+        wait.until(ExpectedConditions.visibilityOf(logInBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(logInBtn));
         return true;
     }
     public void clickLogInButton() {
         logInBtn.click();
     }
     public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
-        commonCode.visibilityElementFunc(emailLabel);
+        wait.until(ExpectedConditions.visibilityOf(emailLabel));
         return emailLabel.isDisplayed();
     }
+
     public void closeLoginForm(){
         closeBtn.click();
     }
-    public boolean isTenThousandTextVisible() throws Exception {
-        commonCode.visibilityElementFunc(tenThousandText);
-        return tenThousandText.isDisplayed();
+
+    public boolean isComputerScienceClickable() throws Exception {
+        computerScienceCategoryBtn.click();
+        return true;
     }
+
     public void clickFreeTrialButton() throws Exception {
-        commonCode.elementClickableFunc(freeTrial);
+        wait.until(ExpectedConditions.elementToBeClickable(freeTrial));
         freeTrial.click();
     }
     public boolean isFreeTrialPageOpens() throws Exception {
-        WebElement courseraPlusHeading = commonCode.visibilityElementFunc(afterFreeTrialClick);
+        WebElement courseraPlusHeading = wait.until(ExpectedConditions.visibilityOf(afterFreeTrialClick));
         return courseraPlusHeading.isDisplayed();
     }
 
     public boolean checkForHelpSection()
     {
-        commonCode.visibilityElementFunc(helpClk);
-        commonCode.scrollIntoViewer(helpClk);
-        return helpClk.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(help));
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",help);
+        return help.isDisplayed();
     }
 
     public void clickHelpSection() throws IOException {
-        commonCode.visibilityElementFunc(helpClk);
-        commonCode.jsClick(helpClk);
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        wait.until(ExpectedConditions.visibilityOf(help));
+        js.executeScript("arguments[0].click();",help);
 
         List<String> sections = new ArrayList<>();
-        commonCode.visibilityOfAllElementsFunc(helpSections);
+        wait.until(ExpectedConditions.visibilityOfAllElements(helpSections));
         for(WebElement it:helpSections)
         {
             sections.add(it.getText());
         }
         ExcelWriter.writeList("Help Section",sections,"Sections");
+    }
+
+    public void getComputerScienceCredentials() throws IOException{
+        wait.until(ExpectedConditions.visibilityOfAllElements(credentialsComputerScience));
+//        System.out.println(credentialsComputerScience.getText());
+        //data to save in excel pending
     }
 }
