@@ -12,7 +12,6 @@ public class TC_016_SortFunctionExistence extends BaseTest {
     //Harsh
     ResultsPage resultsPage;
     HomePage homePage;
-
     @Test(priority = 21)
     void CheckForSortFunction() {
         homePage=new HomePage(driver,wait);

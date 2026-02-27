@@ -12,7 +12,6 @@ public class TC_08_VerifyReviews extends BaseTest {
     //By Aditya
     ResultsPage resultsPage;
     HomePage homePage;
-
     @Test(priority = 13)
         public void testCheckReviews() throws IOException {
         homePage =new HomePage(driver,wait);

@@ -8,7 +8,6 @@ import pageObjects.HomePage;
 public class TC_05_FooterCheck extends BaseTest {
     //Aditya
     HomePage homePage;
-
     @Test(priority = 8)
     public void checkFooter(){
         homePage =new HomePage(driver,wait);

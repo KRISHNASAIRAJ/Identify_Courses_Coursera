@@ -10,7 +10,6 @@ public class TC_011_DurationLabelExtraction extends BaseTest {
     //By Irfan
     ResultsPage resultsPage;
     HomePage homePage;
-
     @Test(priority = 16)
     public void extractTimeline() {
         homePage=new HomePage(driver,wait);

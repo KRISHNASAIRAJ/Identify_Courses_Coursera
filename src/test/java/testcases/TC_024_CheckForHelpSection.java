@@ -11,8 +11,8 @@ import utilities.Log;
 import java.io.IOException;
 
 public class TC_024_CheckForHelpSection extends BaseTest {
+    //Harsh
     HomePage homePage;
-
     @Test(priority = 33)
     void checkHelpSection() throws IOException {
         homePage=new HomePage(driver,wait);
