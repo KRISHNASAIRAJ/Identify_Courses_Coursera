@@ -1,12 +1,11 @@
 package pageObjects;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.CommonCode;
 import utilities.ExcelWriter;
 
 import java.io.IOException;
@@ -17,6 +16,7 @@ import java.util.Set;
 public class CourseDetailsPage {
     WebDriver driver;
     WebDriverWait wait;
+    CommonCode commonCode;
     String setupInstructionsExtractor;
 
     @FindBy(xpath = "//a[contains(@id,'product-card-title')]")
@@ -38,20 +38,20 @@ public class CourseDetailsPage {
     WebElement instructorName;
 
     @FindBy(xpath = "//div[@data-unit='reviews-bar-graph']//p[@class='css-kimdhf']")
-    List<WebElement> ratings;
+    List<WebElement> courseRatings;
 
     @FindBy(xpath = "//ul[contains(@class,'rc-PartnerLinksV2')]//a | //div[contains(@class,'rc-ExternalLinks')]//a")
-    List<WebElement> lnks;
+    List<WebElement> instructorProfileLinks;
 
     public CourseDetailsPage(WebDriver driver, WebDriverWait wait) {
         this.driver=driver;
         this.wait=wait;
         PageFactory.initElements(driver,this);
+        this.commonCode=new CommonCode(driver,wait);
     }
 
     public void courseDetails() throws InterruptedException {
-        JavascriptExecutor js=(JavascriptExecutor) driver;
-        wait.until(ExpectedConditions.visibilityOfAllElements(productCards));
+        commonCode.visibilityOfAllElementsFunc(productCards);
         String ans= productCards.get(0).getAttribute("href");
         driver.navigate().to(ans);
         String parentWindow = driver.getWindowHandle();
@@ -63,7 +63,7 @@ public class CourseDetailsPage {
             }
         }
         driver.switchTo().window(child);
-        js.executeScript("arguments[0].scrollIntoView(true);", stepByStep);
+        commonCode.scrollIntoViewer(stepByStep);
         setupInstructionsExtractor = stepByStep.getText();
     }
 
@@ -78,10 +78,8 @@ public class CourseDetailsPage {
         List<String> ratingsList = new ArrayList<>();
 
         try {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView({block:'center'});", reviews);
-
-            for (WebElement r : ratings) {
+            commonCode.scrollIntoViewer(reviews);
+            for (WebElement r : courseRatings) {
                 String text = r.getText().trim();
                 if (!text.isEmpty()) {
                     ratingsList.add(text);
@@ -89,7 +87,7 @@ public class CourseDetailsPage {
             }
         } catch (Exception e) {
         }
-        ExcelWriter.writeList("Reviews",ratingsList,"Reviews");
+        ExcelWriter.writeList("Ratings",ratingsList,"Ratings");
         return ratingsList;
     }
 
@@ -97,14 +95,13 @@ public class CourseDetailsPage {
         List<String> resultLinks = new ArrayList<>();
         List<String> resultName = new ArrayList<>();
         try {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", instructorClk);
-            wait.until(ExpectedConditions.visibilityOf(instructorClk));
+            commonCode.jsClick(instructorClk);
+            commonCode.visibilityElementFunc(instructorClk);
             String name= instructorName.getText();
             resultName.add(name);
             ExcelWriter.writeList("Instructor Details",resultName ,"Name");
-            if (!lnks.isEmpty()) {
-                for (WebElement it : lnks) {
+            if (!instructorProfileLinks.isEmpty()) {
+                for (WebElement it : instructorProfileLinks) {
                     String text = it.getText().trim();
                     resultLinks.add(text);
                 }

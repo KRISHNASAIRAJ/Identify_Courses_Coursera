@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 public class CommonCode {
     WebDriver driver;
@@ -35,12 +36,26 @@ public class CommonCode {
         Log.info("Screenshot saved: " + destination.toAbsolutePath());
     }
 
-    public void elementClickableFunc(WebElement element){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement elementClickableFunc(WebElement element){
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebElement visibilityElementFunc(WebElement element){
         return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public List<WebElement> visibilityOfAllElementsFunc(List<WebElement> element)
+    {
+        return wait.until(ExpectedConditions.visibilityOfAllElements(element));
+    }
+
+    public void jsClick(WebElement element)
+    {
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    public WebElement visibilityElementLocatedFunc(By element_locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(element_locator));
     }
 
 }

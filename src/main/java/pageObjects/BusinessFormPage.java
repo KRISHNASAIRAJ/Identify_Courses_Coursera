@@ -73,7 +73,7 @@ public class BusinessFormPage {
     }
 
     public void moveToFormArea(){
-        wait.until(ExpectedConditions.visibilityOf(businessTab));
+        commonCode.visibilityElementFunc(businessTab);
         businessTab.click();
         commonCode.scrollIntoViewer(form);
     }
@@ -108,7 +108,7 @@ public class BusinessFormPage {
     }
     public boolean emailCheck(){
         try {
-            boolean check=wait.until(ExpectedConditions.visibilityOf(invalidEId)).isDisplayed();
+            boolean check=commonCode.visibilityElementFunc(invalidEId).isDisplayed();
             commonCode.scrollIntoViewer(invalidEId);
             return check;
         } catch (Exception e) {
@@ -117,7 +117,7 @@ public class BusinessFormPage {
     }
     public boolean formSubmissionStatus(){
         try{
-            return (wait.until(ExpectedConditions.visibilityOf(formStatusDisplay)).isDisplayed());
+            return (commonCode.visibilityElementFunc(formStatusDisplay)).isDisplayed();
         }
         catch (Exception e){
             return false;
