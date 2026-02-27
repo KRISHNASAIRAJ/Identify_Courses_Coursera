@@ -73,7 +73,7 @@ public class ResultsPage {
     WebElement topic_btn;
 
     @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
-    WebElement ComputerScienceBtn;
+    WebElement computerScienceBtn;
 
     @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
     WebElement view_btn;
@@ -127,6 +127,7 @@ public class ResultsPage {
         }
         ExcelWriter.writeList("Languages",languagesList,"Languages");
     }
+
 
     public void getLevels() throws IOException {
         difficultyLevel.click();
@@ -253,7 +254,7 @@ public class ResultsPage {
     public void filterAndSortClick() {
         filter_btn.click();
         wait.until(ExpectedConditions.visibilityOf(topic_btn)).click();
-        wait.until(ExpectedConditions.visibilityOf(ComputerScienceBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(computerScienceBtn)).click();
         wait.until(ExpectedConditions.visibilityOf(view_btn)).click();
     }
 
