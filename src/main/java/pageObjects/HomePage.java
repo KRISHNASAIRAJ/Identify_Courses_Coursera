@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
+import utilities.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -142,4 +143,10 @@ public class HomePage {
         ExcelWriter.writeList("Help Section",sections,"Sections");
     }
 
+    public void getComputerScienceCredentials() throws IOException {
+        commonCode.visibilityElementFunc(credentialsComputerScience);
+        List<String> credentials=new ArrayList<>();
+        credentials.add(credentialsComputerScience.getText());
+        ExcelWriter.writeList("ComputerScienceCredentials",credentials,"Credentials");
+    }
 }
