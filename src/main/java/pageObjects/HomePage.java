@@ -142,9 +142,4 @@ public class HomePage {
         ExcelWriter.writeList("Help Section",sections,"Sections");
     }
 
-    public void getComputerScienceCredentials(){
-        wait.until(ExpectedConditions.visibilityOfAllElements(credentialsComputerScience));
-//        System.out.println(credentialsComputerScience.getText());
-        //data to save in excel pending
-    }
 }
