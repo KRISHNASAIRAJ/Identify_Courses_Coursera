@@ -39,6 +39,7 @@ public final class ExcelWriter {
             WORKBOOK.write(out);
         }
     }
+
     private static int findOrCreateColumn(Row header, String name) {
         short last = header.getLastCellNum();  // -1 if empty
         int limit = Math.max(last, 0);
@@ -51,6 +52,4 @@ public final class ExcelWriter {
         header.createCell(limit).setCellValue(name);
         return limit;
     }
-
-
 }

@@ -78,7 +78,7 @@ public class TC_023_FormSubmissionWithInvalidData extends BaseTest {
         Assert.assertFalse(businessFormPage.formSubmissionStatus(), "Form must not submit with invalid data.");
     }
 
-    private int parseIntOrDefault(String value, int def) {
-        try { return Integer.parseInt(value.trim()); } catch (Exception e) { return def; }
+    private int parseIntOrDefault(String value, int defaultValue) {
+        try { return Integer.parseInt(value.trim()); } catch (Exception e) { return defaultValue; }
     }
 }

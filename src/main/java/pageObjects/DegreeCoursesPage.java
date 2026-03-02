@@ -63,14 +63,7 @@ public class DegreeCoursesPage {
         commonCode.visibilityElementFunc(filter2).click();
         commonCode.elementClickableFunc(cseBtn).click();
         commonCode.elementClickableFunc(applyBtn).click();
-        String currentWindow=driver.getWindowHandle();
         commonCode.visibilityElementFunc(gridElement).click();
-        Set<String> windowHandles=driver.getWindowHandles();
-        for(String handle:windowHandles){
-            if(handle!=currentWindow){
-                driver.switchTo().window(handle);
-                currentWindow=handle;
-            }
-        }
+        commonCode.switchToNewWindow();
     }
 }

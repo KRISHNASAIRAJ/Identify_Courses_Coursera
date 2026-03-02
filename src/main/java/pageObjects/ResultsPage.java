@@ -85,6 +85,7 @@ public class ResultsPage {
     By titleElement=By.xpath(".//h3");
     By rating=By.xpath(".//div[@class='cds-ProductCard-footer']/div/div/div/span");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
+
     public ResultsPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
@@ -95,14 +96,17 @@ public class ResultsPage {
     public boolean difficultyLevelVisibility(){
         return commonCode.visibilityElementFunc(difficultyLevel).isDisplayed();
     }
+
     public void selectDifficultyLevel(String difficultyInput){
         difficultyLevel.click();
         By beginnerOption=By.xpath("//span[text()='"+difficultyInput+"']");
         driver.findElement(beginnerOption).click();
     }
+
     public boolean isViewButtonEnabled(){
         return commonCode.visibilityElementFunc(viewBtn).isDisplayed();
     }
+
     public void clickViewButton(){
         viewBtn.click();
     }
@@ -110,11 +114,13 @@ public class ResultsPage {
     public boolean areLanguageOptionsClickable(){
         return commonCode.elementClickableFunc(languageOptions).isEnabled();
     }
+
     public void selectLanguage(String language){
         languageOptions.click();
         By englishLanguage =By.xpath("//span[text()='"+language+"']");
         driver.findElement(englishLanguage).click();
     }
+
     public void getLanguages() throws IOException {
         languageOptions.click();
         commonCode.visibilityOfAllElementsFunc(languages);
@@ -265,23 +271,12 @@ public class ResultsPage {
     }
 
     public boolean clickCourseSwitchCheckFAQReturn() {
-        String parentHandle = driver.getWindowHandle();
         clickOnCourse();
-        String childHandle = getNewTabHandle(parentHandle);
-        driver.switchTo().window(childHandle);
-
+        commonCode.switchToNewWindow();
         try {
             return checkForFAQ();
         } catch (TimeoutException | NoSuchElementException | IOException e) {
             return false;
         }
     }
-
-    private String getNewTabHandle(String parentHandle) {
-        for (String h : driver.getWindowHandles()) {
-            if (!h.equals(parentHandle)) return h;
-        }
-        throw new IllegalStateException("New tab not found after clicking the courseClk.");
-    }
-
 }

@@ -11,10 +11,9 @@ public class TC_02_VerifyLoginAndEmail extends BaseTest {
     @Test(priority = 4)
     public void testLogInAndEmailLabel() throws Exception {
         homePage = new HomePage(driver,wait);
-        Assert.assertTrue(homePage.isLogInButtonClickable(wait), "Log In button is NOT clickable on the homepage");
+        Assert.assertTrue(homePage.isLogInButtonClickable(), "Log In button is NOT clickable on the homepage");
         homePage.clickLogInButton();
-        Assert.assertTrue(homePage.isEmailLabelVisible(wait), "Email label is NOT visible after clicking Log In button");
+        Assert.assertTrue(homePage.isEmailLabelVisible(), "Email label is NOT visible after clicking Log In button");
         homePage.closeLoginForm();
-
     }
 }

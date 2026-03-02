@@ -13,6 +13,7 @@ public class TC_03_VerifyExploreCategories extends BaseTest {
         homePage =new HomePage(driver,wait);
         Assert.assertTrue(homePage.exploreCategoriesTitle());
     }
+
     @Test(priority = 6)
     public void checkAllCategories(){
     Assert.assertTrue(homePage.categoriesNames());

@@ -8,8 +8,7 @@ public class ConfigReader {
     Properties properties;
     public ConfigReader() throws IOException{
         properties=new Properties();
-        //change to DIR
-        FileInputStream fis=new FileInputStream("src/test/resources/config.properties");
+        FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/config.properties");
         properties.load(fis);
     }
     public String getProp(String key) throws IOException {

@@ -19,6 +19,7 @@ public class TC_07_VerifyProductNamesAndPartner extends BaseTest {
         homePage.sendInputToSearchBar("Python");
         Assert.assertTrue(resultsPage.searchAndLoadCards());
     }
+
     @Test(priority = 12)
     public void testSearchPartnerAndBadge() throws IOException {
         homePage =new HomePage(driver,wait);

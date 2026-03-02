@@ -22,5 +22,4 @@ public class TC_013_NoSetupGuarantee extends BaseTest {
         courseDetailsPage.courseDetails();
         Assert.assertTrue(courseDetailsPage.noInstallation());
     }
-
 }

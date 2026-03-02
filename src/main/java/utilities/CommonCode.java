@@ -58,4 +58,14 @@ public class CommonCode {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element_locator));
     }
 
+    public void switchToNewWindow() {
+        String parent = driver.getWindowHandle();
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                return;
+            }
+        }
+    }
+
 }

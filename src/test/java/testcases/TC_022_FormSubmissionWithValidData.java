@@ -80,7 +80,7 @@ public class TC_022_FormSubmissionWithValidData extends BaseTest {
         Assert.assertTrue(businessFormPage.formSubmissionStatus(), "Form should submit successfully for valid data.");
     }
 
-    private int parseIntOrDefault(String value, int def) {
-        try { return Integer.parseInt(value.trim()); } catch (Exception e) { return def; }
+    private int parseIntOrDefault(String value, int defaultValue) {
+        try { return Integer.parseInt(value.trim()); } catch (Exception e) { return defaultValue; }
     }
 }

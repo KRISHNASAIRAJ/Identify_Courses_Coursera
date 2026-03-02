@@ -22,9 +22,6 @@ public class HomePage {
 
     @FindBy(id = "search-autocomplete-input")
     WebElement searchBar;
-    //WORK THIS
-    @FindBy(xpath = "//button[@id='ior2l']")
-    WebElement notNowBtn;
 
     @FindBy(xpath = "//h2[contains(text(),'Explore categories')]")
     WebElement gotoExploreCategories;
@@ -43,12 +40,6 @@ public class HomePage {
 
     @FindBy(xpath = "//div[@role='listitem']/a[@href='/browse/computer-science']")
     WebElement computerScienceCategoryBtn;
-
-    @FindBy(xpath = "//button/span[contains(text(),'7-day')]")
-    WebElement freeTrial;
-
-    @FindBy(xpath = "//h1[contains(text(),'Coursera Plus')]")
-    WebElement afterFreeTrialClick;
 
     @FindBy(xpath = "//button[@data-e2e='close-modal-button']")
     WebElement closeBtn;
@@ -93,10 +84,6 @@ public class HomePage {
         searchBar.sendKeys(Keys.ENTER);
     }
 
-    public void dismissPopup() {
-        commonCode.elementClickableFunc(notNowBtn).click();
-    }
-
     public boolean exploreCategoriesTitle() {
         commonCode.visibilityElementFunc(gotoExploreCategories);
         return gotoExploreCategories.isDisplayed();
@@ -112,7 +99,7 @@ public class HomePage {
         return footer.isDisplayed();
     }
 
-    public boolean isLogInButtonClickable(WebDriverWait wait) throws Exception {
+    public boolean isLogInButtonClickable() {
         commonCode.visibilityElementFunc(logInBtn);
         commonCode.elementClickableFunc(logInBtn);
         return true;
@@ -120,7 +107,8 @@ public class HomePage {
     public void clickLogInButton() {
         logInBtn.click();
     }
-    public boolean isEmailLabelVisible(WebDriverWait wait) throws Exception {
+
+    public boolean isEmailLabelVisible() {
         commonCode.visibilityElementFunc(emailLabel);
         return emailLabel.isDisplayed();
     }
@@ -129,18 +117,9 @@ public class HomePage {
         closeBtn.click();
     }
 
-    public boolean isComputerScienceClickable() throws Exception {
+    public boolean isComputerScienceClickable() {
         computerScienceCategoryBtn.click();
         return true;
-    }
-
-    public void clickFreeTrialButton() throws Exception {
-        commonCode.elementClickableFunc(freeTrial);
-        freeTrial.click();
-    }
-    public boolean isFreeTrialPageOpens() throws Exception {
-        WebElement courseraPlusHeading=commonCode.visibilityElementFunc(afterFreeTrialClick);
-        return courseraPlusHeading.isDisplayed();
     }
 
     public boolean checkForHelpSection()
@@ -154,7 +133,6 @@ public class HomePage {
         commonCode.visibilityElementFunc(helpClk);
         commonCode.jsClick(helpClk);
         commonCode.takeScreenshot();
-
         List<String> sections = new ArrayList<>();
         commonCode.visibilityOfAllElementsFunc(helpSections);
         for(WebElement it:helpSections)
@@ -164,7 +142,7 @@ public class HomePage {
         ExcelWriter.writeList("Help Section",sections,"Sections");
     }
 
-    public void getComputerScienceCredentials() throws IOException{
+    public void getComputerScienceCredentials(){
         wait.until(ExpectedConditions.visibilityOfAllElements(credentialsComputerScience));
 //        System.out.println(credentialsComputerScience.getText());
         //data to save in excel pending

@@ -22,12 +22,14 @@ public class TC_018_FirstTwoCoursesDetails extends BaseTest {
         resultsPage.selectDifficultyLevel("Beginner");
         resultsPage.clickViewButton();
     }
+
     @Test(priority = 26)
     void languageOptionsFunctionality(){
         Assert.assertTrue(resultsPage.areLanguageOptionsClickable());
         resultsPage.selectLanguage("English");
         resultsPage.clickViewButton();
     }
+
     @Test(priority = 27)
     void beginnersLevelCoursesData() throws IOException {
         resultsPage.getListOfTitles();

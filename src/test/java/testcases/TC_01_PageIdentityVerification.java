@@ -18,6 +18,7 @@ public class TC_01_PageIdentityVerification extends BaseTest {
         Assert.assertEquals(homePage.getURL(),configReader.getProp("URL"));
         Log.info("URL verification completed");
     }
+
     @Test(priority = 2)
     public void verifyTitle() {
         homePage =new HomePage(driver,wait);

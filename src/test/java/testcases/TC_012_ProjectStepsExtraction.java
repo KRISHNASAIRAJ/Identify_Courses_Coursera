@@ -21,6 +21,5 @@ public class TC_012_ProjectStepsExtraction extends BaseTest {
         resultsPage.guidedProject();
         courseDetailsPage.courseDetails();
         Assert.assertTrue(courseDetailsPage.stepByInstructionsCheck());
-
     }
 }

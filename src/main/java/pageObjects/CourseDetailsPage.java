@@ -50,19 +50,11 @@ public class CourseDetailsPage {
         this.commonCode=new CommonCode(driver,wait);
     }
 
-    public void courseDetails() throws InterruptedException {
+    public void courseDetails() {
         commonCode.visibilityOfAllElementsFunc(productCards);
         String ans= productCards.get(0).getAttribute("href");
         driver.navigate().to(ans);
-        String parentWindow = driver.getWindowHandle();
-        Set<String> windows = driver.getWindowHandles();
-        String child = "";
-        for (String s : windows) {
-            if (!s.equals(parentWindow)) {
-                child = s;
-            }
-        }
-        driver.switchTo().window(child);
+        commonCode.switchToNewWindow();
         commonCode.scrollIntoViewer(stepByStep);
         setupInstructionsExtractor = stepByStep.getText();
     }
@@ -76,7 +68,6 @@ public class CourseDetailsPage {
 
     public List<String> fetchRatings() throws IOException {
         List<String> ratingsList = new ArrayList<>();
-
         try {
             commonCode.scrollIntoViewer(reviews);
             for (WebElement r : courseRatings) {

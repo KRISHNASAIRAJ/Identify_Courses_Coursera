@@ -20,11 +20,13 @@ public class TC_017_GetAllLanguagesAndLevels extends BaseTest {
         Assert.assertTrue(resultsPage.areLanguageOptionsClickable());
         resultsPage.getLanguages();
     }
+
     @Test(priority = 23)
     void viewButtonFunctionality(){
         Assert.assertTrue(resultsPage.isViewButtonEnabled());
         resultsPage.clickViewButton();
     }
+
     @Test(priority = 24)
     void getListOfLevels() throws IOException {
         Assert.assertTrue(resultsPage.difficultyLevelVisibility());
