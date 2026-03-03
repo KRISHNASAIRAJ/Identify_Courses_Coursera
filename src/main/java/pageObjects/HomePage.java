@@ -3,15 +3,15 @@ package pageObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
-import utilities.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomePage {
     WebDriver driver;
@@ -51,8 +51,8 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='category_tile-title']")
     List<WebElement> helpSections;
 
-    @FindBy(xpath = "//div[@class='css-fxrpmp']")
-    WebElement credentialsComputerScience;
+    @FindBy(xpath = "//div[@class='page-config-component-content']/div/div/div[@class='css-fxrpmp']")
+    List<WebElement> computerScienceComponents;
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -144,9 +144,22 @@ public class HomePage {
     }
 
     public void getComputerScienceCredentials() throws IOException {
-        commonCode.visibilityElementFunc(credentialsComputerScience);
-        List<String> credentials=new ArrayList<>();
-        credentials.add(credentialsComputerScience.getText());
-        ExcelWriter.writeList("ComputerScienceCredentials",credentials,"Credentials");
+        commonCode.visibilityOfAllElementsFunc(computerScienceComponents);
+        for (int i = 0; i < computerScienceComponents.size(); i++) {
+            String raw = computerScienceComponents.get(i).getText();
+            String[] temp = raw.split("\n");
+            String col1 = "";
+            String col2 = "";
+            if (temp.length > 0) {
+                col1 = temp[0].trim();
+            }
+            if (temp.length > 1) {
+                col2 = temp[1].trim();
+            }
+            List<String> row = new ArrayList<>();
+            row.add(col1);
+            ExcelWriter.writeList("Computer Science Category", row, col2);
+        }
     }
+
 }
