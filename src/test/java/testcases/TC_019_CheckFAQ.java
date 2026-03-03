@@ -14,7 +14,7 @@ public class TC_019_CheckFAQ extends BaseTest {
     HomePage homePage;
     CourseDetailsPage courseDetailsPage;
     @Test(priority = 28)
-    void CheckForFaq() throws InterruptedException {
+    void checkForFaq() throws InterruptedException {
         homePage=new HomePage(driver,wait);
         resultsPage=new ResultsPage(driver,wait);
         courseDetailsPage=new CourseDetailsPage(driver,wait);
