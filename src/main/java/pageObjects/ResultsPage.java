@@ -1,65 +1,91 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import utilities.CommonCode;
 import utilities.ExcelWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ResultsPage {
     WebDriver driver;
     WebDriverWait wait;
-    ExcelWriter excelWriter;
     CommonCode commonCode;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productDifficultyLevel']")
     WebElement difficultyLevel;
+
     @FindBy(xpath = "//span[text()='View']")
     WebElement viewBtn;
+
     @FindBy(xpath = "//a[@data-e2e='header-login-button']")
-    WebElement loginButton;
+    WebElement logInBtn;
+
     @FindBy(xpath = "//h3[contains(@class,'cds-CommonCard-title')]")
     List<WebElement> allTitles;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-language']")
     WebElement languageOptions;
+
     @FindBy(xpath = "(//div[@class='cds-ProductCard-content'])[position()<=2]")
     List<WebElement> courseDetails;
+
     @FindBy(xpath = "//div[contains(@data-testid,'language')]/label/div/span")
     List<WebElement> languages;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-interactiveArea']")
     List<WebElement> companyName;
+
     @FindBy(xpath = "//div[contains(@data-testid,'productDifficultyLevel')]/label/div/span")
     List<WebElement> difficultyLevels;
+
     @FindBy(xpath = "//div[contains(text(),'reviews')]")
-    List<WebElement> review;
+    List<WebElement> coursesReview;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
-    List<WebElement> level;
+    List<WebElement> coursesLevel;
+
     @FindBy(xpath = "//button[@data-testid='filter-dropdown-productTypeDescription']")
-    WebElement guidedProjectElement;
+    WebElement guidedProjectBtn;
+
     @FindBy(xpath = "//span[contains(text(),'Guided Projects')]")
-    WebElement guidedProjectCheckbox;
-    @FindBy(xpath = "cds-ProductCard-content")
+    WebElement guidedProjectChk;
+
+    @FindBy(className = "cds-ProductCard-content")
     List<WebElement> productCard;
-    @FindBy(xpath = "cds-ProductCard-body")
+
+    @FindBy(className = "cds-ProductCard-body")
     WebElement productCardBody;
-    @FindBy(xpath = "cds-ProductCard-content")
-    List<WebElement> productCardContent;
+
     @FindBy(xpath = "//div[@class='cds-CommonCard-metadata']")
     WebElement metadata;
+
+    @FindBy(xpath = "//button[@data-testid='filter-and-sort-button']")
+    WebElement filterBtn;
+
+    @FindBy(xpath = "//div[@class='cds-AccordionHeader-labelGroup']//span[contains(text(),'Topic')]")
+    WebElement topicBtn;
+
+    @FindBy(xpath = "//div[@class='cds-checkboxAndRadio-labelText']//span[text()='Computer Science']")
+    WebElement computerScienceBtn;
+
+    @FindBy(xpath = "//span[@class='cds-button-label' and contains(text(),'View')]")
+    WebElement viewBtn2;
+
+    @FindBy(xpath = "//h2[contains(text(),'Frequently')]")
+    WebElement faqSection;
+
+    @FindBy(xpath = "(//div[@class='cds-ProductCard-gridCard'])[position()<=1]")
+    WebElement courseClk;
+
     By titleElement=By.xpath(".//h3");
-    By rating=By.xpath(".//div[@aria-label='Rating']");
+    By rating=By.xpath(".//div[@class='cds-ProductCard-footer']/div/div/div/span");
     By duration=By.xpath("//div[@class='cds-CommonCard-metadata']/p");
+
     public ResultsPage(WebDriver driver, WebDriverWait wait){
         this.driver=driver;
         this.wait=wait;
@@ -68,32 +94,36 @@ public class ResultsPage {
     }
 
     public boolean difficultyLevelVisibility(){
-        return wait.until(ExpectedConditions.visibilityOf(difficultyLevel)).isDisplayed();
+        return commonCode.visibilityElementFunc(difficultyLevel).isDisplayed();
     }
+
     public void selectDifficultyLevel(String difficultyInput){
         difficultyLevel.click();
         By beginnerOption=By.xpath("//span[text()='"+difficultyInput+"']");
         driver.findElement(beginnerOption).click();
     }
+
     public boolean isViewButtonEnabled(){
-        return wait.until(ExpectedConditions.visibilityOf(viewBtn)).isDisplayed();
+        return commonCode.visibilityElementFunc(viewBtn).isDisplayed();
     }
+
     public void clickViewButton(){
         viewBtn.click();
     }
 
     public boolean areLanguageOptionsClickable(){
-        return wait.until(ExpectedConditions.elementToBeClickable(languageOptions)).isEnabled();
+        return commonCode.elementClickableFunc(languageOptions).isEnabled();
     }
+
     public void selectLanguage(String language){
         languageOptions.click();
         By englishLanguage =By.xpath("//span[text()='"+language+"']");
         driver.findElement(englishLanguage).click();
     }
+
     public void getLanguages() throws IOException {
         languageOptions.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(languages));
-//        int languageCount=languages.size();
+        commonCode.visibilityOfAllElementsFunc(languages);
         List<String> languagesList=new ArrayList<>();
         commonCode.takeScreenshot();
         for(WebElement language:languages){
@@ -104,8 +134,7 @@ public class ResultsPage {
 
     public void getLevels() throws IOException {
         difficultyLevel.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(difficultyLevels));
-        int difficultyCount=difficultyLevels.size();
+        commonCode.visibilityOfAllElementsFunc(difficultyLevels);
         commonCode.takeScreenshot();
         List<String> levelsList=new ArrayList<>();
         for(WebElement difficulty:difficultyLevels){
@@ -115,12 +144,13 @@ public class ResultsPage {
     }
 
     public boolean searchAndLoadCards() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(allTitles));
+        commonCode.visibilityOfAllElementsFunc(allTitles);
+        WebElement ele=commonCode.visibilityElementFunc(allTitles.get(0));
+        commonCode.scrollIntoViewer(ele);
         commonCode.takeScreenshot();
-        List<WebElement> courseCards = allTitles;
         boolean check=false;
         List<String> titlesList=new ArrayList<>();
-        for (WebElement card : courseCards) {
+        for (WebElement card : allTitles) {
             check=!card.getText().isEmpty();
             titlesList.add(card.getText());
         }
@@ -129,7 +159,7 @@ public class ResultsPage {
         }
 
     public boolean courseReviews() throws IOException {
-        List<WebElement> courseCards = review;
+        List<WebElement> courseCards = coursesReview;
         boolean bool = false;
         List<String> reviewsList=new ArrayList<>();
         for (WebElement card : courseCards){
@@ -141,19 +171,19 @@ public class ResultsPage {
     }
 
     public boolean courseLevel() throws IOException {
-        List<WebElement> courseCards = level;
+        List<WebElement> courseCards = coursesLevel;
         boolean bool = false;
         List<String> courseList=new ArrayList<>();
         for(WebElement card: courseCards){
             bool = !card.getText().isEmpty();
             courseList.add(card.getText());
         }
-        ExcelWriter.writeList("Courses",courseList,"course");
+        ExcelWriter.writeList("Courses",courseList,"courseClk");
         return bool;
     }
 
     public boolean companyCourseName() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(companyName));
+        commonCode.visibilityOfAllElementsFunc(companyName);
         List<WebElement> courseCards = companyName;
         boolean check = false;
         List<String> companyList=new ArrayList<>();
@@ -166,14 +196,14 @@ public class ResultsPage {
     }
 
     public void getListOfTitles() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfAllElements(courseDetails));
+        commonCode.visibilityOfAllElementsFunc(courseDetails);
         List<String> courseTitles=new ArrayList<>();
         List<String> courseRatings=new ArrayList<>();
         List<String> courseDurations=new ArrayList<>();
         for(WebElement card:courseDetails){
-            wait.until(ExpectedConditions.visibilityOfElementLocated(rating));
+            commonCode.visibilityElementLocatedFunc(rating);
             courseTitles.add(card.findElement(titleElement).getText());
-            courseRatings.add(card.findElement(rating).getAttribute("aria-valuenow"));
+            courseRatings.add(card.findElement(rating).getText());
             courseDurations.add(card.findElement(duration).getText());
         }
         ExcelWriter.writeList("CourseDetails",courseTitles,"Title");
@@ -183,14 +213,14 @@ public class ResultsPage {
     }
 
     public boolean isLoginButtonEnabled(){
-        return (wait.until(ExpectedConditions.elementToBeClickable(loginButton)).isEnabled());
+        return (commonCode.elementClickableFunc(logInBtn)).isEnabled();
     }
 
     public  void guidedProject(){
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectElement));
-        guidedProjectElement.click();
-        wait.until(ExpectedConditions.visibilityOf(guidedProjectCheckbox));
-        guidedProjectCheckbox.click();
+        commonCode.visibilityElementFunc(guidedProjectBtn);
+        guidedProjectBtn.click();
+        commonCode.visibilityElementFunc(guidedProjectChk);
+        guidedProjectChk.click();
         clickViewButton();
     }
 
@@ -207,9 +237,11 @@ public class ResultsPage {
     }
 
     public boolean getTimeline(){
-        List<WebElement> l= productCardContent;
+        List<WebElement> l= productCard;
         boolean check=true;
         for(WebElement search: l){
+            commonCode.visibilityElementFunc(search);
+            commonCode.visibilityElementFunc(metadata);
             String str=search.findElement((By) metadata).getText();
             if(!str.contains("Less Than 2 Hours")){
                 check=false;
@@ -218,4 +250,33 @@ public class ResultsPage {
         return check;
     }
 
+    public boolean filterAndSortVisible(){
+        return filterBtn.isDisplayed();
+    }
+
+    public void filterAndSortClick() {
+        filterBtn.click();
+        commonCode.visibilityElementFunc(topicBtn).click();
+        commonCode.visibilityElementFunc(computerScienceBtn).click();
+        commonCode.visibilityElementFunc(viewBtn2).click();
+    }
+
+    public void clickOnCourse() {
+        commonCode.elementClickableFunc(courseClk).click();
+    }
+
+    public boolean checkForFAQ() throws IOException {
+        commonCode.scrollIntoViewer(faqSection);
+        return faqSection.isDisplayed();
+    }
+
+    public boolean clickCourseSwitchCheckFAQReturn() {
+        clickOnCourse();
+        commonCode.switchToNewWindow();
+        try {
+            return checkForFAQ();
+        } catch (TimeoutException | NoSuchElementException | IOException e) {
+            return false;
+        }
+    }
 }
