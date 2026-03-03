@@ -62,6 +62,7 @@ public class CourseDetailsPage {
     public boolean stepByInstructionsCheck(){
         return setupInstructionsExtractor.contains("Learn step-by-step");
     }
+
     public boolean noInstallation(){
         return installationCheck.isDisplayed();
     }

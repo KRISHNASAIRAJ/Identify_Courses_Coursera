@@ -55,6 +55,7 @@ public class DegreeCoursesPage {
     public boolean isCourseNamePresent(){
         return !course.getText().isEmpty();
     }
+
     public void findCourses(){
         commonCode.visibilityElementFunc(degreesOption).click();
         commonCode.visibilityElementFunc(filter1).click();

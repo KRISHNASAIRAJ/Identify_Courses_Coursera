@@ -105,6 +105,7 @@ public class BusinessFormPage {
         states.selectByValue(stateInp);
         submitBtn.click();
     }
+
     public boolean emailCheck(){
         try {
             boolean check=commonCode.visibilityElementFunc(invalidEId).isDisplayed();
@@ -114,6 +115,7 @@ public class BusinessFormPage {
             return false;
         }
     }
+
     public boolean formSubmissionStatus(){
         try{
             return (commonCode.visibilityElementFunc(formStatusDisplay)).isDisplayed();
