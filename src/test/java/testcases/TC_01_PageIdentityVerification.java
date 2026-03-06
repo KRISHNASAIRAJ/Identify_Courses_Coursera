@@ -28,7 +28,7 @@ public class TC_01_PageIdentityVerification extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void testWebsiteLogo(){
+    public void testWebsiteLogo() throws InterruptedException {
         homePage =new HomePage(driver,wait);
         Assert.assertTrue(homePage.checkLogo());
     }

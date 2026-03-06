@@ -25,3 +25,6 @@ public class TC_019_CheckFAQ extends BaseTest {
         Assert.assertTrue(resultsPage.clickCourseSwitchCheckFAQReturn(),"FAQ section is not displayed");
     }
 }
+
+
+
