@@ -1,4 +1,5 @@
 package basetest;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,8 +29,13 @@ public class BaseTest {
                 driver = new ChromeDriver();
 
 //                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--headless=new");
+//                options.addArguments("--headless");
+//                options.addArguments("--window-size=1920,1080");
 //                driver = new ChromeDriver(options);
+//                options.addArguments("--disable-gpu");
+//                options.addArguments("--no--sandbox");
+//                options.addArguments("--disable-dev-shm-usage");
+
             }
             driver.manage().window().maximize();
             driver.get(configReader.getProp("URL"));
